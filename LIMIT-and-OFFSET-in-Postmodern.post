@@ -1,0 +1,7 @@
+;;;;;
+title: LIMIT and OFFSET in Postmodern
+tags: LISP, Programming
+date: 2010-04-25 17:58:09
+format: html
+;;;;;
+I've been using the Postmodern library in Common Lisp to access PostgresQL databases of late and it's been a pretty good experience.<br><br>That said, I had a little trouble using LIMIT and OFFSET to get DAO objects and wanted to put an example online in case anyone else has trouble with this. Future Postmoderners, May Google protect you.<br><br>You'll want to use query-dao instead of select-dao and wrap the limit around a select statement. It winds up looking something like this:<br><pre lang="lisp"><br>(query-dao 'card<br>  (:limit (:select (:distinct 'name) :from 'card) 10 0))<br></pre><br><br>In this example, we're selecting the first 10 rows (that are distinct by name) from the card table. Obviously, you could use <code>'*</code> instead of <code>(:distinct 'name)</code> to select from all rows.<br><br>That's not much of a post but here it is. Once I'm through finals I'll try to start posting a bit more regularly. Then again, I'll be moving once in May and once in June so we'll see what happens.

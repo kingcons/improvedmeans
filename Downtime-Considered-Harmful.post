@@ -1,0 +1,7 @@
+;;;;;
+title: Downtime Considered Harmful
+tags: Personal
+date: 2008-05-28 01:25:32
+format: html
+;;;;;
+<p>At long last, <a href="http://www.redlinernotes.com/">the site</a> is live again. Clearly the downtime ended up being a little longer than expected. This was caused by a few things.</p><br><p>One thing was that there were not 3 prong outlets where the server needed to go. This hosting facility (house) is a little old and the only places the DSL line runs have 2 prong outlets. So that slowed me down a bit.</p><br><p>Secondly, there are 2 network cards on the server (one integrated in the mobo, the other's PCI). Linux was confusing the two. I could've fixed that Saturday evening, I grant you. I had previous engagements and better things to do the last few days though.</p><br><p>Finally, Bellsouth seems to be suffering more DNS outages over the last few days which caused a bit of chaos here. Anyone who has experienced this or has any questions about it feel free to ask me. If you are having DNS issues, I advise setting your secondary DNS to one of the <a href="http://www.opendns.org/">OpenDNS</a> servers or getting one of your friends to do so.</p><br><p>EDIT: This was originally written on Tuesday the 27th. Further delays were experienced due to internal political issues in the house but all is now resolved and the site has been up since last night. A blog entry with photos of the house is planned for later today.</p>

@@ -1,0 +1,7 @@
+;;;;;
+title: Quick Emacs Question
+tags: Programming
+date: 2008-04-21 04:01:58
+format: html
+;;;;;
+Dear Interwebs,<br><br>I've gotten rather accustomed to Edwin as I've worked my way through SICP. Eventually I'll want to use a different scheme so I'll have to switch to Emacs. I've been working on that lately but there's one thing holding me back that I can't find a solution to anywhere. I've got quack installed and really like the edwin behavior of C-x C-e. That is, when I evaluate an S-Expression I want it to be evaluated on a REPL in the background and the resulting value or error information dumped into the text editing buffer. I do not want a REPL to show up with that information in a new frame. Please, Emacs folk: Help.

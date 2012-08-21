@@ -1,0 +1,7 @@
+;;;;;
+title: I got yer jetty server right here!
+tags: Linux
+date: 2007-06-19 15:50:00
+format: html
+;;;;;
+Jetty Install Process:<br>Install JDK 6u1 from Sun:<br>Grab the bin file and run:<br>sudo chmod +x *.bin<br>sudo sh ./jdk*.bin<br>sudo mv jdk1.6.0_01 Java6u1<br>sudo mv Java6u1 /usr<br>sudo update-alternatives --install /usr/bin/java java /usr/Java6u1/bin/java 300<br>sudo update-alternatives --config java<br>Select whichever number corresponds to /usr/Java6u1/bin/java<br><br>Grab latest jetty from website and run:<br>sudo mkdir /opt/jetty<br>sudo chown $USER /opt/jetty<br>Unzip to /opt/jetty<br>Throw timekeeper in /opt/jetty/webapps via sudo cp -R timekeeper /opt/jetty/webapps<br>sudo chown -R jetty /opt/jetty<br>sudo chmod -R ugo+rw /opt/jetty<br>sudo cp /opt/jetty/bin/jetty.sh /etc/init.d/jetty<br>sudo touch /etc/init.d/jetty<br>set JETTY_HOME=/opt/jetty and JAVA_HOME=/usr/Java6u1 in /opt/jetty/bin/jetty.sh<br>set Log location in /opt/jetty/etc/jetty.xml to /opt/jetty/logs<br><br>Get Jetty to accept connections on port 80:<br>sudo /sbin/iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080<br><br>Get Jetty to run on bootup:<br>sudo ln -s /etc/init.d/jetty /etc/rc2.d/S86jetty<br><br>Load Balancing Modifications:<br>Research ongoing.

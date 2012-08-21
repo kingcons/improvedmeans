@@ -1,0 +1,7 @@
+;;;;;
+title: Emacs and MIT-Scheme on Hardy
+tags: LISP, Programming
+date: 2008-04-21 17:55:30
+format: html
+;;;;;
+<p>Okay, quick update. The <a href="http://www.redlinernotes.com/blog/?p=896">feature I'm missing from edwin</a> has a name and that name is "Scheme Interaction Mode". This feature is provided in Emacs by using <a href="http://ftp.gnu.org/gnu/mit-scheme/utilities.pkg/xscheme.el">xscheme.el</a>. Just <a href="http://www.redlinernotes.com/blog/?p=878">replace (require 'quack) with (require 'xscheme)</a> in your .emacs file. Unfortunately, xscheme only works with MIT-Scheme so as far as I can tell there isn't a general purpose Scheme Interaction Mode for Emacs that works across Schemes. I'll dig around more about that. In the mean time, I got MIT-Scheme to work on Hardy by compiling from the portable C on their website as described <a href="http://www.gnu.org/software/mit-scheme/liarc-build.html">here</a>. It took over an hour though. It's not a solution I'm too pleased about and half makes me want to downgrade to Gutsy or switch to a distro that has support for MIT-Scheme altogether. At any rate, more on all this down the line.</p>

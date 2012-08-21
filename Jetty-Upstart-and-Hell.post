@@ -1,0 +1,7 @@
+;;;;;
+title: Jetty, Upstart, and Hell
+tags: Linux
+date: 2007-06-07 20:15:00
+format: html
+;;;;;
+<hr style="color: #ffffff" size="1" /> 			<!-- / icon and title --> 		 		 		<!-- message --><br><p class="ubuntu_messagebody" id="post_message_2793386">Hi lazyweb, I've been trying to get an install of jetty on ubuntu that will load during boot up and I've run update-rc.d jetty defaults but it's not working. What am I doing wrong?<br>Jetty Install Process:<br>Install JDK 6u1 from Sun:<br>Grab the bin file and run:<br>sudo chmod +x *.bin<br>sudo sh ./jdk*.bin<br>sudo mv jdk1.6.0_01 Java6u1<br>sudo mv Java6u1 /usr/lib<br>sudo update-alternatives --install /usr/bin/java java /usr/lib/Java6u1/bin/java 300<br>sudo update-alternatives --config java<br>Select whichever number corresponds to /usr/lib/Java6u1/bin/java<br><br>Grab latest jetty from website and run:<br>sudo mkdir /opt/jetty<br>sudo chown $USER /opt/jetty<br>Unzip to /opt/jetty<br>Throw timekeeper in /opt/jetty/webapps via sudo cp -R timekeeper /opt/jetty/webapps<br>sudo chown -R jetty /opt/jetty<br>sudo chmod -R ugo+rw /opt/jetty<br>sudo cp /opt/jetty/bin/jetty.sh /etc/init.d/jetty<br>sudo touch /etc/init.d/jetty<br>set JETTY_HOME=/opt/jetty and JAVA_HOME=/usr/lib/Java6u1 in /opt/jetty/bin/jetty.sh<br>set Log location in /opt/jetty/etc/jetty.xml to /opt/jetty/logs<br>sudo ln -s /opt/jetty/bin/jetty.sh /etc/init.d/jetty<br>sudo update-rc.d jetty defaults<br><br>HALP?<br><br>Thanks.

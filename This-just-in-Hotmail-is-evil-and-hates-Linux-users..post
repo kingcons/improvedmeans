@@ -1,0 +1,7 @@
+;;;;;
+title: This just in: Hotmail is evil and hates Linux users.
+tags: Linux
+date: 2008-11-08 21:07:53
+format: html
+;;;;;
+This shouldn't particularly surprise anyone and I should be more surprised that it's taken me so long to ditch my old hotmail account. Embarassed even. It is my own fault to be sure that I'm using crappy lock-in focused webmail.<br><br>The short version: Hotmail (now Live Mail) won't allow users on Linux platforms to type in the body fields of e-mails rendering the service useless. The quick fix (on my comp at least) is to disguise yourself as a non-Linux user. Type "about:config" in the address bar and acknowledge any warnings you may get. Then type "useragent" in the filter and change the vendor value (if it's there) and the general.useragent.extra.firefox value to "Firefox 3.0.3".<br><br>Here's a general note to anyone working on a web site/platform: If you're doing HTTP header checks to see the platform and browser the page recipient is using and warning them if they're not using the Browser/Platform your site is designed for, you're doing it wrong. I don't ever want to see another warning or sorry this page won't work for you. That's fundamentally not what the internet is about. That's not the way the web works. It's called openness bitches. Get used to it.<br><br>I'll dump my messages out of hotmail, switch a few services to use something else and move on with my life. This account has been around way too long. Not that I couldn't just keep fooling them by modifying my useragent strings.

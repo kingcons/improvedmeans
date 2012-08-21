@@ -1,0 +1,7 @@
+;;;;;
+title: Silly Slime
+tags: LISP, Personal
+date: 2009-06-11 18:00:40
+format: html
+;;;;;
+Recently, SLIME has been acting funny. I think it's since an archlinux update but I hadn't had time to look into it. When I used the ~ key in the SLIME editor window (not the REPL) was causing some debugger error. So if I wanted to write a format string like "~a~%" then I was hosed. So...today I got fed up with it and using Emacs C-h k found that the key was invoking the "slime-sync-package-and-default-directory" function. Googling seemed to indicate this function was normally bound to "C-c ~".<br><br>At any rate, it shouldn't be bound to "~" so I went to the slime site lisp directory and ran <code>grep -r "slime-sync-package-and-default-directory" *</code>. Among the results was this:<br>contrib/slime-repl.el:  ("~" 'slime-sync-package-and-default-directory))<br>Aha. So the simple fix was changing the "~" to "\C-c ~". All seems to be well now...but what an odd thing to have to fix in the first place. *shrug*<br><br>Back to studying for Data Structures...and maybe lunch.

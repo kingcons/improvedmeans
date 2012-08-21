@@ -1,0 +1,7 @@
+;;;;;
+title: My .hgignore
+tags: Linux, Programming
+date: 2009-01-14 23:25:29
+format: html
+;;;;;
+Before I forget it or fail to version it somewhere I want to post the contents of my .hgignore file. You may or may not find it useful if you're a mercurial user but it's really for me. :)<br><br>syntax: glob<br>*.elc<br>*.orig<br>*~<br>\#*<br>.DS_Store<br>unversioned/*<br>.hgrc<br>.hgignore

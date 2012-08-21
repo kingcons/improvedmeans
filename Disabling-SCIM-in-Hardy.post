@@ -1,0 +1,7 @@
+;;;;;
+title: Disabling SCIM in Hardy
+tags: Linux
+date: 2008-03-11 17:25:24
+format: html
+;;;;;
+If anyone else has been struggling/annoyed/ready-to-kill due to the SCIM program that runs by default in Ubuntu Hardy I found, thanks to <a href="http://weblog.verwilst.be/2008/03/11/scim-in-ubuntu-hardy/">this gentleman</a>, that you can disable the application altogether by doing the following:<br><pre><br>sudo update-alternatives --set xinput-all_ALL /etc/X11/xinit/xinput.d/none</pre><br>Restart your X server and that should be it!<br><br>EDIT: I received an anonymous comment from a British locale user that said the original solution switched him back to English. A cursory google didn't turn up anything tremendously helpful/enlightening, <a href="https://wiki.ubuntu.com/InputMethods/SCIM/Setup">just this</a>, and I'm lazy tonight so I hypothesize that /etc/X11/xinit/xinput.d/default sets your locale to the setup default and /etc/X11/xinput.d/none disables SCIM altogether. Maybe I'm right. YMMV.

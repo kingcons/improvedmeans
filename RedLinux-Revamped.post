@@ -1,0 +1,7 @@
+;;;;;
+title: RedLinux Revamped
+tags: Linux, Programming Languages
+date: 2009-05-12 20:00:25
+format: html
+;;;;;
+So the last time I really blogged about RedLinux was back in September 08 when I made <a href="http://redlinernotes.com/blog/?p=723">the first release</a>. I kept tweaking things now and again but at this point I've got something that I'm really not messing with very often. I've christened it "Redlinux v.20" and I'm planning on trying to make releases every six months or so. They'll mostly consist of package updates with any other changes listed in the changelog. I'll be trying to keep the latest versions of all my dotfiles and a complete archlinux package list in the <a href="http://redlinernotes.com/docs/redlinux/">redlinux docs</a> portion of my website. With the dotfiles and the package list, you could basically build the thing yourself anyway and it keeps my life easier besides. The only real long term plans other than that are to improve documentation and make it more friendly for other people to tinker with.<br><br>I've made a Live CD image with an installer and uploaded the ISO to my Amazon S3 account. You can <a href="http://s3.amazonaws.com/redlinux/redlinux.iso">grab the ISO here</a>. The <a href="http://redlinernotes.com/blog/?p=724">old install guide</a> still applies.
