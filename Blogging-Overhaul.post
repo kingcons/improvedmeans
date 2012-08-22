@@ -1,0 +1,7 @@
+;;;;;
+title: Blogging Overhaul
+tags: Personal
+date: 2012-08-22 09:37:11
+format: html
+;;;;;
+Folks, this Wordpress blog will soon disappear. I've wanted to get rid of Wordpress for a while and half-wrote some blog software back in Spring 2011. Some coworkers had a similar plight so we all agreed to finish our blog engines in a one week sprint. I'm done and will likely switch over in the coming days. My livejournal, for those of you still reading that, will no longer receive crossposts and go dark. The blog will be at http://blog.redlinernotes.com/ and there will be an RSS feed at http://blog.redlinernotes.com/rss.xml. There is no ATOM support at this time but...you know, <a href="http://github.com/redline6561/coleslaw" title="Coleslaw">patches welcome</a>. :) For the curious, the new software is called Coleslaw after a nickname of my favorite poet Milosz. It's basically a jekyll-alike in Common Lisp. Anyway, see you on the other side.
