@@ -1,0 +1,29 @@
+;;;;;
+title: Coleslaw Lives!
+tags: lisp
+date: 2012-08-26 12:42:00
+format: md
+;;;;;
+### New Beginnings
+So, Coleslaw is alive (you're looking at it) and I've done a clean reinstall on my server for the first time since 2008 or so. Thank GOD.
+
+With any luck, I'll get back to hacking emulators now. :) But first... a test of some features! I should really overhaul the README for [coleslaw](http://github.com/redline6561/coleslaw) too.
+
+```lisp
+;; God do I love being able to write this post in emacs. And commit and push to publish.
+(defun slug-char-p (char)
+  "Determine if CHAR is a valid slug (i.e. URL) character."
+  (or (char<= #\0 char #\9)
+      (char<= #\a char #\z)
+      (char<= #\A char #\Z)
+      (member char '(#\_ #\- #\.))))
+
+(defun slugify (string)
+  "Return a version of STRING suitable for use as a URL."
+  (remove-if-not #'slug-char-p (substitute #\- #\Space string)))
+```
+
+### A LaTeX/mathjax test...
+$$
+\lambda \scriptstyle{f}. (\lambda x. (\scriptstyle{f} (x x)) \lambda x. (\scriptstyle{f} (x x)))
+$$
