@@ -1,0 +1,13 @@
+;;;;;
+title: Swanky Developments
+tags: personal, lisp
+date: 2012-09-04 13:22:05
+format: md
+;;;;;
+Now that the i's have been dotted and the t's crossed I'm pleased to announce I've accepted a new job. Starting September 17th, I'll be a Senior Developer working for Primedia. I'll be helping them migrate from ruby to clojure. I've been meaning to spend more time hacking Clojure as it is. I'm particularly delighted that I'll be in something of a teaching role and able to share my knowledge and experience with lisp with interested hackers.
+
+CMGdigital has been a phenomenal place to work for the last year and I'll miss everyone there dearly. I wasn't looking for a new job but Primedia found me and this was in many ways the right opportunity at the right time.
+
+I'm also very excited for the arrival of Leiningen 2.0 and happily running the latest preview. After using quicklisp, I disliked having to setup a mock project to experiment with arbitrary libraries in Clojure. Leiningen 2 uses a library called pomegranate under the covers which allows modifying the REPL classpath. Thus, dependencies can be [easily added to a running REPL](http://sunng.info/blog/2012/03/my-favorite-feature-in-leiningen-2/) and experimented with!
+
+In other lispy news, the dream of endless swank backends and SLIME on everything has died. [Previously](http://redlinernotes.com/images/slime-on-everything.png), I had coerced SLIME into running Clojure, Scheme, and Common Lisp simultaneously and [knowing which filetypes to associate with which repls](https://github.com/redline6561/dotemacs/commit/78581e7027284605d2aa77ccaf0df1265ccd8db8#L0L65). It took *a lot* of fiddling. I actually had a rant against the proliferation of swank backends for other languages like Chicken Scheme and Clojure happening outside the main SLIME tree. Anyway, between Emacs 24 shipping [package.el](https://github.com/redline6561/dotemacs/blob/master/init/packages.el#L1), [marmalade](http://marmalade-repo.org/), [nrepl.el](https://github.com/kingtim/nrepl.el) for Clojure, and [Geiser](http://geiser.nongnu.org/) for scheme, the situation has resolved itself even if the infinite SLIME dream is dead. And ultimately, that's better for hackers everywhere...so who am I to complain? :)
