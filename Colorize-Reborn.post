@@ -10,18 +10,19 @@ I haven't finished my [headless NES emulator](https://github.com/redline6561/fam
 The majority of my efforts have been related to my new blogging engine, Coleslaw. I've substantially cleaned up the rendering pass, added optional RSS feeds for specific tags, revamped the plugin architecture, and added a plugin for [Disqus](http://www.disqus.com/) support. Jose Pereira also wrote a [heroku buildpack](https://github.com/jsmpereira/coleslaw-heroku) for running Coleslaw so if you feel like having a simple managed install, problem solved!
 
 While docs are still needed, here is a rough overview of the plugin architecture. I'll add a simple, hello-world-ish example to the README shortly.
+
 * Plugins are lisp files placed in coleslaw's ```plugins``` directory.
 * Each plugin should define a package ```:coleslaw-$filename``` where $filename is the name, excluding extension, of the plugin.
 * The package should export a function named ```enable``` that can be called to activate the plugin.
 
 * ```enable``` is mostly useful for adding Javascript to the page via ```add-injection``` or passing initialization args elsewhere.
-  * ```add-injection``` takes a cons like ```(js-string . predicate)``` and a location (```:head``` or ```:tail```) to insert it.
-  * The predicate should take a single content object as argument. A content object can be either a POST or an INDEX.
-  * The predicate will be called at render time and a non-nil return value will cause the injection to be included in the page.
+    * ```add-injection``` takes a cons like ```(js-string predicate)``` and a location (```:head``` or ```:tail```) to insert it.
+    * The predicate should take a single content object as argument. A content object can be either a POST or an INDEX.
+    * The predicate will be called at render time and a non-nil return value will cause the injection to be included in the page.
 * Plugins can also extend ```render-content``` to support new post formats such as ReStructuredText or modify ```deploy``` with ```:before```, ```:after```, or ```:around``` methods to support deployment to S3, serving via Hunchentoot, etc.
 
 * End users take advantage of plugins by enabling them in their .coleslawrc's :plugins list.
-  * A plugin given as a symbol will call ```enable``` with no args whereas a plugin given as a list will call ```enable``` with the args after the plugin's name.
+    * A plugin given as a symbol will call ```enable``` with no args whereas a plugin given as a list will call ```enable``` with the args after the plugin's name.
 
 ## Colorize Reborn
 I am pleased to announce I've taken over as maintainer of [Colorize](https://github.com/redline6561/colorize/). It provides the syntax highlighting in Coleslaw's [3bmd](https://github.com/3b/3bmd) markdown mode. I've backported patches from lisppaste to colorize for Haskell, Erlang, Python, and a number of other languages. I also added very rudimentary support for Clojure highlighting. While I'm interested in seeing further language support (particularly Clojure and [Rust](http://rust-lang.org/)) I lack the time to work on further coloring modes myself. If you have any inclination to hack on colorize to add support for new languages or otherwise improve it please feel free to contact me. I'm more than happy to review and merge pull requests. :)
