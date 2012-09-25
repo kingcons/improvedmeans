@@ -18,26 +18,26 @@ Though I didn't take notes on these, or today's keynotes, I have seen quite good
 * Graph of known Monad tutorials. Skyrocketing. :P
 * Monads are a great abstraction to capture/describe patterns, NOT explain them.
 * A System of Patterns - book
-  * Architecture Pattern > Design Pattern > Idiom (idioms are least general)
+    * Architecture Pattern > Design Pattern > Idiom (idioms are least general)
 
 1. State/Event Pattern
-   * Store all the inputs and initial state. Rederive any point in execution.
-   * Can be troublesome to track tons of inputs/events.
+    * Store all the inputs and initial state. Rederive any point in execution.
+    * Can be troublesome to track tons of inputs/events.
 2. Consequences Pattern
-   * Input can trigger arbitrarily many events to fire/hooks.
-   * Returns the events as a sequence (of thunks, presumably).
-   * Don't let them recurse or you're turing complete!
+    * Input can trigger arbitrarily many events to fire/hooks.
+    * Returns the events as a sequence (of thunks, presumably).
+    * Don't let them recurse or you're turing complete!
 3. Data Building Patterns
-   * Accumulator Pattern - Reduce a sequence to a scalar value. Duh.
-       * If order matters, have to do it sequentially. Otherwise, divide!
-   * Digression:
-       * MapReduce about wringing data locality out of slow disk clusters. Already changing with SSDs.
-       * Reducers are nice when you have associativty. Easy to parallelize trees of operations.
-   * Recursive Expansion Pattern - Macroexpansion, Datmoic transaction, Are we done expanding? If not, keep going.
+    * Accumulator Pattern - Reduce a sequence to a scalar value. Duh.
+        * If order matters, have to do it sequentially. Otherwise, divide!
+    * Digression:
+        * MapReduce about wringing data locality out of slow disk clusters. Already changing with SSDs.
+        * Reducers are nice when you have associativty. Easy to parallelize trees of operations.
+    * Recursive Expansion Pattern - Macroexpansion, Datmoic transaction, Are we done expanding? If not, keep going.
 4. Flow Control Patterns
-   * Pipeline pattern - Code may be longer but it's cleaner. Enforced composition through layering+encapsulation. No branching allowed!
-   * Wrapper pattern - Foundation for Ring. One main path with potential branches at each step. Just decorators/:before+:after+:around methods?
-   * Token pattern - May need to cancel and operation. Call Begin, returns a destructor, basically. Don't need direct access to resource to destroy it.
+    * Pipeline pattern - Code may be longer but it's cleaner. Enforced composition through layering+encapsulation. No branching allowed!
+    * Wrapper pattern - Foundation for Ring. One main path with potential branches at each step. Just decorators/:before+:after+:around methods?
+    * Token pattern - May need to cancel and operation. Call Begin, returns a destructor, basically. Don't need direct access to resource to destroy it.
 
 ## A Whole New World
 Possibly the talk I'm most excited for today. DESTROY ALL SOFTWARE!
@@ -45,23 +45,23 @@ Possibly the talk I'm most excited for today. DESTROY ALL SOFTWARE!
 3 Confessions
 
 1. Wrote "An Editor"
-   * Modal, Terminal Only, Neither VIM nor IDE
-   * Layers! Annotations on source. Diffs. Tracebacks from prod logs. YES!
-       * Crash - Have to parse logs+traceback, maybe use different checkout.
-   * Interactions - On-demand Class Hierarchy/CFG. Code navigation methods.
-       * No static analysis! Language-specific FIFO queues for program traces! Fork+render with graphviz. FUCK YEAHHHHH!
-   * Answer questions like: What code does a web request hit? More importantly, what code might have reached this crash point in our traceback?
+    * Modal, Terminal Only, Neither VIM nor IDE
+    * Layers! Annotations on source. Diffs. Tracebacks from prod logs. YES!
+        * Crash - Have to parse logs+traceback, maybe use different checkout.
+    * Interactions - On-demand Class Hierarchy/CFG. Code navigation methods.
+        * No static analysis! Language-specific FIFO queues for program traces! Fork+render with graphviz. FUCK YEAHHHHH!
+    * Answer questions like: What code does a web request hit? More importantly, what code might have reached this crash point in our traceback?
 2. Wrote "An Terminal"
-   * DEC VT100 has determined terminal protocols for 30 YEARS. Powered by an 8080. @1978.
-   * Add raster graphics, 24-bit color, momentary keypresses, font styles.
-   * Use for more editor layers! Tag lines with profiling info. Bottom 95% grey, others yellow or red. Same thing for Type annotation. Record traces, remember?
-   * Do you want it?
+    * DEC VT100 has determined terminal protocols for 30 YEARS. Powered by an 8080. @1978.
+    * Add raster graphics, 24-bit color, momentary keypresses, font styles.
+    * Use for more editor layers! Tag lines with profiling info. Bottom 95% grey, others yellow or red. Same thing for Type annotation. Record traces, remember?
+    * Do you want it?
 3. Wrote "An Lies". HAS BEEN LYING.
-   * All bullshit. C-c f t, flip all the tables.
-   * Takes a long time to fake all that shit.
-   * "Ship often. Ship lousy stuff, but ship. Ship constantly." -- bullshit
-     * I KNOW that all software sucks.
-   * Legacy & Paralysis? Legacy == Paralysis!
+    * All bullshit. C-c f t, flip all the tables.
+    * Takes a long time to fake all that shit.
+    * "Ship often. Ship lousy stuff, but ship. Ship constantly." -- bullshit
+        * I KNOW that all software sucks.
+    * Legacy & Paralysis? Legacy == Paralysis!
 
 They will not merge our kernel patches. How do we move forward?
 Our "Shipping Culture" is poisonous to infrastructure.
@@ -83,22 +83,22 @@ INCREMENTAL DEVELOPMENT WILL NOT WORK FOR THIS.
 * Functions aren't primitive in Clojure, unlike Scheme+CL, like T.
 * Construct types that act like a fn, Collections are an instance of IFn.
 * Invocation always emitted as obj.call. Expensive in JS engines though. Again helped by Compilation. Use Google Closure for DCE, aggressive inlining, etc.
-  * Whole Program Compilation allows propagation of args and type info.
-  * Bit of a dev/prod divide. Dynamic for devs, static compilation for perf to ship.
+    * Whole Program Compilation allows propagation of args and type info.
+    * Bit of a dev/prod divide. Dynamic for devs, static compilation for perf to ship.
 * arguments.slice is a big performance hit. Return a closure with a dispatch function for multiple arity defns.
 * Performance competitive with hand-written JS. Based on Bagwell and Okasaki (since compare-and-swap isn't available, I presume).
 * Digression on how persistent data structures don't suck. V8 handles them really well.
-  * Within 3x performance hit on Chrome 22. Opera and Safari a bit worse off. Firefox good at operations on data but slow creating it.
-  * But it won't be the bottleneck in your application. DOM traversal is vastly slower, for example, and probably dominates.
+    * Within 3x performance hit on Chrome 22. Opera and Safari a bit worse off. Firefox good at operations on data but slow creating it.
+    * But it won't be the bottleneck in your application. DOM traversal is vastly slower, for example, and probably dominates.
 * Local type extension with protocols. \o/ Used internally for hashing.
 * What about when you drop to JS? REPL connected to browser. Compiles in namespaces for you! Source maps should help with debugging.
 * And it has macros, of course. Zebra problem demo. PAIP shoutout! 24 billion possible solutions. Runs in JS in 16ms, 1000x than Norvig's from 1993.
 * Caveats:
-  * Same broken numeric tower.
-  * Debugging much harder than CoffeeScript. Not necessarily readable.
-  * Needs Clojure. Not self-hosting. Not something they really want to fix.
-  * Multimethods and keywords still slow.
-  * Sure, the "runtime" looks big in generated code at first. But Google Closure compiles it down to a nice, small gzipped thing in the end.
+    * Same broken numeric tower.
+    * Debugging much harder than CoffeeScript. Not necessarily readable.
+    * Needs Clojure. Not self-hosting. Not something they really want to fix.
+    * Multimethods and keywords still slow.
+    * Sure, the "runtime" looks big in generated code at first. But Google Closure compiles it down to a nice, small gzipped thing in the end.
 * Clojurescript host compiler in clj is only 4000 lines of code! ClojureScript side is 7500.
 
 ## Data Structures: The Code that isn't there
@@ -117,57 +117,55 @@ Perhaps instead...
 * You probably won't know the ideal DS up front. Don't paint yourself in a corner.
 
 * Skiplists
-  * Take an ordered, linked list. Add an express lane! Jump by 2. Add another! Jump by 4. More closely resembles a binary tree...
-  * But how do we balance it?
-  * Doesn't have to be perfect. Real trees aren't balanced! Just balanced enough.
-  * Use random probability distribution. Actually winds up balanced enough.
-  * Roundabouts, not traffic lights
-    * Traffic lights are SPOFs, bottle necks.
-    * Roundabout decentralized, delegates to cars, smart at the node. Global order from local decisions.
-  * Because only immediate neighbors are effected on insert, lock contention is low.
+    * Take an ordered, linked list. Add an express lane! Jump by 2. Add another! Jump by 4. More closely resembles a binary tree...
+    * But how do we balance it?
+    * Doesn't have to be perfect. Real trees aren't balanced! Just balanced enough.
+    * Use random probability distribution. Actually winds up balanced enough.
+    * Roundabouts, not traffic lights
+        * Traffic lights are SPOFs, bottle necks.
+        * Roundabout decentralized, delegates to cars, smart at the node. Global order from local decisions.
+    * Because only immediate neighbors are effected on insert, lock contention is low.
 
 * Difference Lists
-  * Comes from Prolog. ```?- uses(prolog, Person).``` no.
-  * Digression on Unification.
-  * Allows appending to immutable list.
-  * Closer to future/promises for new list elements than lazy evaluation.
+    * Comes from Prolog. ```?- uses(prolog, Person).``` no.
+    * Digression on Unification.
+    * Allows appending to immutable list.
+    * Closer to future/promises for new list elements than lazy evaluation.
 
 * Rolling Hashes!
-  * Find matching/overlapping sequences in binary data. Rsync does this.
-  * Bioinformatics loves this stuff. Genome seqs.
-  * Hashing everything vs everything with traditional hashes (md5, sha) too slow.
-  * Drop a letter off the front, add another to the back, hash. Add to set/bloom filter or something.
-  * Rsync:
-    * Break file into fixed width blocks + remainder.
-    * Send the hash for each block. If it's different on the server, update!
+    * Find matching/overlapping sequences in binary data. Rsync does this.
+    * Bioinformatics loves this stuff. Genome seqs.
+    * Hashing everything vs everything with traditional hashes (md5, sha) too slow.
+    * Drop a letter off the front, add another to the back, hash. Add to set/bloom filter or something.
+    * Rsync:
+        * Break file into fixed width blocks + remainder.
+        * Send the hash for each block. If it's different on the server, update!
     * Insert/delete shifts each block though...
     * Use rolling hash for files that are already on remote. Otherwise, blocks.
-  * Can also be used for chunking data.
-  * A rolling hash:
-    * ... finds deterministic breaks
-    * ... cheaply matches blocks
+    * Can also be used for chunking data.
+    * A rolling hash: finds deterministic breaks, cheaply matches blocks
 
 * Something new: A Jumprope
-  * Stores large binary strings (or files)
-  * Content Addressable Storage (reference by hash for easy distribution)
-  * Persistent and immutable so you can cache it anywhere
-  * ... so kind of like a git repo but much better for big files
-  * Three structural elements:
-    1. Leaf - chunk of raw data
-    2. Limb - Series of content hashes and their links, stored in an array
-    3. Trunk - A limb with a big end node.
-  * Then you just back it with a key-value store.
-    * Obviously, choice implies things about performance.
-  * Somewhat like a skiplist that uses a hash as its probability function.
-  * Good for pipelining streaming content thanks to seeking properties.
-  * 2kb for limb nodes and 64kb overhead for leaf nodes.
-  * Trivial to fetch, stream, mirror.
-  * Using it for a distributed FS, scatterbrain!!
-    * Similar to Amazon Dynamo.
-    * lack of pointers, use Compare and Swap!
-    * Emergence from local behavior.
-    * Can tune bad performance to arbitrary guarantee. 1%, .1%, etc.
-    * Currently backed by C and Lua. Also a quick'n'dirty Erlang implementation.
+    * Stores large binary strings (or files)
+    * Content Addressable Storage (reference by hash for easy distribution)
+    * Persistent and immutable so you can cache it anywhere
+    * ... so kind of like a git repo but much better for big files
+    * Three structural elements:
+        1. Leaf - chunk of raw data
+        2. Limb - Series of content hashes and their links, stored in an array
+        3. Trunk - A limb with a big end node.
+    * Then you just back it with a key-value store.
+        * Obviously, choice implies things about performance.
+    * Somewhat like a skiplist that uses a hash as its probability function.
+    * Good for pipelining streaming content thanks to seeking properties.
+    * 2kb for limb nodes and 64kb overhead for leaf nodes.
+    * Trivial to fetch, stream, mirror.
+    * Using it for a distributed FS, scatterbrain!!
+        * Similar to Amazon Dynamo.
+        * lack of pointers, use Compare and Swap!
+        * Emergence from local behavior.
+        * Can tune bad performance to arbitrary guarantee. 1%, .1%, etc.
+        * Currently backed by C and Lua. Also a quick'n'dirty Erlang implementation.
 
 * All coming to a [github near you](https://github.com/silentbicycle) soon.
 
