@@ -1,0 +1,405 @@
+;;;;;
+title: Strange Loop Notes - Day 2
+tags: programming
+date: 09-25-2012 10:17:00
+format: md
+;;;;;
+## Computing like the brain
+* Lots of detail on anatomy and physiology. Use that to derive theories and test with software.
+
+1. Neocortex is a predictive modeling system.
+2. Grok, a predictive modeling product.
+3. Future of AI.
+
+* Neocortex builds online models from streaming data. Think about it in terms of the senes.
+* Beware, vision is more than one sense. Retina is array of a million sensors. Auditory nerve is 30,000.
+* Brain has several million sensors changing firing in the 10s of milliseconds.
+* The brain invokes model building in response to novel sensory input. It can: make predictions, detect violations of predictions, generate actions.
+* The brain is more of a memory system than a computing system.
+
+1. Neocortex is a hierarchy of projected systems. retina->cochlea->somatic nerve. But all one memory algorithm.
+2. Primary memory is sequence memory. Playback of stored patterns. Stream processing!
+3. Sparse distributed representations of data.
+
+* Traditional computing uses dense representation. ASCII is a perfect example. Individual bits have no meaning, programmer assigns meaning.
+* Brain uses sparse representation. Mostly 0 bits, maybe 2% 1s. Sparse IntMap? Bits that represent specific things. Top bit that means X.
+
+SDR Properties:
+
+1. Similarity: shared bits = semantic similarity. A similar bit vector has similar semantics.
+2. Store and Compare: Store indices of active bits, don't traverse the whole thing. Subsampling is OK though!
+   * Probability shows errors are very unusual even with subsampling. If you do make a mistake, it's a close/semantically similar one.
+3. Union membership: Sets! Is this SDR (10..001) a member of this union of SDRs (00..001)? Very high correctness.
+
+* The key to machine intelligence is sparse distributed representation.
+
+Sequence memory:
+
+* Digression on neuroscience.
+    * Typical neuron has thousands of synapses.
+    * Neural networks with only a few connections are nothing like real neurons.
+    * Cell goes into a predictive state when it detects a coincidence.
+    * Each cell is one bit in their SDR implementation.
+    * When a cell is activated, it looks for cells that were active just prior to you. Recognition of former state. Pattern/prediction. Deeply probabilistic.
+    * Multiple predictions can occur at once. Only single step memory. For larger sequences need Variable Order Sequence Memory.
+    * 40 active columns, 10 cells per column: 10^40 ways to represent the same input in different contexts. Deeply distributed.
+    * Different representation of sequences at columnar level and cellular. Architecture supports generalization.
+
+* If pattern does not repeat, forget it. If it does, reinforce it.
+* Synapses are either connected or not. Represented via scalar, if it's above a threshold, it is connected.
+* Typical system: 1 region, 2,000 columns, 30 cells per column, 128 dendrite segments per cell, 40 connections per segment. 300M connections. No SPOF.
+
+Predictive Analytics Today:
+
+* The world stores tons of data in databases, builds models and batch processes.
+* Too slow! Soon will be massive stream processing with automated model creation, continuous learning, and temporal and spatial models.
+* Grok is their product. Get a stream of data, run through encoders into SDRs, feed it into Sequence Memory that makes predictions with probabilities.
+* User provides a data stream, what to predict, how often and how far in advance.
+* Energy pricing and demand/response is a common user. Also, server loads, ads, etc. All running on Amazon AWS with a REST API and dev dashboard.
+* Helped a server management group provision instances ahead of time for video transcoding. Predicted server demand enough to reduce cost by 15%.
+
+Future of Machine Intelligence:
+
+* Supports alternate paths being pursued now: IBM Watson, Google Cars, etc. ...but strongly believes SDR and brain-derived solutions will eventually dominate.
+* Strong sensory-motor integration. New science coming out constantly. Need more answers/understanding.
+* How do we move this from the cloud to embedded/distributed sensor grids?
+* Lots of effort to make this fast in software. Doing it in hardware would be better! When/how? New memory architecture rather than CPU. VERY fault tolerant.
+* Most of your brain is connections, not processing mass. Chips aren't good at massive interconnects yet.
+* Cool applications will not be the classics (vision, language, speech).
+    * Artificial brains? Maybe. Brain has ultimate latency for a result of 5ms. That's pushing it. Make 'em bigger. Faster!
+    * Make a physicist brain that works round the clock really fast that never gets tired and never eats.
+    * We're not designed to explore the universe. Make an artificial brain that is! Send it out, bring it back, ask it questions.
+
+## Behind the Mirror: The birth of Light Table
+* 1974: MIT AI lab was using TECO. Tape Editor and COrrector for the PDP-10.
+* Not an editor like today. A language like for text manipulation.
+* Code samples. God it hurts. Called YAFIYGI "you ask for it you get it" in the first paper.
+* Richard Stallman finds WYSIWYG at the Stanford AI lab. Decides to make TECO WYSIWYG by adding macros. Emacs! Usability += 1000.
+
+35 years later...
+
+* Worked at Microsoft, got hired as a PM. PM on Visual Studio. Owned C#+VB in the IDE. Was asked "What is the future of editing?"
+* Well...how do users really work with it? NO end-to-end usability studies on Visual Studio. Only on specific features.
+* Watch a guy hacking from a room with a one-way mirror. Ask the user to think out loud as they do it.
+    * One interesting finding: You /will/ touch the mouse. Even if you swear you never do.
+* Richest feedback you'll ever get on a product is a usability study.
+* Expectation: Visual Studio is amazing tech! Actual: Too complicated, too noisy. Shock: No one actually vocalized problem.
+* If it's true that the key attribute of a good programmer is keeping the system in your head, its very sobering. How to teach memory?
+* Everyone just uses: Code navigatoin, Debugger, Editor. Basic workflow has not changed since Emacs.
+* Many innovations but never went mainstream: Smalltalk, Lisp Machines, etc. Time to re-imagine.
+* Tried many things, nothing like Light Table. What changed?
+* Clojure taught [@ibdknox](http://twitter.com/ibdknox) that what makes great programmers is being able to abstract away parts of a system, not hold it all in their head at once.
+    * Make black-box abstractions and traverse them. Don't keep it all in your head.
+    * Perfect! How do we make an editor for that?
+* We're always dealing with abstraction. We are *not* recipe writers. We consume and subsequently create abstractions. We are synthesizing machines!
+* Need to ask questions about them. Poke at them. You don't understand code until you *run* it. Writing it is not enough.
+* Realization: Interactivity/REPLs were a big enabler at getting people into computing. Closer connection to what you're doing. YAFIYGI->WYSIWYG is similar.
+* What is an IDE for Abstractioners? Light Table. Initially a 6 day hack. Half a million people saw it in 2 days.
+* Raised 300k+ on kickstarter. Acknowledgement that we are in the dark ages of software dev. We're disconnected from our software!
+
+* Brief live demo...
+* Add a custom widget for git interaction.
+    * Pull in lighttable stuff by creating namespace. Add an atom for git-state.
+    * Add an update function. Ask the server to run ```git status``` and update the git-state with it.
+    * Write an init function that runs update, and returns a div with a list of modified files.
+    * Add a hook ```(on files.save [] (update))```. We're live!
+* Add a custom widget for HTML5 game dev.
+    * Add a canvas widget in widget init.
+    * Add buttons to start and stop the game loop. ```defui``` is a Light Table construct to make a DOM element and bind events to it.
+    * Add some CSS to make it pretty.
+* Add a custom widget for live view of entities in the game. Player/enemies,
+    * Add atom to track entities and accessors.
+    * Add hooks to update entities in IDE when game functions are called.
+    * Add CSS to improve visibility.
+
+* HA! We've been in a custom presentation mode.
+
+## Runaway Complexity in Big Data
+Missed due to chatting with Chris Granger and other awesome folks.
+
+## Computer Architecture from the 1960's
+* Burroughs B5000. Sassy ads. ALGOL syntax chart was first CACM centerfold. COBOL 61 chart was 4 times the size for half the capability.
+* "MULTIPLY PAY-RATE TIMES HOURS-WORKED GIVING TOTAL-PAY." - Burroughs ad where this is the only language needed to program it.
+* B5500 had dynamically sized arrays in hardware! Call by name! "They believed in lambda calculus when they created ALGOL."
+* Thunk came from CACM in 1961. :D
+* Pitched Haskell. Interesting and unexpected. "Trying to learn haskell so I can regain the purity I had back in 1969."
+
+## Guess Lazily: Making a Program Guess and Guess Well
+* Guessing is a way to both set up and solve computationally hard problems.
+* Naive guessing doesn't get us far. How do we guess well? One simple principle.
+* Fail Early, Fail often. Be lazy. Constraint propagation!
+
+Okay, I couldn't keep up and had you been there you wouldn't blame me.
+
+But this was cool and analagous to the Byrd/Friedman running programs backwards and forward stuff from yestereday.
+
+Also, Buyer Beware: Oleg's papers may be more clear than his presentation style. :P
+
+## An Audobon Society for Partial Failures
+* In an age of shamanism when it comes to operating computers.
+* Talking about pressure as it relates to large scale distributed systems. Cliff's company, Boundary, does high-volume streaming.
+* One day they noticed IOPS starting to disappear. Kafka message queue, writes to disk. If IOPS start dropping...
+* Pressure rising on interior nodes, data kept coming in, not going out. Death spiral! Chained failures.
+* Like riding out a storm, just trying to keep systems up until traffic dies down.
+
+* Erlang memory explosion:
+    * Process is over capacity and can't keep up. Queues grow unboundedly.
+    * GC and heap relocation takes more and more time, allowing more messages to pile up.
+    * Until the VM tries to allocate 16GB of memory or so... and the OS is all "GTFO"!
+
+* There is no explicit flow control. But we need it! (We already have it.)
+* Think you know TCP? You don't! It has flow control. Designed for exactly this problem.
+    * But our software doesn't take advantage of it!
+* Only documentation of queue explosion problem + flow control in Erlang. ... Ulf Wiger mailing list post.
+* Create an end-to-end linkage of back pressure so edge nodes can know when there's a problem and react.
+* In Erlang:
+    * Active sockets produce Erlang messages internally.
+    * ```{active, true}``` is an unfettered firehouse.
+    * ```{active, once}``` provides explicit control over when delivery occurs. Overload then backs up to TCP receive queue. Slows down sender!
+
+* In Netty/JVM:
+    * ```MemoryAwareThreadPoolExecutor```
+    * Expresses back pressures by causing producer to sleep when execution pools are above a threshold.
+
+* Is this familiar? "SEDA: An Architecture for Highly Concurrent Server Applications"
+* What does this buy you? Back pressure gives you time to recover. Like System Dynamics, about getting a grip on non-linear behavior.
+
+* Distributed Erlang Considered Harmful!
+    * Erlang protocol has an embedded heartbeat.
+    * Heavily loaded connections *will* timeout the heratbeat - dropping a good connection.
+    * Systems that move heavy throughput shouldn't use distributed Erlang protocol. *AHEM*, riak.
+* An aside: SCTP is a little better for this.
+
+## Expressing Abstraction, Abstracting Expression
+* Grew up making JRuby ready for production work, PLT-wise.
+* Started with Ruby as a more practical lisp but got into JRuby because job demanded Java.
+* Started working on Ioke (pronounced I-oh-kee). A vehicle for exploring expressiveness, informal as it is.
+* Why are new languages still being created? Is it worth choosing languages strategically/Does language actually matter?
+* Ex-pres'sive-ness: "Effectively conveying thought or feeling."
+* A construct is expressive if it enables you to Write/Use an API that can't be written/used without it.
+* Of course, Turing completeness means any language can do it. But you might write an interpreter to emulate it!
+* "Beware of the Turing tarpit where everything is possible but nothing of interest is easy."
+* The Blub Paradox is oft mentioned. Raymond advises learning many different languages.
+
+Aspects of Expressiveness:
+
+* Regularity - whoops. missed this a bit.
+* Readability - A strange concept. Readable to who? Readable for what problems?
+* Learnability - whoops. missed this too.
+* Essence vs Ceremony - Anything not expressing the essence of your problem is ceremony. The weight of changes between brain and code.
+* Precision vs Conciseness - You will abstract *away* from the machine chasing conciseness. Reducers give up control of execution order.
+
+Expressiveness over performance, every time! (in Ioke)
+
+* Language is super slow. Duh.
+    * "I think I made a mistake." If you can't run useful programs quickly, there's no point expressing them.
+* Theoretical Expressiveness by Matthias Felleisen *The Expresisve power of Programming Languages.*
+    * An expressive feature is something you can't do without reorganizing the rest of the program.
+    * The negative consequence of expressiveness is patterns. Not expressive enough on *some* dimension.
+    * Argues design patterns *reduce* understanding and readability rather than *enhancing* it.
+    * Let is macro-expressive as it can be transformed into lambda.
+* Seems there is folklore thinking that goes against these definitions. Still seems ad-hoc. Somewhat disappointing.
+* Spent most time thinking about practical expressiveness vs theoretical expressiveness.
+
+Types of Abstraction:
+
+* Abstracting objects. Ioke was prototype-based.
+* Abstracting class of objects.
+* Abstracting functionality. (Beware crossover, most Scheme programmers write their own object system. JS too.)
+    * Classic "Object is a poor man's Closure/Closure is a poor man's Object" debate.
+* Abstracting structure (of data).
+* Abstracting structure (of code).
+* Abstracting relationship. Erlang vs Mozart-Oz. Actors or Dataflow variables! Constraint propagation/logic programming?
+* Abstracting paradigm. D, Racket, Common Lisp.
+* Elaboration. You need to be able to *change* an abstraction. CLOS MOP?
+
+Macros!
+
+* Language is much more impoverished by not having macros.
+
+Different kinds:
+
+1. C-style Preprocessor macros. No structure. Just string processing! AAAAAGHHHH.
+2. AST macros. Work on S-Expression, not AST.
+   * Same language available as transformation language and host language. Metalanguage, etc.
+   * Often use functions in a complex macro.
+3. Template macros. Type-directed expansion, turing complete.
+   * This is scary because they are TWO different languages.
+   * Similar situation to complex Type Systems in Haskell/Scala.
+
+Modularity!
+
+* Should be able to change components separately without changing multiple pieces. The Expression Problem!
+* Will be first thing looked at in language design/Ioke next time around.
+
+Static typing!
+
+* Way of abstracting that reduces the expressiveness of your language.
+* Makes illogical behavior illegal. Also restrict you from some valid/correct programs they can't typecheck.
+* Very powerful. Can make it impossible to compile a program with an invalid account number, for example.
+
+Generics!
+
+* Working with generic code over an unrestricted set of containers.
+* Haskell and Scala are only two mainstream languages with Type Classes. Not *really* a static language feature.
+    * Ad-hoc polymorphism/dispatch mechanism. Ultimately a dynamic feature.
+    * Type Classes enable *other* abstractions. Most monads use Type Classes and are more powerful consequentially. Synergistic abstractions.
+
+* Most abstractions are leaky. See ORMs. Occasionally can't get underneath it to use raw SQL.
+* "All non-trivial abstractions, to some degree, are leaky." - Joel Spolsky
+    * Okay. Why?
+    * Abstractions are leaky because they are not absolute.
+    * They hide complexity in a single direction/dimension.
+    * They expect a certain kind of use. ... What if you use the library from the side?
+* "Abstractions may be formed by reducing the information content of a concept, to retain information only relevant for a specific purpose." - What purpose?
+* Effective communication requires common experience/understanding. Referents in linguistics.
+
+Lin-guis-tics:
+
+* Some interesting features of natural languages...
+    * Simile - A way to compare two things. (like, as) is to (subclassing, type classes)?
+    * Metaphor - Doesn't seem to be a good PL analog.
+    * Analogy - also missing somewhat.
+    * Redundancy/repetition - Think about speechwriting. Java has this but we don't seem to like it.
+* Arguments/precision determined by caller rather than callee in Natural Langs.
+* Syntax, Semantics, Pragmatics. Linguistic pragmatics is the idea of how context contributes to meaning.
+* If you were talking to the King of Sweden, you'll speak differently to him. Not *wrong* but a faux pas.
+
+Communicating indirectly with many audiences though. The machine, team members, ops, etc. Even business stakeholders! Totally unique to programming.
+
+Syn-tax:
+
+* From a PLT perspective, doesn't matter. In day to day pragmatics, it *does* matter. Everyone knows this.
+* Can go too far in either direction, Salt or Saccharine.
+* Operator overloading. Probably not one right answer.
+  1. Don't support it.
+  2. Support overloading built-ins.
+  3. Don't *have* operators. Everything is a function.
+  4. Arbitrary operators to be defined or redefined. (haskell/ml)
+* Should built-ins look different than user defined stuff? (editors note: Hell no, let the editor show you/syntax highlighting).
+* Optimizing:
+    * For writing. A bit undefined. Optimizing for the shortest part of code's life. Perl? What about communication?
+    * For reading. Reading by a novice or an expert? Again, *who* is your audience?
+    * For visual distinctiveness of different semantics
+
+* Expressiveness is not always better. Many dimensions to optimize along. Language design is a balancing act. Find the right clustering of features for a given point in the design space.
+* Expressiveness and abstractions are relative.
+
+## Visible Programming
+* Designing a Programming Environment Around How Human Beings Do Things
+* What makes one programming environment better than another? Programmer productivity! ... huh? What's that?
+* Is the problem with programming we don't go fast enough? Huh. Nobody told me.
+* We're creating programs and we can't see what they're doing at runtime. If you can't see something, you can't understand it.
+* A programming environment should let us see and understand what the program is doing. A more directed goal than productivity.
+* And maybe productivity will fall out if we're lucky. ;)
+
+5 Principles to aim for:
+
+1. Must enable the programmer to read the vocabulary (program).
+2. Must enable the programmer to follow the flow (Call-flow-graph).
+3. Must enable the programmer to see the state (as it executes).
+4. Must enable the programmer to create by reacting (iterative, interactive development).
+5. Must enable the programmer to create by abstracting (what sort of tools?).
+
+Examples of these principles in a hypothetical environment: (JS & Processing for this talk)
+
+1. Normally we go to the docs or source. This sounds like using 4 sliders to choose arguments to something in Photoshop. UI garbage.
+    * Mouseovers/tool-tips on each token in the code. Make meaning transparent!
+2. Great explanations show, not tell. Make it possible to see the output of a given form as inputs change. Explain in context!
+    * Imagine a cooking show that introduces ingredients and then cuts to the result. You can do it yourself!
+    * Step *through* execution via a slider. This helps but it is not enough. We can't see patterns in execution.
+    * Plot it on a timeline. Which lines executed when? what patterns or alternate executions could there be?
+3. It is common to expect programmers to manipulate code in their heads. WHY?
+    * It is the responsiblity of the environment to show what changes a line causes in the running program.
+    * Show what lines executed, when, and what effect they produced.
+    * Larger programs just become a data visualization problem.
+    * Show the data, show the comparisons, eliminate hidden state.
+    * Making global variable change visible is an option for inherently stateful lines.
+    * More programs running forward and back. (editors note: you guys are jerks and you hurt my heart)
+4. Composing things in your head doesn't scale. Maybe this is why only small programs are beautiful! Use the environment as an external imagination.
+    * Live coding is one way to approach this. Bit of a straw man argument here.
+    * Core idea is you want to have program supply you ideas, not just keep you from hitting recompile.
+    * Take completion further, what if autocompletion lists also included suggested values?
+    * Useful but clearly limited to the domain of this specific problem: Processing/GUIs and visualization.
+    * Dump all the parts on the floor so you see your raw materials. Functions are lego blocks. Have API browsing. Offers another problem-specific example.
+5. Encourage starting with constants, than adding variables and functions later once you know what behavior you want.
+    * Editor can help by offering "factoring relations".
+    * I know this wasn't intended to resemble a working production system but I was hoping for more than this.
+    * I thoroughly agree with his premises but I do not think this was a convincing way to demonstrate their need.
+
+* How does this scale to real-world programming? I have answers but I think it's better to question the question.
+* Asking how to scale to everyday programming is like asking how *engines* benefit *horses*. We have to work like this.
+* Argues against static runtimes. I agree but this was a weak treatment. There is tooling to work around this.
+* "There is no future in destroy-the-world programming. It's got to go." - Agreed.
+
+## The State of Javascript
+* Ten *days* in May 1995: Shipped Mocha.
+* September 1995: Livescript
+* December 1995: Javascript.
+* "Hey maybe we should fix equality?" "Nope, too late."
+
+* JS: Wat. We've all seen it.
+    * JS is based on C but wanted to use braces for dictionaries like python. Based on Java so objects convert to string. So int->string->0 in {} + [].
+    * This is awesome. Going through how JS processes every WAT in JS. Much respect to Eich for this.
+    * NaN is a number but that's the IEEE's fault.
+    * "W3C is gonna fail, web won't be XML, let's make HTML5!" - in a pub one time
+    * Get the band back together, heal the rifts, hug it out. ES6!
+
+* ES6 Goals:
+    * Make it better for applications.
+    * Make it better for libraries.
+    * Make it better for code generation.
+
+* Adding *very* minimal classes.
+* Adding *MODULES*!!!! Fuck. Thank God. FINALLY. Not first-class but better than nothing.
+* Symbols (formerly names or private names). They're self-named objects that you can't forge from strings. Hygiene!
+* If you're using symbols, there ought to be a nice way to deference/get at them. How about @symbol?
+* Utilities for symbols, many interesting applications.
+* Default parameters. arguments is a hideous hack. We will kill the arguments object but Brendan will pay to see that movie. :)
+* &rest parameters. Guess what, MO LISPY! Prototyped in Spidermonkey right now.
+* ... is spread, inverse of rest. I.e. the **kwargs\kwargs split. Splicing?
+* for-of, iterators and generators. Have to use of instead of in. Can finally iterate over values instead of keys.
+* Callback hell. What can we do? More problems than aesthetics, could capture too many outer variables.
+* Promises/futures still not here...but we will have coroutines from generators and use combinators to make things suck much less!
+* Array comprehensions. Lazy generator comprehensions too! When did they get feature-itis?
+* Sets too! Proxies for metaprogramming API. Think they got feature-itis when they thought about this audience. ;)
+* Can emulate NoSuchMethod/DoesNotUnderstand with proxies. Couldn't agree on standardization. Could add a default one to Object.Prototype.
+
+Apparently all that was library and application improvements. What about code generators?
+
+* altjs.org is taken seriously by ECMAscript standards body.
+* A portable bytecode feature may emerge one day. Probably not. UNTIL THEN...
+* The number one source of malware 0-days lately is Java on the client. Class loading still fucked. Gosling threw in the towel, hurt alot.
+
+So bytecode...
+
+* JS might actually be better than bytecode and COMPRESS better.
+* Bytecode standardization simply won't happen. Need to be versioned, deters competitive race, don't have the bandwidth in companies.
+* "Versioning is an anti-pattern on the web. You want to fail soft."
+* No call/cc for you! Also, many humans still like writing JS.
+* Proper tail calls have been standardized. Thanks Dave Herman!
+* What do you think of NativeClient?
+    * Not portable.
+    * Implementation-defined.
+    * No view source.
+    * Impressive engineering and good competition though. Not in the cards for standardization.
+* Just care about making the web better. Wound up adding Typed Arrays for WebGL. Big potential win for compilers there. See: emscripten.
+* "The reach of the web exceeds any other platform."
+* "To game developers, they're just excited about doing another port."
+* LLJS, low-level javascript is another experiment. C-like lang to typed arrays js to... Feel free to play with it.
+* ES4 collapsed when they tried to add something type-like. *NOT* adding types or contracts or whatever. Have typed arrays. Go away.
+* "People write Javascript in a latently well-typed way."
+* There is however a proposal for User-defined structs that are stored in typed arrays. Close enough, right?
+* The last missing JS feature is... MACROS. Not in ES6. Sweetjs.org though. It's on github, it works. It's a sound JS reader and hygienic macros.
+* "Worst thing I did out of Perl envy was to make regular expressions with slashes...means you have to parse to lex!"
+* "Please help because if we can get this into ES7, we can get put ourselves out of business, and I can do something else."
+
+* Other cute projects:
+    * Cross-compile XNA (jsil)
+    * Cross-compile Android (xmlvm)
+    * Parallelism so that JS doesn't use your battery up *really* fast. Not adding the hazards of threads to the language, of course.
+    * River Trail uses pure functional APIs and going well. Possibly in ES7. PJS has task parallelism similar to Rust.
+* Left with a general optimism on the continued future of Javascript.
+
+## Epilogue
+I was going to have to miss the last keynote and two talks as well as all the camaraderie that would occur after. Delta had screwed up my flight and I didn't have a hotel room for the night. Thankfully, some Loopers came to my rescue though Delta still managed to extract $170 from me. Soulless corporations! It was totally worth it. I can't think of a more worthwhile or energizing way to spend 3 days. I'd like to thank everyone I was able to spend time drinking and chatting with especially [Scott Vokes](http://twitter.com/silentbicycle), [Paul Snively](http://twitter.com/psnively), [Andreas Fuchs](http://twitter.com/antifuchs). [Brian Rice](http://twitter.com/briantrice), and [Jose Valim](http://twitter.com/josevalim). Obviously, I never want to go home.
