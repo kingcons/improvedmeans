@@ -1,0 +1,49 @@
+;;;;;
+title: On Visible Programming
+tags: programming, strangeloop
+date: 2012-09-26 20:13:00
+format: md
+;;;;;
+I have a bad feeling that I'm about to piss off a lot of people. Oh, well.
+
+[Bret Victor](http://twitter.com/worrydream) gave a very interesting talk at [Strange Loop](http://thestrangeloop.com) called "Visible Programming". From what I can tell, Bret is a very smart guy and an accomplished UI designer. I was surprised to find that while I agreed with many (all?) of his premises I disagreed with most of his argumentation. As I've received a question or two about it, I'll try to clarify my thoughts here.
+
+I have three core points:
+
+1. His vision requires [reflection](http://www.p-cos.net/documents/s32008.pdf) and an editor is the wrong place for it.
+2. Many examples were domain-specific and/or trivial but he didn't talk about general editor extensibility.
+3. Much he suggests is already done or can be done today.
+
+## On Relective Systems
+
+Ironically, I gave [a talk](http://redlinernotes.com/docs/talks/wtdm.html) on a different but overlapping topic a few weeks back. As mentioned in Chris Granger's talk, examples like the ones he and Bret Victor gave are much easier when working with a dynamic runtime. Unfortunately, dynamic is conventionally interpreted as a language with dynamic types and, put simply, we should try to change that. I argue that a dynamic language is one that allows you to inspect values and update function and class definitions while the program runs. This is formally known as [reflection](http://en.wikipedia.org/wiki/Reflection_(computer_programming)). What *I* believe dynamic language advocates care about is the ability to work with a "live" system, not the presence or lack of static type checking.
+
+Being able to visualize program execution means having a snapshot of the program state during each step of execution. Setting aside the impractical size of such a thing for programs with arbitrarily large working data sets, this requires either A) annotating every line or function call with logging statements/function tracing, or B) instrumenting the language runtime in some fashion to retrieve values during execution. That's why these examples are much easier with a reflective language like Javascript where you can hook arbitrary behavior into the Object prototype.
+
+Trying to get an editor to do this for all languages is a fool's errand without a nice reflective runtime and API to retrieve data from. It's hard enough with that stuff! And that means we need reflective compilers and interpreters *before* we can have an ideal editor.
+
+## On Editor Extensibility
+
+Many of Bret's examples were highly domain specific. While it makes sense to have a simple interface for toying with values in a visualization/drawing program, it's harder to see how to usefully apply that to something like protein folding software or even RSS feed parsers. Having editor extensibility *in addition* to reflective systems enables arbitrary widgets or modes for dealing with a given problem domain or data visualization need. Plain and simple, there's no way to build-in useful visualizations that are universally applicable.
+
+## What can be done today
+
+Bret essentially wants to make the experience of programming more tractable through interactivity and tangibility. He suggested 5 key requirements:
+
+1. Enable the programmer to read the vocabulary.
+    * Mouseovers/tool-tips on all source tokens is largely available today and seems to address this.
+2. Enable the programmer to follow the flow.
+    * A visualization to step through execution could be written *somewhat* easily given something like Common Lisp's [trace](http://www.sbcl.org/manual/Function-Tracing.html).
+3. Enable the programmer to see the state.
+    * This is essentially a more elaborate visualization that requires a bit more trace data than the above.
+4. Enable the programmer to create by reacting.
+    * Suggests that editor not only autocompletes function names but default values too so you can see their effect immediately.
+    * Function name autocompletion exists in many IDEs. Pervasive default values are easier for typed than "untyped" languages. Still requires runtime support!
+5. Enable the programmer to create by abstracting.
+    * Essentially demonstrated a refactoring system here. Keep feeling like I missed something key about his argument.
+
+## TL;DR
+
+While philosophically well-formed, Bret seems to miss the fact that *runtime support* is required for a Visible Editing Experience to emerge. If the industry still doesn't understand that dynamism is about the runtime rather than types, clamoring for a magic editor will get us nowhere. I want to see a more interactive, tangible environment in the future as well but we cannot get there by arguing that IDE/editor writers need to step up their game. We need to make a concerted argument for the resurrection of highly reflective systems in both research and industry. Once systems with [robust reflective capabilities](www.vpri.org/pdf/rn2006001a_colaswp.pdf) are widespread, realizing a vision such as that described will be a week long hack rather than a decade-long million man-hour slog.
+
+I'd also like to examine how far reflection can scale and a bit about making such a thing applicable to both novices and experts but I need more time to compose my thoughts so I'll save that for a future post.

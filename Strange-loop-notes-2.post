@@ -391,7 +391,7 @@ So bytecode...
 * "People write Javascript in a latently well-typed way."
 * There is however a proposal for User-defined structs that are stored in typed arrays. Close enough, right?
 * The last missing JS feature is... MACROS. Not in ES6. Sweetjs.org though. It's on github, it works. It's a sound JS reader and hygienic macros.
-* "Worst thing I did out of Perl envy was to make regular expressions with slashes...means you have to parse to lex!"
+* "Worst thing I did out of Perl envy was to make regular expressions with slashes...means you have to parse (the whole thing) to lex!"
 * "Please help because if we can get this into ES7, we can get put ourselves out of business, and I can do something else."
 
 * Other cute projects:
