@@ -12,7 +12,7 @@ I have three core points:
 
 1. His vision requires [reflection](http://www.p-cos.net/documents/s32008.pdf) and an editor is the wrong place for it.
 2. Many examples were domain-specific and/or trivial but he didn't talk about general editor extensibility.
-3. Much he suggests is already done or can be done today.
+3. Much he suggests is already done or can be done with some solid effort and available technology.
 
 ## On Relective Systems
 
@@ -24,7 +24,7 @@ Trying to get an editor to do this for all languages is a fool's errand without 
 
 ## On Editor Extensibility
 
-Many of Bret's examples were highly domain specific. While it makes sense to have a simple interface for toying with values in a visualization/drawing program, it's harder to see how to usefully apply that to something like protein folding software or even RSS feed parsers. Having editor extensibility *in addition* to reflective systems enables arbitrary widgets or modes for dealing with a given problem domain or data visualization need. Plain and simple, there's no way to build-in useful visualizations that are universally applicable.
+Many of Bret's examples were highly domain specific. While it makes sense to have a simple interface for toying with values in a visualization/drawing program, it's harder to see how to usefully apply that to something like protein folding software or even RSS feed parsers. Having editor extensibility *in addition* to reflective systems enables arbitrary widgets or modes for dealing with a given problem domain or data visualization need. Plain and simple, there's no way to build-in useful visualizations that are universally applicable. I admit I am not a designer or gifted at visualization so I may have simply struggled here.
 
 ## What can be done today
 
