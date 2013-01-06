@@ -1,0 +1,13 @@
+;;;;;
+title: Lessons from Coleslaw
+tags: lisp
+date: 2013-01-06 14:40:00
+format: md
+;;;;;
+Is there anything more pointless than a new blog engine? Probably not. 4 months ago, I wouldn't have thought that I would be distracted from my [Lisp 6502 emulator](http://github.com/redline6561/cl-6502) so long or that I'd have this much fun writing blogware. It is amazing, however, just how much you can do with a bit of time and ~600 lines of lisp.
+
+Lately I've come to realize my favorite part of hobby programming is that I essentially treat it as creative writing. One of the reasons I love Lisp and find myself using it so much for hobby code is how easily it enables me to experiment with new coding styles. In [Coleslaw](http://github.com/redline6561/coleslaw)'s case, this has meant a stronger focus on CLOS and API design.
+
+I like to think there's a clear stylistic shift in my projects, from the earlier and messy imperative of [Paktahn](http://github.com/redline6561/paktahn), through the neat but overly macro-heavy [cl-scrobbler](http://github.com/redline6561/cl-scrobbler), to the more balanced style of my present day code. It's no surprise that some of my favorite lisp luminaries, Peter Seibel and Luke Gorrie, talk a lot about [code as literature](http://lists.lugod.org/pipermail/vox/2011-June/008627.html) and [readable programs](http://blog.lukego.com/blog/2012/10/24/readable-programs/). Hopefully, I will continue to progress in that tradition.
+
+Coleslaw 0.8 is hereby released. The biggest features are multi-site publishing and support for new content types. Here is an example bookmark or tweet-like content type that may ship in a future release, [Shouts](http://paste.lisp.org/display/134453). See the [NEWS](https://github.com/redline6561/coleslaw/blob/master/NEWS.md) for further details. It's time to get back to [Memory Mappers](http://wiki.nesdev.com/w/index.php/Mapper) for a bit and see if I can't get actual NES emulation going in pure Common Lisp. See you next time, Planet Lisp.
