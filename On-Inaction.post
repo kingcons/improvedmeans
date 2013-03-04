@@ -1,0 +1,47 @@
+;;;;;
+title: On Inaction
+tags: personal, work, programming
+date: 2013-03-04 16:28:00
+format: md
+;;;;;
+
+### Seeing Value
+
+I've been experiencing the [Dunning-Kruger effect](http://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect) a lot lately. At least, I've been feeling like a fraud. And while I could list reasons I'm not a great programmer, asking why I felt like a fraud has led me to something more interesting. I don't think I've worked at a company where I knew "where the money is coming from". What does that mean exactly?
+
+* I haven't worked for a company whose revenue comes from a product I use or want to use.
+* I haven't worked for a company in an "obvious" growth market.
+* The software I write generates revenue *indirectly* through customers I never interact with.
+
+All of this creates a surprising problem for me: The value I add is **opaque** from my perspective. I take it on the word of my superiors and peers that any value is present. This makes it essential that I trust and enjoy working with those people.
+
+### The Mythical Customer
+
+It might not be immediately apparent why this is a problem. Find a company with decent people and culture and you don't need to be directly connected to the product or customers. Just churn out code and have fun. Advertisers will foot the bill. While it's true that you can sustain a business this way it certainly isn't ideal. The issue comes from just how decoupled the product becomes from the revenue. When it's time to grow revenue, you have to do it by attracting more eyeballs. Here's how that works:
+
+1. A Product Manager decides on new features or a UI overhaul to increase site traffic.
+2. Programmers implement those features with small tweaks and adjustments.
+3. The changes are released and traffic is measured for an increase. A good shop will use A/B testing to try and at least ground these decisions in data.
+4. Improved numbers are sent to advertisers to garner more customers and/or revenue.
+
+But Product Managers are not users. Programmers are not users. Advertisers are not users. Sure, we use the product some to verify the code works during testing but we're not *invested* in it. A/B testing is not the same as user input. There is also no requirement that you correlate traffic with actual perceived value. Many companies just read traffic **AS** perceived value. Frankly, that's bullshit. Our loyalty is necessarily to the advertisers. They pay us...but the users are the real customers. The product just happens to be paid for by collecting data about how they use it.
+
+### So What?
+
+Thus far, none of this should surprise anyone who has worked in the tech industry. Hell, this shouldn't surprise anyone with a Facebook account. It points however to a serious cultural problem in many tech companies: not letting (or demanding) your technical experts be, well, technical experts. A friend of mine calls this "{} for $". Many people rant about this as "Taylorism in software". It cannot be overstated that no programming paradigm nor software engineering methodology will eliminate the need to connect engineers to the product. Similarly, letting the engineers take the reigns is not anathema to good product design or improved value to the business. And this is *not* new. Quoth Don Eastwood in a **1972** Status Report on MIT's Incompatible Timesharing System:
+
+> In general, the ITS system can be said to have been designer implemented and user designed.
+> The problem of unrealistic software design is greatly diminished when the designer is the implementor.
+> The implementor's ease in programming and pride in the result is increased when he, in an essential
+> sense, is the designer. Features are less likely to turn out to be of low utility if users are their
+> designers and they are less likely to be difficult to use if their designers are their users.
+
+Earlier in the report, Eastwood says, `The system has been incrementally developed almost continuously since its inception.` Hello, agile kids. I'll say it again. Any company _pretending_ that software engineering methodology or a given technology replaces the need to connect engineers with what they're building deserves to be skewered. The reason knowing "where the money is coming from" is so essential is that software is different than any other product in history. Because the design in a fundamental sense *is* the product. If you don't know what I'm talking about, I'd encourage you to watch [Glenn Vanderburg's talk](http://www.youtube.com/watch?v=LlTiMUzLMgM) from RailsConf 2011. If your engineers don't understand the reason for what they're building, then the *product* can at best accidentally support the business. If you think you or your company can just scrape by for your whole career without getting eaten, I'd encourage you to [reevaluate that assumption](http://arstechnica.com/business/2013/02/androids-are-going-to-take-our-jobs-and-thats-great/).
+
+### Finding Alternatives
+
+One big reason most companies are hierarchies more concerned with maintaining market position than creating value is the inherent risk. Real growth comes from bets and empowering people to change what's needed to find "a better way" or "The Right Thing"...and that's terrifying. Few individuals or institutions have the guts, bravery, and stamina for continuous reinvention. It's exhausting. Not to mention that it puts the focus squarely on a company's employees. It seems our best chance at winning big comes from those kinds of risks though. [Github](http://www.youtube.com/watch?v=mrONxcyQo4E) and [Valve's](http://assets.sbnation.com/assets/1074301/Valve_Handbook_LowRes.pdf) experiments in distributed management are a brilliant step in this direction.
+
+### In the Interim
+
+A lot of what has had me feeling like a fraud is remembering how much I have to learn. Learning is a kind of reinvention itself though and one of the reasons I've loved computers since the beginning. So I'll keep learning and next time I'm in a programming interview, I look forward to asking the other hackers `Do you know where the money is coming from?`
