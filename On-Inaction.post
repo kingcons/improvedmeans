@@ -30,11 +30,11 @@ But Product Managers are not users. Programmers are not users. Advertisers are n
 
 Thus far, none of this should surprise anyone who has worked in the tech industry. Hell, this shouldn't surprise anyone with a Facebook account. It points however to a serious cultural problem in many tech companies: not letting (or demanding) your technical experts be, well, technical experts. A friend of mine calls this "{} for $". Many people rant about this as "Taylorism in software". It cannot be overstated that no programming paradigm nor software engineering methodology will eliminate the need to connect engineers to the product. Similarly, letting the engineers take the reigns is not anathema to good product design or improved value to the business. And this is *not* new. Quoth Don Eastwood in a **1972** Status Report on MIT's Incompatible Timesharing System:
 
-> In general, the ITS system can be said to have been designer implemented and user designed.
+> "In general, the ITS system can be said to have been designer implemented and user designed.
 > The problem of unrealistic software design is greatly diminished when the designer is the implementor.
 > The implementor's ease in programming and pride in the result is increased when he, in an essential
 > sense, is the designer. Features are less likely to turn out to be of low utility if users are their
-> designers and they are less likely to be difficult to use if their designers are their users.
+> designers and they are less likely to be difficult to use if their designers are their users."
 
 Earlier in the report, Eastwood says, `The system has been incrementally developed almost continuously since its inception.` Hello, agile kids. I'll say it again. Any company _pretending_ that software engineering methodology or a given technology replaces the need to connect engineers with what they're building deserves to be skewered. The reason knowing "where the money is coming from" is so essential is that software is different than any other product in history. Because the design in a fundamental sense *is* the product. If you don't know what I'm talking about, I'd encourage you to watch [Glenn Vanderburg's talk](http://www.youtube.com/watch?v=LlTiMUzLMgM) from RailsConf 2011. If your engineers don't understand the reason for what they're building, then the *product* can at best accidentally support the business. If you think you or your company can just scrape by for your whole career without getting eaten, I'd encourage you to [reevaluate that assumption](http://arstechnica.com/business/2013/02/androids-are-going-to-take-our-jobs-and-thats-great/).
 
