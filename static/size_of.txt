@@ -1,0 +1,32 @@
+The following stats were obtained through a mixture of sloccount
+on recent checkouts (sbcl, luajit, tcc, etc) and ohloh.net pages.
+
+minimal developer footprint:
+15M linux kernel
+09M firefox ;; chrome is bigger!
+03.5M virtualbox
+02M llvm/clang
+02M emacs ;; vim is bigger!
+01M x.org server
+00.4M sbcl ;; python is twice the size (batteries included, of course)
+00.4M git
+00.2M bash
+00.1M slime
+00.05M openssh
+00.04M openbox
+;; this doesn't take into account servers, android/3g and distributed systems you rely on
+;; frankly, let's not even go there.
+;; the opengenera torrent floating around =~ 870k
+
+-- total: 34.14M loc
+;; so, has a desktop OS doubled in size 5 times in the last 2 decades?
+
+compilers:
+lua (written in c) - 15k
+tcc (written in c) - 65k -- output 1/3-1/2[*] the speed of gcc's output
+luajit (written in c) - 75k
+rust (written in rust) - 250k
+sbcl (written in lisp) - 350k ;; ccl is a bit smaller
+gcc (written in c) - 6.1M
+[*] - do not trust benchmarks! http://lists.gnu.org/archive/html/tinycc-devel/2005-09/msg00054.html
+also of note, uemacs (used by linus torvalds) - 13.5k

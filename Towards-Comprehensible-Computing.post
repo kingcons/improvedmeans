@@ -1,0 +1,54 @@
+;;;;;
+title: Towards Comprehensible Computing
+tags: programming
+date: 2013-04-10 17:07:00
+format: md
+;;;;;
+## A Recent Obsession
+> "I pretended to work like others from morning to evening, <br/>
+> but I was absent, dedicated to invisible countries." <br/>
+> - Czeslaw Milosz, *Nonadaptation*
+
+When I started programming, I quickly became fascinated by a question that many of us ponder at some point. Why isn't there a 'best' programming language that makes it simple to express our thoughts and intents to both each other and the machine? That transformed over time into a different question, "Why is programming so hard", but that still wasn't quite right. I think I've finally settled on the real question which is, "Why is modern software so incomprehensible?"
+
+## On Modern Software Systems
+> "As far as his own weak head is concerned, the thought of what huge heads <br/>
+> everyone must have in order to have such huge thoughts is already enough." <br/>
+> - Soren Kierkegaard, *Fear and Trembling*
+
+I recently informally looked at [the size of my software](http://blog.redlinernotes.com/static/size_of.txt). The answer was predictably both bewildering and unsettling. The day-to-day software I use is comprised of about 35 million lines of source code.
+
+All of that software is free and works well. By that measure alone, we might judge software engineering a success. It is popular in some circles to rail against software engineering methodologies and, often, modern software as well. We must acknowledge, however, that the demands placed on modern software far exceed the demands placed on the software of yesteryear.
+
+This is also reflected in the way we teach Computer Science now. For example, [MIT's new undergraduate curriculum](http://cemerick.com/2009/03/24/why-mit-now-uses-python-instead-of-scheme-for-its-undergraduate-cs-program/) shifts focus towards building systems with unreliable, incompletely understood components. The fact that we can build software this way points to a culture of [library reuse as our chief abstraction](http://www.hxa.name/notes/note-hxa7241-20120429T1019Z.html) rather than the humble function.
+
+## Defining Comprehensibility
+> "When you have a problem with X, have you pulled up the X server internals? <br/>
+> Have you dug into the problems with your drivers? <br/>
+> No, because the kernel is 10 million lines of code and the only way in is grep! <br/>
+> Fuck that, that's not helping me." <br/>
+> - Brit Butler, [*Wanting Types, Demanding Mirrors*](http://redlinernotes.com/docs/talks/wtdm.html) (video coming soon)
+
+But I still yearn for the days when you could conceivably understand your computer soup-to-nuts. In October, I'll have been doing "real programming" for 4 years and I **still** accept a large portion of the day-to-day workings of my machine as magic. How many of us really have a complete picture of what is going on under the covers? We don't wrap our heads around the workings of a [1-billion transistor processor](http://en.wikipedia.org/wiki/Transistor_count), much less the massive body of code atop it.
+
+I'd wager 100 kloc is the upper bound on a well-organized system I think I could mostly keep in my head. That's 2000 pages or 5 400-page volumes at 50 lines/page. While prose is very different than code this would seem to be roughly the same order of magnitude as prominent fiction series like LOTR, Harry Potter, Game of Thrones, etc.
+
+There is a torrent of [OpenGenera](http://en.wikipedia.org/wiki/Genera_(operating_system)) floating around that contains about 870 thousand lines of Lisp. It should be about 20 years old. That means my current desktop is a 40-fold increase in size over Genera. Windows 3.11 is probably bigger than Genera and the size of a Desktop OS probably hasn't doubled every 4 years for the last two decades...but it is an interesting figure.
+
+[MenuetOS](http://en.wikipedia.org/wiki/MenuetOS) is a more provocative example. Menuet is a desktop OS written exclusively in x86 assembly. There is an open source 32-bit version and a closed source 64-bit one. I haven't read it so I can't say whether or not it is comprehensible. It is only 36 kloc for the kernel and 58 kloc for the apps though. Even with limited hardware support, 94k for a graphical OS is a noteworthy point in the design space.
+
+## What I Want
+> "So. I ask: how many people does it take, at a minimum, to maintain <br/>
+> our current level of technological civilization?" <br/>
+> - Charlie Stross, [*Insufficient Data*](http://www.antipope.org/charlie/blog-static/2010/07/insufficient-data.html)
+
+I am explicitly not asking for a world where desktop OSes are limited, comprehensible systems over full-featured ones that can't fit in one human's head. I'm not worried about [bus factors](http://en.wikipedia.org/wiki/Bus_factor). But an Operating Systems and Hardware/Software Interface course are not enough!
+
+I want a [completely open](https://twitter.com/datagrok/status/309723323175153665/photo/1), comprehensible system that does something [cool](http://4.bp.blogspot.com/_RTWI9RXP2_s/S9smGPwuQvI/AAAAAAAAADQ/4QadW6DuvHQ/s1600/MegaMan2.gif). It doesn't have to be [self-hosting](http://en.wikipedia.org/wiki/Self-hosting). It does have to be something I can study and change, observe and modify at *every* level of the system. It should be something that actually shipped to consumers at one point. The absolute lack of such a system for people trying to learn frustrates and disappoints me.
+
+## My Little Contribution
+> "We should burn all libraries and allow to remain only <br/>
+> that which everyone knows by heart." <br/>
+> - Hugo Ball
+
+All this is exactly why I started working on a Nintendo emulator in lisp. It's still early days but it's my [forever project](http://www.dev.gd/20130122-the-joys-of-having-a-forever-project.html) until it's done. 6502 emulation is done, some basic Nintendo functionality is working. Once the NES is 90% complete, I plan to try writing a simple lisp-like language that targets the NES. I'll then use that to produce an annotated, high-level reconstruction of my favorite childhood game, Mega Man 2. It is a bit ridiculous and probably overreaching but it's worth a shot. And in some way, it's the computing toy I've always wanted.
