@@ -1,0 +1,22 @@
+;;;;;
+title: Coleslaw 0.9.2 and other lispiness
+tags: lisp
+date: 2013-05-11 20:41:00
+format: md
+;;;;;
+## Coleslaw 0.9.2
+It still amuses me that my most successful project to date is a blog engine. Not that I'm complaining about having contributors. When I [last mentioned it](http://blog.redlinernotes.com/posts/Lessons-from-Coleslaw.html), version 0.8 had just been released. Since then there have been 2 new contributors and a bunch of new features. I think the code has mostly improved in cleanliness.
+
+The biggest changes are new [shiny docs](https://github.com/redline6561/coleslaw/tree/master/docs), a new tags implementation, cleanups to theming, and plugins for Google Analytics, Github Pages, and Sitemap Generation. For the full details, see the [changelog](https://github.com/redline6561/coleslaw/tree/master/NEWS.md).
+
+My plans for 1.0 are primarily to take advantage of the extensible content types added in 0.8 and add some sort of tumblr-like auto-embedding support. But I probably won't get around to working on that for a spell. Why?
+
+## Other Lispiness
+Because my [lisp emulation experiment/art project](http://github.com/redline6561/famiclom) is ongoing. [Nyef](http://www.lisphacker.com/) was kind enough to share some code he'd hacked up for NES emulation years ago and it helped give me the motivation to rewrite famiclom's PPU (Graphics Card). The former code was largely cribbed from Patrick Walton's [sprocketnes](https://www.github.com/pcwalton/sprocketnes) and I didn't understand it very well. I've hit the [nesdev wiki](http://wiki.nesdev.com/w/index.php/Nesdev_Wiki) again and am getting more comfortable with the PPU's actual workings. The code is on github in the `new-ppu` branch and I'm hoping to spend more time on it this coming week.
+
+I also spent the last week porting cl-6502 to clojurescript for giggles. Heresy, I know. ;) <br/>
+[cljs-6502](https://github.com/redline6561/cljs-6502) is in a basic working state but there are bugs aplenty and I haven't implemented the assembler or disassembler. The must frustrating part was dealing with A) differences in macro hygiene and B) poor macro debugging facilities.
+
+The browser is a fun target though. I'll have to try [parenscript](http://common-lisp.net/project/parenscript/) *or* ... [*jscl*](https://github.com/davanzp/jscl)! JSCL is a full CL->JS compiler in early develpoment, which I contributed a tiny patch to for `fboundp`. It's a great project and if you have any interest in helping implement a lisp, I'd encourage you to get involved. The maintainers are very approachable and there's plenty of fun hacking to be had.
+
+All for now. It's time to play around trying static analysis of Nintendo ROMs with Lisp. I'm bound to learn something...hopefully.
