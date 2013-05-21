@@ -1,0 +1,36 @@
+;;;;;
+title: Linux on Intel Macs
+tags: ragequit, linux, apple, fqa
+date: 2013-05-21 16:30:00
+format: md
+;;;;;
+## Every. Single. Time.
+
+Installing linux on a Mac never manages to be pleasant. I always remember, "Oh, yeah. I got this to work before." and dive in cheerily only to shortly recoil at what a fucking nightmare it is.
+
+These days I use [crunchbang](http://crunchbang.org/), a very clean Debian-based distro. It's hard to even know who to be mad at. You'd think the installer would just detect the EFI/GPT stuff and "do the right thing" by now. Or be able to resize HFS+ partitions.
+
+## Out of Desperation
+For whatever reason, I had to resort to this:
+
+1. Resize OS X with Disk Utility to 50% of the current partition size.
+2. Install [rEFInd](http://www.rodsbooks.com/refind/) as rEFIt is now deprecated/unmaintained.
+3. Burn a CD (!!!) since EFI doesn't want to boot from unrecognized USB drives.
+4. Boot from the CD and install linux to the freespace.
+5. When prompted to install the bootloader, install it on the *linux partition*, **not** the disk!
+6. Do whatever it takes to get a linux command prompt, rescue disk, whatever. Mount the new install at /target and run:
+```
+mount -o bind /dev /target/dev
+mount -o bind /sys /target/sys
+mount -o bind /proc /target/proc
+chroot /target
+```
+Now you can actually do useful things, like fix the broken fucking bootloader!
+Note that you may need to `ifconfig eth0 up && dhclient eth0` for network access.
+7. Install and use gptsync on the drive with the linux partition:
+```apt-get update && apt-get install gptsync && gptsync /dev/sda```
+8. Reboot and pray.
+
+## In Conclusion
+
+Now your glorious Linux distro should boot on your "is-it-designed-not-to-work-with-a-single-fucking-Open-Source-thing?" Mac. Of course, you may need to apt-get remove the busted radeon drivers and add xforcevesa to the linux invocation in your /boot/grub/grub.cfg *and* remember to always gptsync after any future update-grub operations but...yeah, fuck all these goddamned computers.
