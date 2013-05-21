@@ -18,18 +18,21 @@ For whatever reason, I had to resort to this:
 3. Burn a CD (!!!) since EFI doesn't want to boot from unrecognized USB drives.
 4. Boot from the CD and install linux to the freespace.
 5. When prompted to install the bootloader, install it on the *linux partition*, **not** the disk!
-6. Do whatever it takes to get a linux command prompt, rescue disk, whatever. Mount the new install at /target and run:
-```
-mount -o bind /dev /target/dev
-mount -o bind /sys /target/sys
-mount -o bind /proc /target/proc
-chroot /target
-```
-Now you can actually do useful things, like fix the broken fucking bootloader!
-Note that you may need to `ifconfig eth0 up && dhclient eth0` for network access.
-7. Install and use gptsync on the drive with the linux partition:
-```apt-get update && apt-get install gptsync && gptsync /dev/sda```
-8. Reboot and pray.
+6. Do whatever it takes to get a linux command prompt, rescue disk, whatever. Mount the new install at /target.
+7. Run:
+
+        mount -o bind /dev /target/dev
+        mount -o bind /sys /target/sys
+        mount -o bind /proc /target/proc
+        chroot /target
+
+    Now you can actually do useful things, like fix the broken fucking bootloader!
+    Note that you may need to `ifconfig eth0 up && dhclient eth0` for network access.
+8. Install and use gptsync on the drive with the linux partition:
+
+        apt-get update && apt-get install gptsync && gptsync /dev/sda
+
+9. Reboot and pray.
 
 ## In Conclusion
 
