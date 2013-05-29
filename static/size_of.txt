@@ -23,10 +23,11 @@ minimal developer footprint:
 
 compilers:
 lua (written in c) - 15k
-tcc (written in c) - 65k -- output 1/3-1/2[*] the speed of gcc's output
-luajit (written in c) - 75k
-rust (written in rust) - 250k
+tcc (written in c) - 65k -- output 1/3-1/2[*] the speed of gcc3's output
+luajit (written in c/lua) - 75k (and 25k of assembly...)
+rust (written in rust) - 250k (approximate, using homebrewed line-count tool)
 sbcl (written in lisp) - 350k ;; ccl is a bit smaller
 gcc (written in c) - 6.1M
 [*] - do not trust benchmarks! http://lists.gnu.org/archive/html/tinycc-devel/2005-09/msg00054.html
+    - also, in case you didn't notice, this is at -O1
 also of note, uemacs (used by linus torvalds) - 13.5k
