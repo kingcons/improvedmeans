@@ -8,9 +8,9 @@ format: md
 
 I haven't been doing any hacking on [coleslaw](https://github.com/redline6561/coleslaw) or [famiclom](http://github.com/redline6561/famiclom) for the last month. I've been focused almost entirely on my 6502 CPU emulator. In particular, I've been optimizing it and turning it into a ["readable program"](http://blog.lukego.com/blog/2012/10/24/readable-programs/).
 
-The optimizations have gone swimmingly, taking [cl-6502](https://github.com/redline6561/cl-6502) from 3.8 emulated mhz circa May 1st (commit eecfe7) to 29.3 emulated mhz today (commit b729e8).[0] A factor of 8 speedup feels pretty good though it would be fun to coax more speed out later.
+The optimizations have gone swimmingly, taking [cl-6502](https://github.com/redline6561/cl-6502) from 3.8 emulated mhz circa May 1st (commit eecfe7) to 29.3 emulated mhz today (commit b729e8).(0) A factor of 8 speedup feels pretty good though it would be fun to coax more speed out later.
 
-[0]: All figures obtained with SBCL 1.1.4 on Debian 64-bit on an old Thinkpad X200. See [this 6502 forum post](http://forum.6502.org/viewtopic.php?f=2&t=2241&start=60#p26265).
+(0): All figures obtained with SBCL 1.1.4 on Debian 64-bit on an old Thinkpad X200. See [this 6502 forum post](http://forum.6502.org/viewtopic.php?f=2&t=2241&start=60#p26265).
 
 I feel that the readability of the program has remained, maybe even improved, through all that optimization. The same overall design is in place; most refactorings were, approximately, tweaking macros and their callsites. The readability is especially improved when the code is broken into chapters, each with an introduction for context, and typeset with LaTeX. The latter is done thanks to a simple Makefile and some [very nifty code](https://github.com/redline6561/cl-6502/tree/master/src/doc) swiped from Luke Gorrie's [snabbswitch](https://github.com/SnabbCo/snabbswitch/wiki). If you've been curious about how cl-6502 is implemented or just wanted to dive in, there's never been a better time. Grab [the book](http://redlinernotes.com/docs/cl-6502.pdf)!
 
