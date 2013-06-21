@@ -1,0 +1,27 @@
+;;;;;
+title: My Lisp Summer Project
+tags: lisp, programming
+date: 2013-06-21 14:58:00
+format: md
+;;;;;
+## cl-6502 0.9.4
+
+I haven't been doing any hacking on [coleslaw](https://github.com/redline6561/coleslaw) or [famiclom](http://github.com/redline6561/famiclom) for the last month. I've been focused almost entirely on my 6502 CPU emulator. In particular, I've been optimizing it and turning it into a ["readable program"](http://blog.lukego.com/blog/2012/10/24/readable-programs/).
+
+The optimizations have gone swimmingly, taking [cl-6502](https://github.com/redline6561/cl-6502) from 3.8 emulated mhz circa May 1st (commit eecfe7) to 29.3 emulated mhz today (commit b729e8).[0] A factor of 8 speedup feels pretty good though it would be fun to coax more speed out later.
+
+[0]: All figures obtained with SBCL 1.1.4 on Debian 64-bit on an old Thinkpad X200. See [this 6502 forum post](http://forum.6502.org/viewtopic.php?f=2&t=2241&start=60#p26265).
+
+I feel that the readability of the program has remained, maybe even improved, through all that optimization. The same overall design is in place; most refactorings were, approximately, tweaking macros and their callsites. The readability is especially improved when the code is broken into chapters, each with an introduction for context, and typeset with LaTeX. The latter is done thanks to a simple Makefile and some [very nifty code](https://github.com/redline6561/cl-6502/tree/master/src/doc) swiped from Luke Gorrie's [snabbswitch](https://github.com/SnabbCo/snabbswitch/wiki). If you've been curious about how cl-6502 is implemented or just wanted to dive in, there's never been a better time. Grab [the book](http://redlinernotes.com/docs/cl-6502.pdf)!
+
+## NES + Lisp + Static Analysis = ?
+
+I'm still planning to make famiclom a full NES emulator. I won't consider it done until I can play Mega Man 2 with it. Hopefully using a USB controller. It doesn't make much sense for [Lisp in Summer Projects](http://lispinsummerprojects.org/) though. I've already started the project, the scope is ill-defined, and I want to work on something fresh and new to me. So I've come up with a projec that doesn't make much sense and I can't possibly complete. It'll be great!
+
+In short, I intend to rewrite Super Mario Bros 1. ... in a not-yet-existing lisp-like macro-assembler/incredibly simple compiler. I already have a 6502 assembler/disassembler in cl-6502 and a tool to parse NES roms in [romreader](https://github.com/redline6561/romreader). There's also a very thorough annotated disassembly of Super Mario Bros [floating around](http://redlinernotes.com/docs/smbdis.asm). I've got a good start on a static analyzer that will take the SMB binary and an entry point and try to build a [CFG](http://en.wikipedia.org/wiki/Control_flow_graph) of the game. The current scheme won't work with [memory mapped titles](http://en.wikipedia.org/wiki/Memory_Management_Controller) but it's good enough for Mario.
+
+## Wild Speculation
+
+Once I have a graph representation of Mario Bros, I'll try both manual analysis of the annotated disassembly with a pen and pad, and automated analysis on the graph using Lisp. I'll try to find as many idioms and patterns as possible to condense and improve readability of the code. Then, somewhere in early August, I'll start trying to rewrite the source and see how far I can get.
+
+This approach is probably completely: insane, unworkable, unviable, inadvisable, and just all around wrong. But I think I'll have fun and learn something, so it's good enough for me. And hell, who knows, maybe I'll get lucky and be able to attend [ECLM](http://eclm.eu/) next year. :)
