@@ -7,23 +7,25 @@ format: md
 I can't believe [Strangeloop](http://www.thestrangeloop.com/) is only a week away!
 
 **Thursday:**
-Machine Learning for Relevance and Serendipity - Jenny Finkel (keynote)
-Fast and Dynamic - Maxime Chevalier-Boisvert
-Graph Computing at Scale - Matthias Broecheler
-The History of Women in Technology
-Software for Programming Cells - Colin Gravill
-Learnfun and Playfun - Tom Murphy VII
-Linear Logic Programming - Chris Martens
-Creative Machines - Joseph Wilk
-Making Software Development Make Sense to Everyone - Jen Myers (keynote)
+
+* Machine Learning for Relevance and Serendipity - Jenny Finkel (keynote)
+* Fast and Dynamic - Maxime Chevalier-Boisvert
+* Graph Computing at Scale - Matthias Broecheler
+* The History of Women in Technology
+* Software for Programming Cells - Colin Gravill
+* Learnfun and Playfun - Tom Murphy VII
+* Linear Logic Programming - Chris Martens
+* Creative Machines - Joseph Wilk
+* Making Software Development Make Sense to Everyone - Jen Myers (keynote)
 
 **Friday:**
-The Trouble with Types - Martin Odersky (keynote)
-Abstract Algebra Meets Analytics - Avi Bryant
-Programming a 144-computer chip to minimize power - Chuck Moore
-Web Apps in Clojure and Clojurescript with Pedestal - Brenton Ashworth
-Getting Pushy - David Pollak || Why Ruby Isn't Slow - Alex Gaynor
-Thinking DSLs for Massive Visualization - Leo Meyerovich
-Finding a Way Out - Chris Granger || Servo - Jack Moffitt
-What is a Strange Loop? - Douglas Hofstadter (keynote)
-Thrown for a Loop - David Stutz
+
+* The Trouble with Types - Martin Odersky (keynote)
+* Abstract Algebra Meets Analytics - Avi Bryant
+* Programming a 144-computer chip to minimize power - Chuck Moore
+* Web Apps in Clojure and Clojurescript with Pedestal - Brenton Ashworth
+* Getting Pushy - David Pollak || Why Ruby Isn't Slow - Alex Gaynor
+* Thinking DSLs for Massive Visualization - Leo Meyerovich
+* Finding a Way Out - Chris Granger || Servo - Jack Moffitt
+* What is a Strange Loop? - Douglas Hofstadter (keynote)
+* Thrown for a Loop - David Stutz
