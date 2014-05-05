@@ -1,0 +1,69 @@
+;;;;;
+title: Breaking Radio Silence
+tags: lisp
+date: 2014-05-05 13:12:11
+format: md
+;;;;;
+## Long time, no blog.
+
+I've been offline for a while. I burned out last July and only really
+started hacking on my lisp projects again in March. So what's changed
+in the last two months? Actually, kind of a lot.
+
+## Coleslaw 0.9.4
+
+[Coleslaw][coleslaw] 0.9.4 is hereby released. I apologize that 0.9.3
+which went out in the last quicklisp release had an embarrassing
+escaping bug.
+
+The most fun part of **Coleslaw** is trying my hand at API
+design. Lisp is a great tool for writing extensible software and
+Coleslaw has been a good proving ground for that since everyone has a
+slightly different set of requirements for their blogware.
+
+I've been reading Sonya Keene's
+[Object Oriented Programming in CL][oop_in_cl] lately which led to a
+large refactoring around the new [Document Protocol][doc_protocol].
+I'm not prepared to say anything intelligent about protocols yet,
+but thankfully plenty of people have done so elsewhere. This
+[blog post by sykopomp][sykoblog] isn't a bad place to start.
+
+In addition to the document protocol and the usual litany of bugfixes,
+Coleslaw now has a new theme based on bootswatch readable,
+user-defined routing, support for static pages, and greatly expanded
+docs.
+
+The main things to tackle before 1.0 are a plugin to support
+incremental compilation for very large sites and a twitter/tumblr
+cross-posting plugin.
+
+## cl-6502 0.9.7
+
+Additionally, someone actually found a use for my
+[Readable CPU emulator][cl-6502]! [Dustin Long][dustmop] was working
+on a homebrew Nintendo game and wanted a way to unit test his code, so
+he's been using *cl-6502* to get cycle counts and otherwise check
+behavior. Naturally, the very basic assembler got on his nerves so he
+sent me a nice pull request adding support for labels, compile-time
+expressions, and decimal, hex, and binary literals. Thanks, Dustin!
+
+I also rewrote the addressing modes again, reduced consing, and made
+debugging easier by using [Alexandria's][alexandria] **named-lambda**
+for all the opcodes. The [cl-6502 book][6502_book] has been updated,
+of course.
+
+## Upcoming
+
+With any luck, I'll get back to work on [famiclom][famiclom] or tools
+for analyzing old NES games like Super Mario Bros and Mega Man 2. It's
+good to be back.
+
+[doc_protocol]: https://github.com/redline6561/coleslaw/blob/master/docs/hacking.md#the-document-protocol
+[alexandria]: http://common-lisp.net/project/alexandria/
+[6502_book]: http://redlinernotes.com/docs/cl-6502.pdf
+[oop_in_cl]: http://www.amazon.com/Object-Oriented-Programming-COMMON-LISP-Programmers/dp/0201175894
+[coleslaw]: https://github.com/redline6561/coleslaw
+[famiclom]: https://github.com/redline6561/famiclom
+[sykoblog]: https://sykosomatic.org/2010/10/chillax-and-protocols/
+[cl-6502]: https://github.com/redline6561/cl-6502
+[dustmop]: https://twitter.com/dustmop
