@@ -31,7 +31,7 @@ hobby projects, but here's what I thought about in the shower:
 * I should fix [trowel][trowel] so that it can correctly compute the
   control flow graph of simple (NROM) NES games that aren't
   self-modifying. Like I meant to do [last summer][lisprojects].
-* I should implement the [UNROM mapper][unrom] for [famicl][famiclom]
+* I should implement the [UNROM mapper][unrom] for [famiclom][famicl]
   using neth, sprocketnes, or tenes for reference if needed. That way,
   I could play with Mega Man 1 and its [annotated code][mm1.dis] in
   addition to [Super Mario Bros][smb.dis].
