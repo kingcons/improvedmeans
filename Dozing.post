@@ -1,0 +1,60 @@
+;;;;;
+title: Dozing Off
+tags: personal
+date: 2014-05-07 15:13:00
+format: md
+;;;;;
+
+Life is going pretty well. Norma and I have moved into a new
+apartment. I'm figuring out how to balance work and my other goals. My
+student loans will be paid off by my 28th birthday in August.
+
+I decided to work from home today. I slept poorly, I think it's the
+pollen. I've been thinking a lot about what I want lately. Neither
+Academia nor Industry quite seem to fit. Academia only cares about
+work that advances the state of the art in specific subfields,
+Industry only cares about work that advances the bottom line.
+
+My goals don't quite fit in with either of those things. I want to
+write software to help people understand
+[how other software works][comprehensible].
+Specifically, a Nintendo Emulator and set of tools for observing and
+modifying old games on the fly. And so I find myself thinking about
+how to work fewer hours so I can find more time for my 'art projects'
+without sacrificing hobbies, relationships, and a social life.
+
+I've been too drowsy today to get meaningful work done on work or
+hobby projects, but here's what I thought about in the shower:
+
+* I should add a proper JIT compiler to cl-6502 that uses the
+  "compile-to-closures" technique described by [xach][xach-closures].
+* I should fix [trowel][trowel] so that it can correctly compute the
+  control flow graph of simple (NROM) NES games that aren't
+  self-modifying. Like I meant to do [last summer][lisprojects].
+* I should implement the [UNROM mapper][unrom] for [famicl][famiclom]
+  using neth, sprocketnes, or tenes for reference if needed. That way,
+  I could play with Mega Man 1 and its [annotated code][mm1.dis] in
+  addition to [Super Mario Bros][smb.dis].
+* I should start on a lispy macroassembler/compiler to 6502 because
+  there are idioms to capture in these games and [neslisp][neslisp]
+  isn't gonna cut it.
+* Also, I thought about adding crossposting support and 'embeddables'
+  to [coleslaw][clsw] briefly but that doesn't count. That's my one
+  halfway 'practical' piece of software. People do like to blog.
+
+Seriously, is there somewhere I can do an MFA but really just write
+weird artsy software for 2 years?
+
+Oh, well. Time to take a nap and then try to write some code to find
+Biconnected Components in C again.
+
+[comprehensible]: http://blog.redlinernotes.com/posts/Towards-Comprehensible-Computing.html
+[xach-closures]: http://xach.livejournal.com/131456.html
+[lisprojects]: http://blog.redlinernotes.com/posts/My-Lisp-Summer-Project.html
+[famicl]: https://github.com/redline6561/famiclom
+[trowel]: https://github.com/redline6561/trowel
+[clsw]: https://github.com/redline6561/coleslaw
+[unrom]: http://wiki.nesdev.com/w/index.php/UxROM
+[mm1.dis]: http://bisqwit.iki.fi/jutut/megamansource/maincode.txt
+[smb.dis]: https://gist.github.com/1wErt3r/4048722#file-smbdis-asm
+[neslisp]: http://freecode.com/projects/neslisp
