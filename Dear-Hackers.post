@@ -70,11 +70,15 @@ This connects to a lot of things. It connects to people wondering if
 they're good at programming, or how to know such a thing. It
 contributes to impostor syndrome. I've struggled to hack on hobby code
 for fun because I don't feel like I can be proud of it. Not smart
-enough, not groundbreaking enough, not important enough.
+enough, not groundbreaking enough, not important enough. And I know
+that's silly, because there are [more important things][comprehensible]
+to worry about.
 
 So the more we can get away from emphasizing that the most important
 thing in programming is **being right**, the better that will be for
 newcomers, for hobbyists, and I believe, for all of us.
+
+[comprehensible]: http://blog.redlinernotes.com/posts/Towards-Comprehensible-Computing.html
 
 ### Epilogue
 
@@ -100,24 +104,25 @@ At least let me give you a gift for coming so far and listening to me
 ramble so much. Here, have something I love:
 
 """
-> To whom do we tell what happened on the earth,
-> for whom do we place everywhere huge mirrors
-> in the hope that they will be filled up and will stay so?
+```
+To whom do we tell what happened on the earth,
+for whom do we place everywhere huge mirrors
+in the hope that they will be filled up and will stay so?
 
-> I think that I am here, on this earth,
-> To present a report on it, but to whom I don’t know.
-> As if I were sent so that whatever takes place
-> Has meaning because it changes into memory.
+I think that I am here, on this earth,
+To present a report on it, but to whom I don’t know.
+As if I were sent so that whatever takes place
+Has meaning because it changes into memory.
 
-> To find my home in one sentence, concise, as if hammered in metal.
-> Not to enchant anybody. Not to earn a lasting name in posterity.
-> An unnamed need for order, for rhythm, for form,
-> which three words are opposed to chaos and nothingness.
+To find my home in one sentence, concise, as if hammered in metal.
+Not to enchant anybody. Not to earn a lasting name in posterity.
+An unnamed need for order, for rhythm, for form,
+which three words are opposed to chaos and nothingness.
 
-> What did I really want to tell them? That I labored to transcend my place and time,
-> searching for the Real. And we could have been united only by what we have in common:
-> the same nakedness in a garden beyond time, but the moments are short
-> when it seems to me that, at odds with time, we hold each other's hands.
-> And I drink wine and I shake my head and say: "What man feels and thinks will never be expressed."
-
+What did I really want to tell them? That I labored to transcend my place and time,
+searching for the Real. And we could have been united only by what we have in common:
+the same nakedness in a garden beyond time, but the moments are short
+when it seems to me that, at odds with time, we hold each other's hands.
+And I drink wine and I shake my head and say: "What man feels and thinks will never be expressed."
+```
 """ - Czeslaw Milosz
