@@ -1,0 +1,122 @@
+;;;;;
+title: Dear Hackers
+tags: programming, personal
+date: 2014-07-16 12:33:00
+format: md
+;;;;;
+(In which I talk about my *feeeeeeels*)
+<img src="http://redlinernotes.com/docs/talks/trp/feels.gif">
+
+Disclaimer: This post comes in the middle of an existential crisis.
+I'm struggling a lot with programming as a career choice and feeling
+disconnected from a community of excited hackers. These feelings and
+opinions are my own and I think it's totally fine if you don't
+subscribe to them or want to write me off as an F-ing idiot.
+
+### Love First
+
+A lot of the ideas in this post have been buzzing around in my head
+since I saw [Jen Myers](https://twitter.com/antiheroine) deliver her
+keynote at Strangeloop last year.
+
+I've been keeping my thoughts in my head mostly because I'm already an
+established programmer. A lot of the motive for the talk was to
+be more welcoming to newcomers and minorities that struggled to be
+included in our communities. But I think this problem affects all of
+us, every last one, regardless of gender, race, or class.
+
+The short version is that I think the tone of programming communities,
+especially online ones, is horrific. It's filled with religious debate
+over things *less* important than getting people excited about and
+interested in computing. For me, whether it's smart people posturing
+for social status or individuals genuinely trying to enlighten others
+is irrelevant.
+
+Our first reaction to any comrade, any other person passionate about
+and interested in building things with computers, any human crazy and
+masochistic enough to try and expand the capabilities of these absurd
+machines, should be empathy and love.
+
+This may seem ridiculous at first glance. It's harder than it sounds.
+
+### The Same Old Arguments
+
+You already know the religious wars I'm talking about. They're silly
+little things. Are static or dynamic types better? (For some, is there
+even such a thing as being dynamically typed?) Is Vim or Emacs
+better? Should I learn programming with PHP or Haskell? Should my app
+use JSON, XML, or a self-describing binary format? Is programming
+math, art, or craft? Can code be literature?
+
+For a host of reasons, these are questions we have a vested interest
+in. And I think, more often than not, our motive is to encourage more
+learning and exploration. But the conversation is almost always full
+of condescension and judgment, especially if the medium for response
+is limited. We simply **cannot** let supporting curiosity become
+secondary to proselytizing "the right thing".
+
+Plain and simple, turning a prompt for exploration into a right-or-wrong
+religious debate is **curiosity destroying**. And that's precisely the
+opposite of our intent, the opposite of what we as a community should
+aspire to.
+
+Our opinions are important, and I'm not precluding the existence of a
+right answer. But someone pondering a tricky subject isn't best met by
+bludgeoning them over the head with a conclusion. As long as the principal
+motive of those we interact with is the fractal question "**Why?**",
+we are together.
+
+This connects to a lot of things. It connects to people wondering if
+they're good at programming, or how to know such a thing. It
+contributes to impostor syndrome. I've struggled to hack on hobby code
+for fun because I don't feel like I can be proud of it. Not smart
+enough, not groundbreaking enough, not important enough.
+
+So the more we can get away from emphasizing that the most important
+thing in programming is **being right**, the better that will be for
+newcomers, for hobbyists, and I believe, for all of us.
+
+### Epilogue
+
+I'm reminded of an Alan Perlis quote in SICP:
+
+> "I think that it's extraordinarily important that we keep the fun in computing.
+> ... We began to feel as if we really were responsible for the
+> successful, error-free, perfect use of these machines. I don't think we are.
+
+> I think we're responsible for stretching them,
+> setting them off in new directions, and keeping fun in the house."
+
+I'm not perfect at this either. It is difficult to never be dismissive,
+let alone to always be gentle. But sometimes people are just trying to
+make it through the day. Not use the best tool, not come up with a
+groundbreaking solution, not fix the world. We need to try to meet
+other programmers where *they* are. Not move them to our habitat
+before empathizing, before loving.
+
+
+Ironically, I know this has been a bit of a high-horse diatribe.
+At least let me give you a gift for coming so far and listening to me
+ramble so much. Here, have something I love:
+
+"""
+> To whom do we tell what happened on the earth,
+> for whom do we place everywhere huge mirrors
+> in the hope that they will be filled up and will stay so?
+
+> I think that I am here, on this earth,
+> To present a report on it, but to whom I don’t know.
+> As if I were sent so that whatever takes place
+> Has meaning because it changes into memory.
+
+> To find my home in one sentence, concise, as if hammered in metal.
+> Not to enchant anybody. Not to earn a lasting name in posterity.
+> An unnamed need for order, for rhythm, for form,
+> which three words are opposed to chaos and nothingness.
+
+> What did I really want to tell them? That I labored to transcend my place and time,
+> searching for the Real. And we could have been united only by what we have in common:
+> the same nakedness in a garden beyond time, but the moments are short
+> when it seems to me that, at odds with time, we hold each other's hands.
+> And I drink wine and I shake my head and say: "What man feels and thinks will never be expressed."
+""" - Czeslaw Milosz
