@@ -13,26 +13,28 @@ Here are the talks I'm planning on attending:
 [Future of Programming Workshop][fpw]/[Emerging Languages Camp][elc] (all day)
 
 **Thursdsay the 18th**:
-09:00 - Joe Armstrong, [The Mess We're In][tmwi]
-10:00 - Stephen Kell, [Liberating the Smalltalk Lurking in Unix][lslu]
-10:50 - Christine Flood, [Shenendoah: Open Source Pauseless GC for OpenJDK][ospo]
-12:20 - Leo Meyerovich, [The Sociology of Programming Languages][sopl]
-13:10 - Paul Snively, [Type Systems: The Good, the Bad, and the Ugly][tgbu]
-* 14:00 - Core.async Debugging Toolkit, or Production Prolog?
-* 15:10 - Consistency without Consensus, or Aeron: High Performance Messaging?
-16:00 - Stefanie Schirmer, [Dynamic Programming at Ease][dpae]
+
+* 09:00 - Joe Armstrong, [The Mess We're In][tmwi]
+* 10:00 - Stephen Kell, [Liberating the Smalltalk Lurking in Unix][lslu]
+* 10:50 - Christine Flood, [Shenendoah: Open Source Pauseless GC for OpenJDK][ospo]
+* 12:20 - Leo Meyerovich, [The Sociology of Programming Languages][sopl]
+* 13:10 - Paul Snively, [Type Systems: The Good, the Bad, and the Ugly][tgbu]
+* 14:00!! - Core.async Debugging Toolkit, or Production Prolog?
+* 15:10!! - Consistency without Consensus, or Aeron: High Performance Messaging?
+* 16:00 - Stefanie Schirmer, [Dynamic Programming at Ease][dpae]
 
 **Friday the 19th**:
-09:00 - Nada Amin, [Programming Should Eat Itself][psei]
-10:00 - Evan Czaplicki, [Controlling Time and Space][ctas]
-10:50 - Yodit Stanton, [The Internet of Things in Practice][itip]
-13:10 - Ian Davis, [The Challenges and Benefits of an FRP Frontend][cbff]
-14:00 - David Renshaw, [Cap'n Proto and Rust: Type Systems for Sharing][cprs]
-15:10 - Julia Evans, [You Can Be A Kernel Hacker!][yckh]
-16:00 - Aaron Bedra, [Deterministic Memory Management for Managed Runtimes][dmmr]
-16:50 - Carin Meier, Sam Aaron - Our Shared Joy of Programming
 
-* = Denotes time slots I'm uncertain about. Open to [suggestions][sug]...
+* 09:00 - Nada Amin, [Programming Should Eat Itself][psei]
+* 10:00 - Evan Czaplicki, [Controlling Time and Space][ctas]
+* 10:50 - Yodit Stanton, [The Internet of Things in Practice][itip]
+* 13:10 - Ian Davis, [The Challenges and Benefits of an FRP Frontend][cbff]
+* 14:00 - David Renshaw, [Cap'n Proto and Rust: Type Systems for Sharing][cprs]
+* 15:10 - Julia Evans, [You Can Be A Kernel Hacker!][yckh]
+* 16:00 - Aaron Bedra, [Deterministic Memory Management for Managed Runtimes][dmmr]
+* 16:50 - Carin Meier, Sam Aaron - Our Shared Joy of Programming
+
+!! = Denotes time slots I'm uncertain about. Open to [suggestions][sug]...
 
 [sug]: https://thestrangeloop.com/schedule
 [fpw]: http://www.future-programming.org/program.html
