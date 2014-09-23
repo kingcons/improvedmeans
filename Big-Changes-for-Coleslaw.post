@@ -1,0 +1,46 @@
+;;;;;
+title: Big Changes for Coleslaw
+tags: lisp, coleslaw
+date: 2014-09-22 10:36:00
+format: md
+;;;;;
+
+I'm working towards 1.0 and Coleslaw's basic architecture seems to have
+settled down. The areas of focus for 1.0 will be better error handling,
+command-line conveniences, more content types, and possibly some new
+ways to ingest data.
+
+Coleslaw 0.9.6 will be released this Saturday and, not long after,
+make it into the next quicklisp release. Seeing as it contains big
+changes, some of them breaking, I thought I'd put out an announcement.
+
+## Coleslaw 0.9.6
+
+Coleslaw 0.9.6 unifies how we handles URLs throughout the application and
+simplifies the deploy strategy. The good news is, this makes the install
+process easier for new users. The bad news is, if you've got an existing
+install, you'll need to add a new plugin `(versioned)` to your config
+file for the old deploy behavior.
+
+That's not so rough, right? In addition, custom themes and plugins that
+haven't been upstreamed may need some minor tweaks. The [NEWS][news]
+has more details.
+
+Feel free to grab the `basic-deploy` branch from my [repo][repo] and
+try it out. There are some new [docs][docs] and the README has been
+cleaned up. There's also a plugin for [Twitter Summary Card][ts-card]
+support and the usual smattering of bugfixes.
+
+## Going Forward
+
+While I'm happy to maintain Coleslaw if no one else steps up to work on it,
+I'm going to try and shift my focus towards emulation work and weird lisp
+noodling. If you're interested in taking on a co-maintainer role or working
+with me on the project please get in touch. I've been very appreciative of
+the help and interest thus far. If there's anything I can do to make the
+project more approachable or help people get started, do let me know.
+
+[repo]: https://github.com/redline6561/coleslaw
+[docs]: https://github.com/redline6561/coleslaw/blob/basic-deploy/docs/
+[news]: https://github.com/redline6561/coleslaw/blob/basic-deploy/NEWS.md
+[ts-card]: https://dev.twitter.com/cards/types/summary
