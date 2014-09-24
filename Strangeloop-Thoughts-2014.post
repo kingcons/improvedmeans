@@ -1,0 +1,77 @@
+;;;;;
+title: Strangeloop Thoughts, 2014 Edition
+tags: strangeloop, programming, careers
+date: 2014-09-24 16:05:00
+format: md
+;;;;;
+
+### Why do Programming?
+
+After going to Strangeloop for the first time in 2012, I was really
+fired up about programming. I'd only been out of school a year and was
+already a full-remote Clojure developer making a great salary. Even
+better, I had made good progress on my lisp emulation project and
+received some recognition from hackers I respected for it.
+
+The last two years Strangeloop has been a lot more sobering. I told
+myself things in 2012 about how fast I'd get better and how good I'd
+be. Even though my expectations were unreasonable it's taken a long
+time to not feel bad about my (relative lack of) progress. I've been
+slow to accept the fact that I don't want to fight my way to being the
+best in my field.
+
+### Strangeloop, 2014
+
+I got in Tuesday night, dropped my bags at the hotel, and immediately
+ran off to drinks and phenomenal conversation at the Schlafly Tap
+Room. Many of the best experiences I've had at Strangeloop have been
+at the tap room. Sure there is excellent food, beer, and technical
+conversation, but I've always gotten a sense of personal acceptance at
+gatherings there. Strangeloop is certainly a welcoming crowd.
+
+Wednesday was a blast as well, as any day with a trip to the STL City
+Museum should be, but more and more I found I cared about personal
+interactions more than the content of the talks I attended.
+
+By the end of Thursday, I was stressed out. I wasn't even *excited*
+about the talks, which isn't to say they weren't good. I hated the
+idea that I was just an average programmer, that I didn't aspire to
+more than hacking bog-standard Rails apps as a career, that I'd spent
+almost $2000 out of my own pocket to come to a conference that someone
+else might have gotten more out of. I went to bed early that night.
+
+I kept my mindset in check much better on Friday. I reminded myself to
+be excited about others discoveries and creations, not to demand
+myself learn every tool or technique. The conference wrapped up well
+and I particularly enjoyed some of the Distributed Systems talks, a
+subfield I still have no experience with. Not to say I want to go
+fight distributed heisenbugs soon or design highly reliable
+systems. The talks were quite entertaining and informative is all.
+
+### Back Home
+
+The main takeaways I've had from Strangeloop have nothing to do with
+tech and everything to do with me. Strangeloop has, in many ways,
+been a time for me to reflect these last two years. I'm not sure
+that's a good way to use the conference but it seems to be what I've
+done.
+
+The first takeaway that comes to mind is that I need to try and
+respect myself for just being a decent Rails developer. I'm not great
+at solving algorithmically tricky problems and my CS background is,
+frankly, pretty damn weak. But no matter what I shouldn't beat up on
+myself for being "just a programmer". I need to put in an honest day's
+work and actually pat myself on the back at the end of it.
+ 
+The second takeaway is that I need to program for me again. I got
+into programming mostly because I wanted to know more about how
+computers work. The emulator and talks surrounding it, some of my
+favorite work, is really more an investigation than artifact.
+I still want to support coleslaw. It actually has a few satisfied
+users and I'm one of them. But the only real purpose of the emulator
+is to sate my curiosity. Not to become a real thing or be special or
+groundbreaking.
+
+There is plenty I'm still digesting and plenty I'm still not sure of,
+both technically and in terms of what I want for myself, my career, my
+life. But I'll leave that for another day. Cheers.
