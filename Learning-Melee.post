@@ -1,0 +1,224 @@
+;;;;;
+title: Learning Melee: 1 Year In
+tags: melee, games
+date: 2014-11-22 15:00:00
+format: md
+;;;;;
+
+## Disclaimer
+
+This post is mostly written for myself. It assumes familiarity with
+various terms, people, equipment, etc. If you find it useful or
+entertaining, whether you play melee or not, cool. This post is not
+intended to be a training guide. I'm not good enough to be educating
+beginners, just to observe my experience over the last year.
+
+If you **do** want to get started with Melee, you need a few things:
+
+* Good condition [Gamecube Controller][gc] (Nintendo-only, no knockoffs)
+* A CRT or [lagless setup][lagless], I rock a BenQ RL2455HM with the
+  Sewell Wii-to-HDMI converter and an Avermedia LGP for recording
+* A Gamecube and Melee disc, or better,
+  Wii and [20xx hack pack][20xx] on SD card
+* Familiarity with the basics of smash as a series
+  and a character to focus on
+* A *good* guide, maybe check the resources at the end :)
+
+[gc]: http://astore.amazon.com/smashboards00-20/detail/B0017KIBAI
+[lagless]: http://www.reddit.com/r/smashbros/comments/26got5/quick_followup_to_miom_lag_article/
+[20xx]: http://smashboards.com/threads/the-20xx-melee-training-hack-pack-3-02-update-pal-chars-more-alt-stages-costumes-new-debug-menu.351221/
+
+## Enter Melee
+
+I'm not a gamer. The last time I really put substantial time into
+video games was high school. I also wouldn't describe myself as a
+competitive person. But for whatever reason, I've always been
+competitive in [Smash Bros][smash_series]. I want to win.
+
+Late last October, I stumbled on [a documentary][smashdoc] detailing
+the history of the competitive smash brothers scene. I was riveted.
+I was suddenly aware of a massive depth to the game I'd hitherto
+missed. I had to know more, I had to try to my hand at competitive play.
+
+[smash_series]: http://en.wikipedia.org/wiki/Super_Smash_Bros.#Gameplay
+[smashdoc]: https://www.youtube.com/playlist?list=PLoUHkRwnRH-IXbZfwlgiEN8eXmoj6DtKM
+
+## Why Do This?
+
+In addition, I've always struggled with things I'm not immediately
+good at. I'm terrible at being patient with myself, at viewing life
+(and goals) as a journey and not a destination to be reached post
+haste. Melee remains an excellent opportunity to practice being loving
+and patient with myself, and handling failure and defeat gracefully.
+
+As I said before, it's a monumentally deep game. Like in chess,
+character positioning and board layout is paramount. As in poker,
+bluffing and calling your opponent's bluffs is crucial. There's also
+an executional aspect. Professional players routinely execute 300
+actions per minute and have to perform complex controller inputs in a
+20th of a second window or less. Not to mention just learning the
+properties of 25 characters, their moves, and the Rock Paper Scissors
+of what beats what in which situations.
+
+I've been at it for a while now. I'm still not good but I'm much more
+at peace with that than I was when I started. Here are a few things
+I've learned playing melee the past year. A lot of these things are
+habits I've had to work hard to break. Just remember not to get
+discouraged. Melee can be very unforgiving.
+
+## Rule Number 1: Keep It Fun
+
+You have to stay motivated. If things get too serious and you're not
+having fun you're going to play less and your skill will plateau.
+There are a lot of things beginners have to absorb and a plethora of
+suggestions, bordering on rules, about how to practice. Feel free to
+violate anything anyone says in order to keep things fun.
+
+A few semi-regular suggestions I violate in the name of fun are:
+
+* Focus on 1 character
+
+>  I play 2 seriously (Sheik/Marth), 2 semi-seriously (Fox/Falcon),
+>  and 2 for fun (Pikachu/Doc Mario). If I don't switch it up, I find
+>  myself getting frustrated with progress on a single character. And
+>  when playing with friends, it can be surprisingly rejuvenating to go
+>  play a quick falcon ditto after an hour or more of serious play.
+
+* Don't practice against CPUs ... (above level 5, to hone your mental
+  game, etc)
+
+>  The big argument here is that CPUs ingrain bad habits. Especially
+>  if all you're trying to do is win. So don't try to win. PPMD talks
+>  about doing something called [shadowboxing][shadowboxing],
+>  essentially playing the CPU like a human opponent. The 20xx hack pack
+>  is supposed to improve their behavior in various ways, especially DI.
+>  I find it helpful to practice tech skill at a level where the CPU
+>  will punish me if I'm too slow or miss an input.
+
+[shadowboxing]: http://smashboards.com/threads/falco-discussion-thread.256826/page-439#post-14739329
+
+## Rule Number 2: Don't Have A Plan
+
+Specifically, don't get focused on something you "want to do" when
+playing with friends. You're going to be tempted to practice platform
+movement or wavedashing, doing the "Ken combo", or getting an off stage
+Falcon Punch. Don't give in to the temptation. Melee requires you to
+*adapt* to your opponent above all else. If you're too busy obsessing
+over moves you want to land, you'll limit your options and your play
+will suffer for it. This isn't to say you shouldn't try to work on
+specific things in matches with your friends. Just that tech skill
+and particular combos are not those things.
+
+To emphasize further, **don't practice specific combos**. Part of Melee's
+depth comes from DI, or *Directional Influence*, the upshot of which is
+that getting a specific combo might be impossible depending on the
+*opponent's actions*. Long story short, DI allows you (and your opponent)
+to change the direction a hit knocks them in, potentially making follow
+up attacks miss. The interesting choices in melee come *in between hits*
+as you watch what your opponent does and react to it. While there are
+"guaranteed" combos in specific situations (character a vs character b
+at XX%), most of our combos come from *reacting* not planning.
+
+## Rule Number 3: Work To See The Neutral Game
+
+If you've spent years playing Smash casually, you'll largely see the
+game as hitting or being hit, offense or defense. But that brutal
+simplification will limit your ability to see the larger game.
+Two common adages fall under this section:
+
+1. Don't Mindlessly Approach (your opponent)
+2. Don't Mindlessly Trade (hit for a hit)
+
+The takeaway is, **It's better to not get hit than to get a hit**.
+
+You'll be tempted to rush in right away, ignore that impulse. You'll
+be dying to hit them back for hitting you, re-establish good footing
+instead. The "neutral game" is everything that happens outside of
+getting a hit or combo and trying to escape being hit. The sooner you
+can see encroaching on an opponent's space on the stage as a useful
+form of micro-aggression, the better off you'll be. Just positioning
+yourself in a threatening way is a hugely useful tool.
+
+**Don't force your play into a false dichotomy of attacking or defending.**
+
+## Rule Number 4: Stay Grounded
+
+For some reason, from playing Pikachu in Smash Bros for Nintendo 64 for
+years, I love being in the air. But being in the air takes away a *huge*
+number of options. You can do one of five aerial attacks and fast fall,
+that's about it. Your opponent can plan around and react to most of those
+options. Once you're opponent is in the air, aerials might be appropriate.
+But for the *love of GOD*, do not go to them as a first approach option.
+Taking your opponent off guard with them is one thing but they are
+usually easy to adapt to and punish. You have more movement and attack
+options when grounded. Save the aerial game for your punishes, unless
+you play Jigglypuff.
+
+## Rule Number 5: Do Think About Options, Action States, and Transitions
+
+Kirbykaze's blog posts explain this much more clearly than I will.
+Any time you can keep most of your options open while limiting your
+enemy's, do it. That's a huge advantage. And any time you can narrow
+their range of choices you have a much better chance of predicting
+their play, or finding a tactic that covers every possible outcome.
+
+Since Melee is so much about **movement and positioning**, being fast
+is key. And indeed, most of the executional aspects of high-level play
+are in service of eliminating as much **lag** as possible from your
+character's moves. It's useful to try to build a formal model here.
+
+Every move in the game has a set duration, though certain moves (dash
+dancing, wave dashing, aerials) can be shortened to varying degrees.
+Once you've committed to a move, the opponent knows more or less how
+long the move's hitbox will be active, how long you'll be unable to
+execute a different move, etc.
+
+Consequently, speed mostly comes from transitioning quickly *between*
+moves or, as Kirbykaze's blog says, "action states". The better you get
+at switching between shielding, standing, walking, dash dancing,
+wavedashing, and attacking, the faster you'll be. Seamlessly and quickly
+transitioning between these states is vastly more valuable than
+L-canceling all your down aerials.
+
+This is something I'm just now realizing and trying to improve on. It's
+very appealing to just work on l-canceling or short hops or wavedashing
+but misses the real point. The connecting tissue *between* action states
+is where most of our sluggishness comes from.
+
+## Don't Give Up
+
+Finally, it should be obvious that regular, focused practice makes a
+big difference. I'm going to try to practice 20 minutes a day, 5 days
+a week going forward. I'm still figuring out exactly what that practice
+regimen will consist of, probably mostly tech skill and movement with
+Sheik and Marth. Wavedashing and L-canceling are muscle memory, sure,
+but practicing the basics shouldn't ever really stop.
+
+And I'm still not where I want to be but I've had [a][falcon_gfy]
+[few][fox_gfy] [good][marth_gfy] [moments][sheik_gfy]. I hope this
+has been an interesting post on some things I've struggled with
+while learning melee. Happy smashing and if you're in Atlanta and
+want a game, feel free to drop me a line.
+
+## Resources
+
+I **really** enjoy Kirbykaze's blog and writings about the game.
+Two particularly good posts are [Movement Drills, Part 1][movement1]
+and [Tactics][tactics].
+
+[movement1]: http://myneverendingbrainstorm.blogspot.com/2014/10/diy-ssbm-movement-drills-part-12.html
+[tactics]: http://myneverendingbrainstorm.blogspot.ca/2014/10/i-recently-posted-this-question-to-my.html
+
+Various people have posted articles for beginners on getting better:
+
+* [Mango]: http://www.reddit.com/r/smashbros/comments/1so93m/mango_talks_about_improving_at_melee_from_the/
+* [NMW]: http://www.reddit.com/r/SSBM/comments/2jc3gb/nmws_guide_to_getting_good_at_melee/
+* [Albert]: http://www.reddit.com/r/smashbros/comments/2ebkwv/getting_better_at_smash/
+* [sleepyk]: https://docs.google.com/document/d/1_6o5NHvI9P8-qHp2M8w1gDzL_-JNonEE81Mh4ulY1PY
+
+Read. Them.
+
+[fox_gfy]: http://gfycat.com/SadBlondHalcyon
+[falcon_gfy]: http://gfycat.com/FaithfulSnoopyHornshark
+[marth_gfy]: http://gfycat.com/MiniatureSphericalBufeo
+[sheik_gfy]: http://gfycat.com/AlarmingAdmiredCarpenterant
