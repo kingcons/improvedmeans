@@ -80,12 +80,17 @@ A few semi-regular suggestions I violate in the name of fun are:
 
 >  I play 2 seriously (Sheik/Marth), 2 semi-seriously (Fox/Falcon),
 >  and 2 for fun (Pikachu/Doc Mario). If I don't switch it up, I find
->  myself getting frustrated with progress on a single character. And
->  when playing with friends, it can be surprisingly rejuvenating to go
+>  myself getting frustrated with progress on a single character.
+>  And when playing with friends, it can be surprisingly rejuvenating to go
 >  play a quick falcon ditto after an hour or more of serious play.
+>
+>  Additionally, I find some characters make certain kinds of practice
+>  more rewarding. For me, Fox makes it really fun to practice tech
+>  skill and Marth makes it really fun to practice spacing. Those
+>  characters really emphasize those attributes which makes the practice
+>  payoff very clear.
 
-* Don't practice against CPUs ... (above level 5, to hone your mental
-  game, etc)
+* Don't practice against CPUs ... (above level 5, to hone your mental game, etc)
 
 >  The big argument here is that CPUs ingrain bad habits. Especially
 >  if all you're trying to do is win. So don't try to win. PPMD talks
@@ -97,27 +102,46 @@ A few semi-regular suggestions I violate in the name of fun are:
 
 [shadowboxing]: http://smashboards.com/threads/falco-discussion-thread.256826/page-439#post-14739329
 
-## Rule Number 2: Don't Have A Plan
+## Rule Number 2: Structure Your Play
 
-Specifically, don't get focused on something you "want to do" when
-playing with friends. You're going to be tempted to practice platform
-movement or wavedashing, doing the "Ken combo", or getting an off stage
+> Editor's Note: Some of the advice in this section is specific to me
+> because I don't attend or plan to attend lots of local tournaments.
+> The core advice of separating different kinds of play still applies.
+
+To play competitively, you're going to wind up doing 3 things:
+
+1. Practicing tech skill
+2. Experimenting with your play
+3. Competing seriously
+
+It is important that you keep these things distinct. For example,
+I try to spend 20-30 minutes a day practicing tech skill. I move
+around the stage, working on flubs or things I execute too slowly.
+I try to learn new tech (such as waveshines). I don't go to many
+local tournaments so I experiment with different approaches and
+punishes against a CPU. Finally, when I want to be competitive
+I play (seriously) against friends.
+
+Initially, you'll want to blur all this together. You'll be playing
+semi-seriously with a friend and be tempted to try "new stuff":
+platform movement, wavedashing, the "Ken combo", getting an off stage
 Falcon Punch. Don't give in to the temptation. Melee requires you to
 *adapt* to your opponent above all else. If you're too busy obsessing
 over moves you want to land, you'll limit your options and your play
 will suffer for it. This isn't to say you shouldn't try to work on
-specific things in matches with your friends. Just that tech skill
-and particular combos are not those things.
+specific things in matches with your friends. Just that tech skill you
+haven't mastered and particular combos are not those things.
 
-To emphasize further, **don't practice specific combos**. Part of Melee's
-depth comes from DI, or *Directional Influence*, the upshot of which is
-that getting a specific combo might be impossible depending on the
-*opponent's actions*. Long story short, DI allows you (and your opponent)
-to change the direction a hit knocks them in, potentially making follow
-up attacks miss. The interesting choices in melee come *in between hits*
-as you watch what your opponent does and react to it. While there are
-"guaranteed" combos in specific situations (character a vs character b
-at XX%), most of our combos come from *reacting* not planning.
+To emphasize further, **don't practice specific combos**. Part of
+Melee's depth comes from DI, or *Directional Influence*, the upshot of
+which is that getting a specific combo might be impossible depending
+on the *opponent's actions*. Long story short, DI allows you (and your
+opponent) to change the direction a hit knocks them in, potentially
+making follow up attacks miss. The interesting choices in melee come
+*in between hits* as you watch what your opponent does and react to
+it. While there are "guaranteed" combos in specific situations
+(character a vs character b at XX%), most of our combos come from
+*reacting* not planning.
 
 ## Rule Number 3: Work To See The Neutral Game
 
@@ -141,18 +165,38 @@ yourself in a threatening way is a hugely useful tool.
 
 **Don't force your play into a false dichotomy of attacking or defending.**
 
-## Rule Number 4: Stay Grounded
+## Rule Number 4: Remember Where Your Good Options Are
 
-For some reason, from playing Pikachu in Smash Bros for Nintendo 64 for
-years, I love being in the air. But being in the air takes away a *huge*
-number of options. You can do one of five aerial attacks and fast fall,
-that's about it. Your opponent can plan around and react to most of those
-options. Once you're opponent is in the air, aerials might be appropriate.
-But for the *love of GOD*, do not go to them as a first approach option.
-Taking your opponent off guard with them is one thing but they are
-usually easy to adapt to and punish. You have more movement and attack
-options when grounded. Save the aerial game for your punishes, unless
-you play Jigglypuff.
+> Editor's Note: This rule was originally called "Stay Grounded" and
+> came from my reflections on the Marth v Link matchup with my buddy
+> Max. Some of this section will be dependent on the matchup.
+
+**Stage position** is important. Let's say it again: Stage position is
+really, *really* important. When I first started playing Marth, I
+always wanted to approach in the air. Just all the time. Lord knows
+why. But being in the air takes away a *huge* number of movement
+options. Your opponent can plan around and react to your play more
+easily when you have fewer options.
+
+I wound up above Max a lot and got punished. Even if your character
+has good aerial attacks, unless you're talking cross up nairs with
+Pikachu or Fox there are probably safer, better approaches.  So, being
+above your opponent is usually a pretty negative situation.
+
+In general, center stage is a great place to be, and above the
+opponent, in a corner, or on the ledge, are bad places to
+be. Platforms are a bit more of a mixed bag. But remember where on the
+stage you have advantage and where your good options aren't available
+and figure out *why* that is.
+
+In addition, **spacing** is really important. Spacing is more than
+just trying to throw out attacks from a safe distance, or thinking
+about your opponent's range. It also has to do with thinking about the
+range at which your character performs best. Marth and Falcon, for
+example, are mid-range powerhouses, while Fox and Sheik generally need
+to get in close to be really effective. Know where your character
+performs well and remember to stay in that effective range as much as
+possible.
 
 ## Rule Number 5: Do Think About Options, Action States, and Transitions
 
@@ -174,16 +218,16 @@ long the move's hitbox will be active, how long you'll be unable to
 execute a different move, etc.
 
 Consequently, speed mostly comes from transitioning quickly *between*
-moves or, as Kirbykaze's blog says, "action states". The better you get
-at switching between shielding, standing, walking, dash dancing,
-wavedashing, and attacking, the faster you'll be. Seamlessly and quickly
-transitioning between these states is vastly more valuable than
-L-canceling all your down aerials.
+moves or, as Kirbykaze's blog says, "action states". The better you
+get at switching between shielding, standing, walking, dash dancing,
+wavedashing, and attacking, the faster you'll be. Seamlessly and
+quickly transitioning between these states is vastly more valuable
+than L-canceling all your down aerials.
 
-This is something I'm just now realizing and trying to improve on. It's
-very appealing to just work on l-canceling or short hops or wavedashing
-but misses the real point. The connecting tissue *between* action states
-is where most of our sluggishness comes from.
+This is something I'm just now realizing and trying to improve
+on. It's very appealing to just work on l-canceling or short hops or
+wavedashing but misses the real point. The connecting tissue *between*
+action states is where most of our sluggishness comes from.
 
 ## Don't Give Up
 
