@@ -1,0 +1,74 @@
+;;;;;
+title: Goals for 2015: Technical
+tags: 2015, goals, programming
+date: 2015-01-01 18:15:00
+format: md
+;;;;;
+
+## Technical Goals
+
+I've been in a technical rut for a while. Sure, I learned new things
+at my job but limited myself outside of it by sticking to projects I
+wasn't motived about and only working with tools I was familiar with.
+
+As much as anything, 2015 is going to be about playing with new projects,
+experimenting with new tools, and focusing on fundamentals again.
+Seeing as I have 3 big goals here, I might just try to tackle one each
+semester. :)
+
+### Ocaml
+
+To that end, my primary goal will be to [learn Ocaml][rwo] and build
+something cool with it. I'm leaving that just as open ended as it sounds.
+
+I'm interested in Ocaml for a variety of reasons. Its origin dates from
+a time before Intel and Microsoft created a 20-year dominant platform.
+It was envisioned as a systems language, much like Lisp, to compete with
+C++.
+
+That said, it employs pattern matching and a strong, static type
+system like Haskell. Unlike Haskell, it has a fairly simple runtime and
+compiler built to give *very clear* intuition about code performance.
+While Ocaml is strongly functional, it provides for use of imperative
+state without monad machinations (sorry [@James](http://twitter.com/jdabbs)).
+
+There are other reasons but I think this is a good start. I'd be interested
+in everything from writing an IRC bot, to scripting tasks, to NES reverse
+engineering tools (i.e. lots of graph manipulation), to [OpenMirage][om] toys.
+
+[om]: http://openmirage.org/
+[rwo]: https://realworldocaml.org/
+
+### Javascript / Frontend
+
+I've leaned towards backend work in my career where possible. After helping
+TA Tim's Frontend engineering course last semester I finally want to pick up
+some front end skills. I'm not angling to get much better from a design or
+HTML/CSS perspective, but have a definite interest in [mithril][lotj] and
+Clojurescript's [om][clj_om]. Elm also seems really cool but I'd prefer to
+stick to slightly less alien tech for the time being.
+
+I'm considering porting my [Nintendo emulator][famiclom] to Clojurescript
+and getting it to use canvas but I worry about getting bogged down as I did
+with the Lisp version. It was fairly painless getting a
+[rough cl-6502 port][cljs-6502] up in Clojurescript in a few days though.
+
+[lotj]: http://lhorie.github.io/mithril/
+[clj_om]: https://github.com/swannodette/om
+[famiclom]: https://github.com/redline6561/famiclom
+[cljs-6502]: https://github.com/redline6561/cljs-6502
+
+### Algorithms
+
+To be honest, my algorithms chops have never been terribly good. I think
+one thing that's intimidated me working on [trowel][trowel] is a lack of
+confidence in my algorithmic reasonining. So I'll be working through the
+latest edition of Sedgewick's [Algorithms][sedgewick] with a particular
+focus on graphs. With any luck I'll actually make some progress on trowel.
+Maybe I'll even wire it to an om app with some [logic programming][core-logic]
+or [constraint propagation][screamer] tricks.
+
+[sedgewick]: http://algs4.cs.princeton.edu/home/
+[trowel]: https://github.com/redline6561/trowel
+[core-logic]: https://github.com/clojure/core.logic/wiki/A-Core.logic-Primer
+[screamer]: http://nikodemus.github.io/screamer/
