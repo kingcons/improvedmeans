@@ -1,0 +1,95 @@
+;;;;;
+title: The Right Thing
+tags: personal, programming
+date: 2015-05-09 03:35:00
+format: md
+;;;;;
+
+I've been programming for 8 years now. Only half that time professionally.
+It seems like a long time to me but is a drop in the bucket compared to many in this industry.
+
+If I had to pick two big lessons from the past 8 years to tell someone
+getting into Software Development for the first time, I would probably say:
+
+1. Software is never finished.
+2. Software is never "right".
+
+## Software is Never Finished
+
+Software is never finished because it exists in a social context.
+Software is an accessory to daily life and life changes.
+As our needs evolve, and the context around software shifts, so must the software itself.
+
+Not to mention the fact that the teams working on software and the organizations around it shift.
+We cannot forget [Conway's Law](http://en.wikipedia.org/wiki/Conway%27s_law)!
+
+I often cannot imagine how the Software industry will ever settle with regards
+to tools and practices, when I see our tumultuous past 50 years.
+But even if our techniques and tools settle, I don't imagine our codebases will.
+
+## Software is Never "Right"
+
+You might imagine that this section is redundant. Certainly it sounds similar to "Software is Never Finished".
+But I mean something different. I mean that there isn't a single right way that all software should be written or made.
+
+The internet would lead you to believe otherwise. Programmers are nothing if not evangelists, even zealots, about their
+tools and techniques, their pet styles and practices, their esoterica.
+
+The most important thing you can do is ignore this. Ignore the hate, Ignore the hype. Do not second guess yourself.
+
+Tools, practices, and domains of knowledge are just that. Even if Software wasn't a moving target (see: Never Finished),
+we still do not have a single methodology understood to always produce the ideal code. Indeed, there isn't some ideal code
+we're after. The code *is not* the most important part, it's just the part we're paid to obsess over.
+
+So don't sweat the folks who insist everyone should follow their "better" way. At the end of the day, good documentation
+and happy customers are probably more important than most particulars of your codebase.
+
+By all means, don't stop learning and write the best code you can.
+But chart your own path through our tangled maze of lore.
+And remind yourself that it's okay to be an [average programmer].
+We've got to find time for families and lives, after all.
+Speaking of which ...
+
+## The Right Thing
+
+It's tough to try to plan for retirement. I'm still
+too young to think confidently on decade plus time scales.
+
+It's tough to decide how to teach my students and gauge assignments.
+It's tough to decide what to learn next to become better at programming.
+It's tough to decide what I want from my career, how to nourish it and have it nourish me.
+It's tough to decide what's worth doing in general, when our lives are so busy and full.
+
+But there's one decision I make that's really easy, even when it makes my life harder.
+
+It's coming up on six years since Dad died.
+I cannot measure the amount I've grown since then. I know he'd be proud.
+But I'm proud and that's even more important.
+The biggest lesson I might have learned from John Glenn is this:
+
+**Loving other people is so obviously the right thing.**
+
+I cannot think of a time when I am as confident in my decisions
+as when I am loving and supporting others.
+
+I'm not proud of my programming skills or code, though cl-6502 is kind
+of neat. I'm not proud of my job or relationship, though I am thrilled
+with those aspects of my life.
+
+I'm proud that I handle hard situations with all the grace I am able.
+I'm proud that I treat others with respect and care because I didn't used to.
+
+Most importantly, I'm proud that when I see someone struggling, I love them.
+
+We do not get to have many easy decisions in our adult lives.
+But loving those around us, pleasant or unpleasant, in good times or bad
+is an enormous undertaking. I certainly fail at it, but I never regret it.
+
+It's unfortunate that with our busy lives, in the sea of our alerts and notifications,
+it is so difficult to focus on the simple and important things. But I truly believe
+loving others is the most important thing that I do.
+
+I have failed many times before and in many ways and modalities.
+I have character flaws. I have shortcomings.
+But if I have helped those around me through difficult periods in their lives
+and supported them when they were in need? Well, then it's all probably worth it.
