@@ -12,22 +12,27 @@ in the software industry create or exacerbate this feeling in most of us.
 I read Joel Spolsky's Java Schools article way back when, before I was really programming.
 I looked down on Web Dev for a long time. I played with lisp, played with emulation.
 ... But I've been a professional web dev. Why am I fighting it and being hard on myself
-for not being a systems programmer? Why do I keep flogging myself for not being the best
-web dev when I don't embrace it and not knowing systems programming because I haven't put
-the time into it?
+for not being a systems programmer?
+
+I flogged myself for some time, a little voice in my head saying that web devlopment
+"isn't real programming". I would flog myself for not being good at web development
+when I hadn't embraced it. I would flog myself for not being knowing systems programming
+when I haven't put any time into it.
 
 Sure, there's plenty I still don't know. But "I don't know but I can figure it out" is the
-right instinct. Trying a bunch of stuff and not finishing is vastly better than paralysis.
-Exploring *any* ecosystem and building better apps is better than trying not to "touch the web".
+right instinct to have. Trying a bunch of stuff and not finishing is vastly better than paralysis.
+Exploring *any* ecosystem and building better apps is better than misguided elitism.
 
 **I'm a hacker**, through and through. I want to learn, want to improve, want to synthesize
 new things from my understanding, grow, share, and change. I looked up to the hackers of lisp
 lore and AI Labs. But that hero worship has become negative, is distracting me from just
 building things.
 
-I used to "listen to Spolsky" because I thought I didn't have a chance in this industry.
-I've been a successful developer for years but unable to enjoy my jobs because I've been
-too uncomfortable to *embrace* web development. Then feared I'll be found out as a fraud,
+Part of the reason that little voice is in my head (and I listened to it for so long)
+is because I thought I didn't have a chance in this industry.
+
+I've been a successful developer for years but often unable to enjoy my jobs because
+I've been too uncomfortable to *embrace* them. Then feared I'll be found out as a fraud,
 not a "real programmer".
 
 I've been telling my students that since they understand the major components in web development
@@ -35,5 +40,5 @@ and have some understanding of how they fit together, their real focus to grow s
 Constantly building bigger things, trying to make each piece more cleanly than in the past,
 gradually knowing how to solve harder and harder problems.
 
-I stopped taking my own advice at some point. It's time to build new things. Bigger things.
-Things I share with the world. Not the prettiest or the best, but real.
+I stopped taking my own advice at some point. It's time to build new things again.
+Bigger things. Not the prettiest or the best, but real.
