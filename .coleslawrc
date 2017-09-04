@@ -1,0 +1,22 @@
+(:author "Brit Butler"
+ :deploy-dir "/srv/www/blog.kingcons.io"
+ :domain "http://blog.kingcons.io"
+ :feeds ("lisp")
+ :plugins ((versioned)
+           (mathjax)
+           (static-pages)
+           (disqus :shortname "clockworkwebdevelopment")
+	   (analytics :tracking-code "UA-37659929-1"))
+ :routing ((:post "posts/~a")
+           (:tag-index "tag/~a")
+           (:month-index "date/~a")
+           (:numeric-index "~d")
+           (:feed "~a.xml")
+           (:tag-feed "tag/~a.xml"))
+ :sitenav ((:url "http://kingcons.io/" :name "Home")
+           (:url "http://github.com/kingcons" :name "Code")
+           (:url "http://soundcloud.com/redlinernotes" :name "Music")
+           (:url "http://redlinernotes.com/docs/talks/" :name "Talks")
+           (:url "http://twitter.com/king_cons" :name "Twitter"))
+ :title "Improved Means for Achieving Deteriorated Ends"
+ :theme "readable")
