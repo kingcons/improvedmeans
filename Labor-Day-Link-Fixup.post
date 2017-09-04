@@ -34,7 +34,7 @@ Since coleslaw is designed to be backed by git as a content store, I started by 
 to get a list of all the old wordpress post IDs I linked to.
 
 ```bash
-grep -Eo "redlinernotes.com/blog/\?p=(\d+)" *.post | cut -d "?" -f 2 > ids.txt
+grep -Eo "redlinernotes.com/blog/\?p=(\d+)" *.post | cut -d "?" -f 2
 ```
 
 Armed with that, I could tackle digging into the wordpress XML backup to map the post IDs to coleslaw generated titles.
@@ -144,6 +144,9 @@ And there you go. A few links are still broken but things are generally improved
 and I had a bit of fun on a lazy Sunday.
 
 > ===RESULTS===
+
 > INVALID-SLUG: 18 Posts
+
 > POST-NOT-FOUND: 7 Posts
+
 > UPDATED-URL: 58 Posts
