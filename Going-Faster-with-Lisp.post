@@ -155,7 +155,7 @@ can get this down to a handful of assembly instructions. Here's my initial imple
 
 You can see it takes an NROM mapper and an address and, based on the number of PRG
 banks in the cartridge, does a little math on the address and accesses the PRG with
-`AREF`. Here's the unoptimized disassembly:
+`AREF`. Let your eyes skim over the unoptimized disassembly:
 
 ```
 CL-USER> (disasm-method #'clones.mappers::load-prg '(clones.mappers::nrom t))
@@ -320,8 +320,9 @@ CL-USER> (disasm-method #'clones.mappers::load-prg '(clones.mappers::nrom t))
 
 #### A Fork in the Road
 
-Those two JMP instructions and the generic equality CALL are still in the asm code.
-Why? Because we didn't actually resolve any of the compiler's uncertainties about
+Those two JMP instructions and the generic equality CALL are still in the assembly
+though as you can see from the comments on the right hand side. Why?
+Because we didn't actually resolve any of the compiler's uncertainties about
 the code. We have to help it know what type of values it will be working with. The
 question is how to best do that. One way would be to just add a bunch of local type
 declarations in the method:
