@@ -12,7 +12,7 @@ playing with Nintendo emulation, don't ask why it's captured my imagination so.
 I'd like to briefly discuss what's brought me back and then we'll talk about what
 I learned writing lisp today.
 
-### My Absence
+## My Absence
 
 I haven't really worked on hobby projects since mid 2014. Even then my output was
 reduced substantially from 2012 when I lived alone and cl-6502/coleslaw had my full
@@ -31,7 +31,7 @@ I also didn't really know about test ROMs until _way_ too late in the going.
 
 But time heals all wounds and I have plenty of ideas. So here we are.
 
-### Design Changes
+## Design Changes
 
 With cl-6502, I just focused on the CPU since that was something I had an _inkling_
 of how to approach. My biggest mistake was treating RAM as a 64k element array.
@@ -47,7 +47,7 @@ going to be focused on using test ROMs through as much of the process as I can.
 I'll write more about that in a future article but, long story short, TDD is hard
 to do when writing an emulator.
 
-### Lisp, Fast, OO: Pick 3
+## Lisp, Fast, OO: Pick 3
 
 I managed to get cl-6502 running fast enough last time around but it was still 100x
 slower than Ian Piumarta's lib6502 written in C. There's no reason that has to be
@@ -57,7 +57,7 @@ pray. Today I'd like to focus on a few tricks for figuring out if declarations a
 helping or not and getting friendly with your disassembler. I'll also talk a little
 about why I wound up going with **DEFSTRUCT** over **DEFCLASS**.
 
-#### lol, dis
+### lol, dis
 
 Profilers are great for helping you figure out what parts of your code you spend
 the most time in. Once you've identified a function that _needs_ to go fast, the
@@ -128,7 +128,7 @@ function for disassembling the "fast-function" commonly invoked for a method.
 
 [ggs]: https://groups.google.com/forum/#!topic/comp.lang.lisp/4E3wAR95z_Q
 
-#### A "Practical" Example
+### A "Practical" Example
 
 > All code for this section is on the [ground-floor branch on Github][ground-floor]
 
@@ -318,7 +318,7 @@ CL-USER> (disasm-method #'clones.mappers::load-prg '(clones.mappers::nrom t))
 
 ```
 
-#### A Fork in the Road
+### A Fork in the Road
 
 Those two JMP instructions and the generic equality CALL are still in the assembly
 though as you can see from the comments on the right hand side. Why?
@@ -348,7 +348,7 @@ are returned by the accessor functions we're using to pull data out of the ROM.
 And this is where we come to the important difference about **DEFCLASS** and
 **DEFSTRUCT** from where I'm sitting as an emulator author.
 
-#### Optimizing with Structs is Easier
+### Optimizing with Structs is Easier
 
 Getting struct-related code to go fast is easier for a _very specific reason_.
 Both **DEFCLASS** and **DEFSTRUCT** allow you to optionally specify the types
@@ -369,6 +369,14 @@ several ways than **DEFCLASS** but for truly performance intensive stuff, the
 type declaration behavior makes it worth it from where I'm sitting. Just don't
 default to **DEFSTRUCT** in general. [This message][rwa] from the Rob Warnock
 Archive may also prove interesting.
+
+This is something I always had questions about though and it was compounded a
+bit due to the fact that **DEFSTRUCT** is barely mentioned by Practical Common
+Lisp or Common Lisp Recipes. Practical Common Lisp is still the best way to learn
+the language in my opinion. I also honestly enjoy the things that are in the Common
+Lisp standard due to history but I'd never quite found an answer to "When should I
+use structs vs classes?" that I liked. Hopefully future lispers will be able to
+stumble on these notes (or parse the spec better than I did).
 
 [rwa]: https://www.xach.com/rpw3/articles/drmdnTVk9K-EHPXUnZ2dnUVZ_qadnZ2d@speakeasy.net.html
 
@@ -469,7 +477,7 @@ has a 64k address space:
 ; E1E:       EBE2             JMP L0
 ```
 
-### Wrap Up
+## Wrap Up
 
 There's a lot of work left to do on the (new) emulator but I'm writing code again,
 having fun, learning, and using lisp and that's the most important part to me. If
