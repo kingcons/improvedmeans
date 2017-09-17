@@ -124,7 +124,7 @@ function for disassembling the "fast-function" commonly invoked for a method.
          (function (sb-mop:method-function method))
          (fast-function (sb-pcl::%method-function-fast-function function)))
     (disassemble fast-function)))
-````
+```
 
 [ggs]: https://groups.google.com/forum/#!topic/comp.lang.lisp/4E3wAR95z_Q
 
