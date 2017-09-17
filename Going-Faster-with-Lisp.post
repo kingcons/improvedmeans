@@ -1,0 +1,476 @@
+;;;;;
+title: Going Faster with Lisp
+date: 2017-09-17 16:10:00
+tags: lisp, emulation
+format: md
+;;;;;
+
+For the first time in 3+ years, I'm working in earnest on a hobby project.
+
+It feels like coming home, to be writing lisp and blogging again. Once again I'm
+playing with Nintendo emulation, don't ask why it's captured my imagination so.
+I'd like to briefly discuss what's brought me back and then we'll talk about what
+I learned writing lisp today.
+
+### My Absence
+
+I haven't really worked on hobby projects since mid 2014. Even then my output was
+reduced substantially from 2012 when I lived alone and cl-6502/coleslaw had my full
+attention. I never stopped wanting to learn more, or loving lisp specifically,
+I just lost the energy to pursue it. That was due to (in rough order): Work,
+burnout, my relationship, and buying a house. Where burnout == a curiously strong
+blend of exhaustion, impostor syndrome, and unclear goals. It was scary at times
+when I wondered if I had lost my passion or commitment but ultimately good for me.
+
+A lot of why I stalled out had to do with my old Nintendo emulator. I had made
+some bad assumptions, especially about how memory worked, due to not knowing much
+about systems programming or hardware when I started and didn't want to throw away
+everything I had to start fresh. cl-6502 had also felt very public so when progress
+had stalled before even being able to play a game that was quite embarrassing.
+I also didn't really know about test ROMs until _way_ too late in the going.
+
+But time heals all wounds and I have plenty of ideas. So here we are.
+
+### Design Changes
+
+With cl-6502, I just focused on the CPU since that was something I had an _inkling_
+of how to approach. My biggest mistake was treating RAM as a 64k element array.
+The actual Nintendo used Memory Mapped I/O to talk to the graphics and sound cards.
+The only way to support that in famiclom was to overwrite the routines that read
+and wrote to RAM in cl-6502. It was unacceptable to me from both a design and
+performance perspective.
+
+This time around, I'm using a separate object to represent the Memory Map so that
+when an CPU instruction reads or writes to an address, it'll actually get handled
+by the write part of the system: the RAM, Video Card, Sound, or cartridge. I'm also
+going to be focused on using test ROMs through as much of the process as I can.
+I'll write more about that in a future article but, long story short, TDD is hard
+to do when writing an emulator.
+
+### Lisp, Fast, OO: Pick 3
+
+I managed to get cl-6502 running fast enough last time around but it was still 100x
+slower than Ian Piumarta's lib6502 written in C. There's no reason that has to be
+the case, I simply didn't know how to approach optimizing Lisp. I would use SBCL's
+statistical profiler, sprinkle compiler declarations in my code, re-profile, and
+pray. Today I'd like to focus on a few tricks for figuring out if declarations are
+helping or not and getting friendly with your disassembler. I'll also talk a little
+about why I wound up going with **DEFSTRUCT** over **DEFCLASS**.
+
+#### lol, dis
+
+Profilers are great for helping you figure out what parts of your code you spend
+the most time in. Once you've identified a function that _needs_ to go fast, the
+next step is usually to add an optimize declaration. Something like:
+
+```lisp
+(declare (optimize (speed 3) (safety 1))) ; or even (safety 0)
+```
+
+Recompiling the function afterward will result in the compiler printing out notes
+about what tripped it up while compiling the code. One thing I didn't realize back
+when I was working on cl-6502 (but seems obvious in retrospect) is that you can
+include optimize and type declarations in methods too! That said, it can be a pain
+to constantly write out different optimize and type declarations, recompile, and
+call disassemble on the code to see differences in the output. Additionally, there
+is not a portable way to disassemble methods, only their generic functions which
+is really just the dispatch machinery and not the work that you're interested in.
+
+While Doug Hoyte's book Let Over Lambda is a bit controversial among lispers, he
+offers some good advice and good tools for remedying these points in Chapter 7.
+In particular, he supplies a read macro to quickly enable maximum optimization in
+a method or function and a regular macro to allow testing out type declarations
+effect on an anonymous function quickly at the REPL. I've taken the liberty of
+adding both to my `.sbclrc` file so I have easy access to them when I'm trying
+things out.
+
+```lisp
+(defun enable-sharpf-read-macro ()
+  (set-dispatch-macro-character #\# #\f
+    (lambda (stream sub-char numarg)
+      (declare (ignore stream sub-char))
+      (setf numarg (or numarg 3))
+      (unless (<= numarg 3)
+        (error "Invalid value for optimize declaration: ~a" numarg))
+      `(declare (optimize (speed ,numarg)
+                          (safety ,(- 3 numarg)))))))
+
+(defmacro dis (args &rest body)
+  (flet ((arg-name (arg)
+           (if (consp arg)
+               (cadr arg)
+               arg))
+         (arg-decl (arg)
+           (if (consp arg)
+               `(type ,(car arg) ,(cadr arg))
+               nil)))
+    (let ((arglist (mapcar #'arg-name args))
+          (declarations (mapcar #'arg-decl args)))
+      `(disassemble
+         (lambda ,arglist
+           (declare ,@(remove nil declarations))
+           ,@body)))))
+
+```
+
+I also dug around to see if there was a way to get disassembly for a single method
+and found a [helpful thread on Google Groups][ggs] from which I built a little
+function for disassembling the "fast-function" commonly invoked for a method.
+
+```lisp
+(defun disasm-method (name specializers)
+  "E.g. (disasm-method 'package:generic-fun '(class t))"
+  (let* ((method (find-method name nil specializers))
+         (function (sb-mop:method-function method))
+         (fast-function (sb-pcl::%method-function-fast-function function)))
+    (disassemble fast-function)))
+````
+
+[ggs]: https://groups.google.com/forum/#!topic/comp.lang.lisp/4E3wAR95z_Q
+
+#### A "Practical" Example
+
+> All code for this section is on the [ground-floor branch on Github][ground-floor]
+
+Today I was working on memory mappers / cartridges for the NES emulator. Let's look
+at how I used these tools to optimize a method on the simplest mapper [NROM][nrom].
+(Used in titles like Donkey Kong and the original Super Mario Brothers.) The method
+we'll be looking at is called `load-prg`. Put simply, it takes an address and loads
+a byte from the PRG section of the game cartridge.
+
+[ground-floor]: https://github.com/kingcons/clones/tree/ground-floor
+[nrom]: https://wiki.nesdev.com/w/index.php/NROM
+
+Since any game will load data from the cartridge *a lot* we really want this to
+be a fast operation. And since it's loading from a static array, we would hope we
+can get this down to a handful of assembly instructions. Here's my initial implementation:
+
+```lisp
+(defmethod load-prg ((mapper nrom) address)
+  (let ((rom (mapper-rom mapper)))
+    (if (= 1 (rom-prg-count rom))
+        (aref (rom-prg rom) (logand address #x3fff))
+        (aref (rom-prg rom) (logand address #x7fff)))))
+```
+
+You can see it takes an NROM mapper and an address and, based on the number of PRG
+banks in the cartridge, does a little math on the address and accesses the PRG with
+`AREF`. Here's the unoptimized disassembly:
+
+```
+CL-USER> (disasm-method #'clones.mappers::load-prg '(clones.mappers::nrom t))
+; disassembly for (SB-PCL::FAST-METHOD CLONES.MAPPERS:LOAD-PRG
+                   (CLONES.MAPPERS::NROM T))
+; Size: 280 bytes. Origin: #x2290E8F5
+; 8F5:       498B4C2460       MOV RCX, [R12+96]               ; no-arg-parsing entry point
+                                                              ; thread.binding-stack-pointer
+; 8FA:       48894DF8         MOV [RBP-8], RCX
+; 8FE:       498B5805         MOV RBX, [R8+5]
+; 902:       48895DE0         MOV [RBP-32], RBX
+; 906:       8D43FD           LEA EAX, [RBX-3]
+; 909:       A80F             TEST AL, 15
+; 90B:       0F85F3000000     JNE L11
+; 911:       8B4B01           MOV ECX, [RBX+1]
+; 914:       4881F903FD5020   CMP RCX, #x2050FD03             ; #<SB-KERNEL:LAYOUT for CLONES.ROM:ROM {2050FD03}>
+; 91B:       0F85C8000000     JNE L10
+; 921: L0:   488B531D         MOV RDX, [RBX+29]
+; 925:       BF02000000       MOV EDI, 2
+; 92A:       E8411C1FFF       CALL #x21B00570                 ; GENERIC-=
+; 92F:       488B5DE0         MOV RBX, [RBP-32]
+; 933:       488B75E8         MOV RSI, [RBP-24]
+; 937:       4C8B45F0         MOV R8, [RBP-16]
+; 93B:       7456             JEQ L5
+; 93D:       488B4B0D         MOV RCX, [RBX+13]
+; 941:       8D46F1           LEA EAX, [RSI-15]
+; 944:       A801             TEST AL, 1
+; 946:       750A             JNE L1
+; 948:       A80F             TEST AL, 15
+; 94A:       7542             JNE L4
+; 94C:       807EF111         CMP BYTE PTR [RSI-15], 17
+; 950:       753C             JNE L4
+; 952: L1:   488BFE           MOV RDI, RSI
+; 955:       40F6C701         TEST DIL, 1
+; 959:       7407             JEQ L2
+; 95B:       488B7FF9         MOV RDI, [RDI-7]
+; 95F:       48D1E7           SHL RDI, 1
+; 962: L2:   4881E7FEFF0000   AND RDI, 65534
+; 969:       8D41F1           LEA EAX, [RCX-15]
+; 96C:       A80F             TEST AL, 15
+; 96E:       7519             JNE L3
+; 970:       8B41F1           MOV EAX, [RCX-15]
+; 973:       2C85             SUB AL, -123
+; 975:       3C74             CMP AL, 116
+; 977:       7710             JNBE L3
+; 979:       488BD1           MOV RDX, RCX
+; 97C:       B904000000       MOV ECX, 4
+; 981:       FF7508           PUSH QWORD PTR [RBP+8]
+; 984:       E9AFEDA1FD       JMP #x2032D738                  ; #<FDEFN SB-KERNEL:HAIRY-DATA-VECTOR-REF/CHECK-BOUNDS>
+; 989: L3:   0F0B0A           BREAK 10                        ; error trap
+; 98C:       36               BYTE #X36                       ; OBJECT-NOT-VECTOR-ERROR
+; 98D:       08               BYTE #X08                       ; RCX
+; 98E: L4:   0F0B0A           BREAK 10                        ; error trap
+; 991:       41               BYTE #X41                       ; OBJECT-NOT-INTEGER-ERROR
+; 992:       30               BYTE #X30                       ; RSI
+; 993: L5:   488B4B0D         MOV RCX, [RBX+13]
+; 997:       8D46F1           LEA EAX, [RSI-15]
+; 99A:       A801             TEST AL, 1
+; 99C:       750A             JNE L6
+; 99E:       A80F             TEST AL, 15
+; 9A0:       7542             JNE L9
+; 9A2:       807EF111         CMP BYTE PTR [RSI-15], 17
+; 9A6:       753C             JNE L9
+; 9A8: L6:   488BFE           MOV RDI, RSI
+; 9AB:       40F6C701         TEST DIL, 1
+; 9AF:       7407             JEQ L7
+; 9B1:       488B7FF9         MOV RDI, [RDI-7]
+; 9B5:       48D1E7           SHL RDI, 1
+; 9B8: L7:   4881E7FE7F0000   AND RDI, 32766
+; 9BF:       8D41F1           LEA EAX, [RCX-15]
+; 9C2:       A80F             TEST AL, 15
+; 9C4:       7519             JNE L8
+; 9C6:       8B41F1           MOV EAX, [RCX-15]
+; 9C9:       2C85             SUB AL, -123
+; 9CB:       3C74             CMP AL, 116
+; 9CD:       7710             JNBE L8
+; 9CF:       488BD1           MOV RDX, RCX
+; 9D2:       B904000000       MOV ECX, 4
+; 9D7:       FF7508           PUSH QWORD PTR [RBP+8]
+; 9DA:       E959EDA1FD       JMP #x2032D738                  ; #<FDEFN SB-KERNEL:HAIRY-DATA-VECTOR-REF/CHECK-BOUNDS>
+; 9DF: L8:   0F0B0A           BREAK 10                        ; error trap
+; 9E2:       36               BYTE #X36                       ; OBJECT-NOT-VECTOR-ERROR
+; 9E3:       08               BYTE #X08                       ; RCX
+; 9E4: L9:   0F0B0A           BREAK 10                        ; error trap
+; 9E7:       41               BYTE #X41                       ; OBJECT-NOT-INTEGER-ERROR
+; 9E8:       30               BYTE #X30                       ; RSI
+; 9E9: L10:  488B512D         MOV RDX, [RCX+45]
+; 9ED:       4883FA04         CMP RDX, 4
+; 9F1:       7E11             JLE L11
+; 9F3:       488B4125         MOV RAX, [RCX+37]
+; 9F7:       81781103FD5020   CMP DWORD PTR [RAX+17], #x2050FD03  ; #<SB-KERNEL:LAYOUT for CLONES.ROM:ROM {2050FD03}>
+; 9FE:       0F841DFFFFFF     JEQ L0
+; A04: L11:  0F0B0A           BREAK 10                        ; error trap
+; A07:       0A               BYTE #X0A                       ; OBJECT-NOT-TYPE-ERROR
+; A08:       18               BYTE #X18                       ; RBX
+; A09:       23               BYTE #X23                       ; 'CLONES.ROM:ROM
+; A0A:       0F0B10           BREAK 16                        ; Invalid argument count trap
+```
+
+WOOF! 280 bytes of assembly, including a full `CALL` to a generic equality test,
+and two `JMP` instructions to other functions. Even without knowing any assembly,
+this seems like an _awful_ lot of junk just for a measly array lookup! I think
+one valuable insight I got from Chapter 7 of Let Over Lambda was to disregard what
+I thought I know or didn't about assembly and just use my damn eyes. Doesn't this
+seem like a silly amount of code? Let's crank the optimization up:
+
+```lisp
+(defmethod load-prg ((mapper nrom) address)
+  #f
+  (let ((rom (mapper-rom mapper)))
+    (if (= 1 (rom-prg-count rom))
+        (aref (rom-prg rom) (logand address #x3fff))
+        (aref (rom-prg rom) (logand address #x7fff)))))
+```
+
+As soon as I recompiled this code, I got 6 notes from the compiler stating that
+it wasn't confident about the return value of `(rom-prg-count rom)` hence the
+generic equality test. It also wasn't confident what kind of array `(rom-prg rom)`
+was or if all the elements even shared a type! That will cause `AREF` to be slow.
+Even so, the generated assembly drops to 116 bytes since the `#f` read macro
+expands to a declaration with maximum speed (3) and minimum safety (0). It should
+go without saying that you only want to do this in code that A) **really** needs
+to be fast and for which, B) you're **very** confident about who will call it and
+how. Here's the disassembly:
+
+```
+CL-USER> (disasm-method #'clones.mappers::load-prg '(clones.mappers::nrom t))
+; disassembly for (SB-PCL::FAST-METHOD CLONES.MAPPERS:LOAD-PRG
+                   (CLONES.MAPPERS::NROM T))
+; Size: 116 bytes. Origin: #x2290F6CB
+; 6CB:       48895DF0         MOV [RBP-16], RBX               ; no-arg-parsing entry point
+; 6CF:       488B4605         MOV RAX, [RSI+5]
+; 6D3:       488945F8         MOV [RBP-8], RAX
+; 6D7:       488B501D         MOV RDX, [RAX+29]
+; 6DB:       BF02000000       MOV EDI, 2
+; 6E0:       E88B0E1FFF       CALL #x21B00570                 ; GENERIC-=
+; 6E5:       488B5DF0         MOV RBX, [RBP-16]
+; 6E9:       488B45F8         MOV RAX, [RBP-8]
+; 6ED:       7528             JNE L1
+; 6EF:       488B500D         MOV RDX, [RAX+13]
+; 6F3:       488BFB           MOV RDI, RBX
+; 6F6:       40F6C701         TEST DIL, 1
+; 6FA:       7407             JEQ L0
+; 6FC:       488B7FF9         MOV RDI, [RDI-7]
+; 700:       48D1E7           SHL RDI, 1
+; 703: L0:   4881E7FE7F0000   AND RDI, 32766
+; 70A:       B904000000       MOV ECX, 4
+; 70F:       FF7508           PUSH QWORD PTR [RBP+8]
+; 712:       E9E166A2FD       JMP #x20335DF8                  ; #<FDEFN SB-KERNEL:HAIRY-DATA-VECTOR-REF>
+; 717: L1:   488B500D         MOV RDX, [RAX+13]
+; 71B:       488BFB           MOV RDI, RBX
+; 71E:       40F6C701         TEST DIL, 1
+; 722:       7407             JEQ L2
+; 724:       488B7FF9         MOV RDI, [RDI-7]
+; 728:       48D1E7           SHL RDI, 1
+; 72B: L2:   4881E7FEFF0000   AND RDI, 65534
+; 732:       B904000000       MOV ECX, 4
+; 737:       FF7508           PUSH QWORD PTR [RBP+8]
+; 73A:       E9B966A2FD       JMP #x20335DF8                  ; #<FDEFN SB-KERNEL:HAIRY-DATA-VECTOR-REF>
+
+```
+
+#### A Fork in the Road
+
+Those two JMP instructions and the generic equality CALL are still in the asm code.
+Why? Because we didn't actually resolve any of the compiler's uncertainties about
+the code. We have to help it know what type of values it will be working with. The
+question is how to best do that. One way would be to just add a bunch of local type
+declarations in the method:
+
+```lisp
+(defmethod load-prg ((mapper nrom) address)
+  #f
+  (let* ((rom (mapper-rom mapper))
+         (prg (rom-prg rom))
+         (prg-count (rom-prg-count rom)))
+    (declare (type byte-vector prg)
+             (type fixnum prg-count))
+    (if (= 1 prg-count)
+        (aref prg (logand address #x3fff))
+        (aref prg (logand address #x7fff)))))
+```
+
+That will work and does generately substantially nicer code (82 bytes and no CALLs
+or JMPs). But boy, it forced us to completely restructure the method and, well, the
+new version feels a bit disjointed. The declarations stick out and distract from
+the underlying ideas. The alternative is to try and teach the compiler what types
+are returned by the accessor functions we're using to pull data out of the ROM.
+And this is where we come to the important difference about **DEFCLASS** and
+**DEFSTRUCT** from where I'm sitting as an emulator author.
+
+#### Optimizing with Structs is Easier
+
+Getting struct-related code to go fast is easier for a _very specific reason_.
+Both **DEFCLASS** and **DEFSTRUCT** allow you to optionally specify the types
+of their slots. Unfortunately, **DEFCLASS** does absolutely no optimization with
+this information, while **DEFSTRUCT** treats it as a guarantee and propagates it
+through the auto-generated slot accessors and, therefore, the rest of your code.
+
+Now there's a good reason for this and I am _certainly_ not advocating for using
+**DEFSTRUCT** by default. The reason is that **DEFSTRUCT** is not designed to be
+interactively redefined or changed at runtime unlike most of the language.
+**DEFCLASS** could have the types of its slots (or even the slots themselves)
+change at any time including runtime and so it isn't reasonable for it to treat
+the type declaration as a fact.
+
+**DEFSTRUCT** has other downsides as well, including auto-generating a bunch of
+symbols in the current package among other things. It's clunkier to work with in
+several ways than **DEFCLASS** but for truly performance intensive stuff, the
+type declaration behavior makes it worth it from where I'm sitting. Just don't
+default to **DEFSTRUCT** in general. [This message][rwa] from the Rob Warnock
+Archive may also prove interesting.
+
+[rwa]: https://www.xach.com/rpw3/articles/drmdnTVk9K-EHPXUnZ2dnUVZ_qadnZ2d@speakeasy.net.html
+
+#### Modifying the ROM definition
+
+Here's what our ROM struct looks like with the added type declarations:
+
+```lisp
+(defstruct rom
+  (pathname    nil :read-only t)
+  (prg         #() :read-only t :type byte-vector)
+  (chr         #() :read-only t :type byte-vector)
+  (prg-count     0 :read-only t :type ub8)
+  (chr-count     0 :read-only t :type ub8)
+  (mirroring   nil :read-only t)
+  (mapper-name nil :read-only t))
+```
+
+The previous version had no `:type` options and the default values were all `nil`.
+After changing the struct and recompiling, we can write the same version of
+`load-prg` as before but get much better generated assembly since the compiler
+knows the types returned by the struct accessors (and thus the array element type):
+
+```lisp
+(defmethod load-prg ((mapper nrom) address)
+  #f
+  (let ((rom (mapper-rom mapper)))
+    (if (= 1 (rom-prg-count rom))
+        (aref (rom-prg rom) (logand address #x3fff))
+        (aref (rom-prg rom) (logand address #x7fff)))))
+
+; disassembly for (SB-PCL::FAST-METHOD CLONES.MAPPERS:LOAD-PRG
+                   (CLONES.MAPPERS::NROM T))
+; Size: 90 bytes. Origin: #x22910BDE
+; BDE:       488B4005         MOV RAX, [RAX+5]                ; no-arg-parsing entry point
+; BE2:       488B501D         MOV RDX, [RAX+29]
+; BE6:       4883FA02         CMP RDX, 2
+; BEA:       7528             JNE L2
+; BEC:       488B400D         MOV RAX, [RAX+13]
+; BF0:       F6C101           TEST CL, 1
+; BF3:       7407             JEQ L0
+; BF5:       488B49F9         MOV RCX, [RCX-7]
+; BF9:       48D1E1           SHL RCX, 1
+; BFC: L0:   4881E1FE7F0000   AND RCX, 32766
+; C03:       48D1F9           SAR RCX, 1
+; C06:       0FB6540801       MOVZX EDX, BYTE PTR [RAX+RCX+1]
+; C0B:       48D1E2           SHL RDX, 1
+; C0E: L1:   488BE5           MOV RSP, RBP
+; C11:       F8               CLC
+; C12:       5D               POP RBP
+; C13:       C3               RET
+; C14: L2:   488B400D         MOV RAX, [RAX+13]
+; C18:       F6C101           TEST CL, 1
+; C1B:       7407             JEQ L3
+; C1D:       488B49F9         MOV RCX, [RCX-7]
+; C21:       48D1E1           SHL RCX, 1
+; C24: L3:   4881E1FEFF0000   AND RCX, 65534
+; C2B:       48D1F9           SAR RCX, 1
+; C2E:       0FB6540801       MOVZX EDX, BYTE PTR [RAX+RCX+1]
+; C33:       48D1E2           SHL RDX, 1
+; C36:       EBD6             JMP L1
+```
+
+Finally, we can improve things just a _bit_ by promising that the address we call
+the `load-prg` method with will be an unsigned 16-bit value since the 6502 only
+has a 64k address space:
+
+```lisp
+(defmethod load-prg ((mapper nrom) address)
+  #f
+  (declare (type ub16 address))
+  (let ((rom (mapper-rom mapper)))
+    (if (= 1 (rom-prg-count rom))
+        (aref (rom-prg rom) (logand address #x3fff))
+        (aref (rom-prg rom) (logand address #x7fff)))))
+
+; disassembly for (SB-PCL::FAST-METHOD CLONES.MAPPERS:LOAD-PRG
+                   (CLONES.MAPPERS::NROM T))
+; Size: 66 bytes. Origin: #x22910DDE
+; DDE:       488B4005         MOV RAX, [RAX+5]                ; no-arg-parsing entry point
+; DE2:       488B501D         MOV RDX, [RAX+29]
+; DE6:       4883FA02         CMP RDX, 2
+; DEA:       751C             JNE L1
+; DEC:       488B400D         MOV RAX, [RAX+13]
+; DF0:       4881E1FE7F0000   AND RCX, 32766
+; DF7:       48D1F9           SAR RCX, 1
+; DFA:       0FB6540801       MOVZX EDX, BYTE PTR [RAX+RCX+1]
+; DFF:       48D1E2           SHL RDX, 1
+; E02: L0:   488BE5           MOV RSP, RBP
+; E05:       F8               CLC
+; E06:       5D               POP RBP
+; E07:       C3               RET
+; E08: L1:   488B400D         MOV RAX, [RAX+13]
+; E0C:       4881E1FEFF0000   AND RCX, 65534
+; E13:       48D1F9           SAR RCX, 1
+; E16:       0FB6540801       MOVZX EDX, BYTE PTR [RAX+RCX+1]
+; E1B:       48D1E2           SHL RDX, 1
+; E1E:       EBE2             JMP L0
+```
+
+### Wrap Up
+
+There's a lot of work left to do on the (new) emulator but I'm writing code again,
+having fun, learning, and using lisp and that's the most important part to me. If
+you made it this far, thanks for reading. Let me know what you think and happy
+hacking!
