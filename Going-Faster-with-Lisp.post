@@ -412,8 +412,7 @@ knows the types returned by the struct accessors (and thus the array element typ
         (aref (rom-prg rom) (logand address #x3fff))
         (aref (rom-prg rom) (logand address #x7fff)))))
 
-; disassembly for (SB-PCL::FAST-METHOD CLONES.MAPPERS:LOAD-PRG
-                   (CLONES.MAPPERS::NROM T))
+; disassembly for (SB-PCL::FAST-METHOD CLONES.MAPPERS:LOAD-PRG (CLONES.MAPPERS::NROM T))
 ; Size: 90 bytes. Origin: #x22910BDE
 ; BDE:       488B4005         MOV RAX, [RAX+5]                ; no-arg-parsing entry point
 ; BE2:       488B501D         MOV RDX, [RAX+29]
@@ -457,8 +456,7 @@ has a 64k address space:
         (aref (rom-prg rom) (logand address #x3fff))
         (aref (rom-prg rom) (logand address #x7fff)))))
 
-; disassembly for (SB-PCL::FAST-METHOD CLONES.MAPPERS:LOAD-PRG
-                   (CLONES.MAPPERS::NROM T))
+; disassembly for (SB-PCL::FAST-METHOD CLONES.MAPPERS:LOAD-PRG (CLONES.MAPPERS::NROM T))
 ; Size: 66 bytes. Origin: #x22910DDE
 ; DDE:       488B4005         MOV RAX, [RAX+5]                ; no-arg-parsing entry point
 ; DE2:       488B501D         MOV RDX, [RAX+29]
@@ -507,8 +505,7 @@ Doing that eliminates the branch and results in a nice, lean 40 bytes for our fi
          (wrapped-address (logand address end-of-rom)))
     (aref (rom-prg rom) wrapped-address)))
 
-; disassembly for (SB-PCL::FAST-METHOD CLONES.MAPPERS:LOAD-PRG
-                   (CLONES.MAPPERS::NROM T))
+; disassembly for (SB-PCL::FAST-METHOD CLONES.MAPPERS:LOAD-PRG (CLONES.MAPPERS::NROM T))
 ; Size: 40 bytes. Origin: #x22844CCE
 ; CE:       488B4005         MOV RAX, [RAX+5]                 ; no-arg-parsing entry point
 ; D2:       488B500D         MOV RDX, [RAX+13]
