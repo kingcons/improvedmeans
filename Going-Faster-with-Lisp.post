@@ -350,6 +350,9 @@ And this is where we come to the important difference about **DEFCLASS** and
 
 ### Optimizing with Structs is Easier
 
+(Ed. note 09/19/2017: Rainer Joswig left a _very_ informative comment about
+Structs vs Classes and Optimizing with CLOS [on reddit][reddit].)
+
 Getting struct-related code to go fast is easier for a _very specific reason_.
 Both **DEFCLASS** and **DEFSTRUCT** allow you to optionally specify the types
 of their slots. Unfortunately, **DEFCLASS** does absolutely no optimization with
@@ -379,6 +382,7 @@ use structs vs classes?" that I liked. Hopefully future lispers will be able to
 stumble on these notes (or parse the spec better than I did).
 
 [rwa]: https://www.xach.com/rpw3/articles/drmdnTVk9K-EHPXUnZ2dnUVZ_qadnZ2d@speakeasy.net.html
+[reddit]: https://www.reddit.com/r/lisp/comments/70qsbk/going_faster_with_lisp/dn5ti5z/
 
 #### Modifying the ROM definition
 
@@ -476,6 +480,52 @@ has a 64k address space:
 ; E1B:       48D1E2           SHL RDX, 1
 ; E1E:       EBE2             JMP L0
 ```
+
+#### Updates
+
+(Ed. note 09/19/2017: Some additional speedups have been made since this article was published.)
+
+[Paul Khuong][pvk] was kind enough to note that SBCL was unable to hoist the `(logand address xxx)`
+computation out of the conditional. This duplication can be seen in the disassembly from the
+two `MOV .. AND .. SAR .. MOVZX` blocks. Doing so improved the assembly a bit further to 51 bytes.
+Reflecting on it further, I realized there's no need for a conditional expression at all!
+
+In NROM cartridges, they can either have 1 or 2 PRG banks each of which are 16k. Because the 6502
+has a 64k address space and the cartridge data begins at 32k, an NROM cartridge with only 1 PRG
+bank doesn't actually fill the address space. In our `load-prg` method, we just want to make sure
+that if we're given a higher address like 54321 that we wrap that around to not run off the end of
+our 16k worth of PRG. To do that, we can just logical AND the address with `(1- (length array))`.
+
+Doing that eliminates the branch and results in a nice, lean 40 bytes for our final disassembly:
+
+```lisp
+(defmethod load-prg ((mapper nrom) address)
+  #f
+  (declare (type ub16 address))
+  (let* ((rom (mapper-rom mapper))
+         (end-of-rom (1- (length (rom-prg rom))))
+         (wrapped-address (logand address end-of-rom)))
+    (aref (rom-prg rom) wrapped-address)))
+
+; disassembly for (SB-PCL::FAST-METHOD CLONES.MAPPERS:LOAD-PRG
+                   (CLONES.MAPPERS::NROM T))
+; Size: 40 bytes. Origin: #x22844CCE
+; CE:       488B4005         MOV RAX, [RAX+5]                 ; no-arg-parsing entry point
+; D2:       488B500D         MOV RDX, [RAX+13]
+; D6:       488B52F9         MOV RDX, [RDX-7]
+; DA:       4883EA02         SUB RDX, 2
+; DE:       4821D1           AND RCX, RDX
+; E1:       488B400D         MOV RAX, [RAX+13]
+; E5:       48D1F9           SAR RCX, 1
+; E8:       0FB6540801       MOVZX EDX, BYTE PTR [RAX+RCX+1]
+; ED:       48D1E2           SHL RDX, 1
+; F0:       488BE5           MOV RSP, RBP
+; F3:       F8               CLC
+; F4:       5D               POP RBP
+; F5:       C3               RET
+```
+
+[pvk]: https://pvk.ca/
 
 ## Wrap Up
 
