@@ -42,7 +42,7 @@ performance perspective.
 
 This time around, I'm using a separate object to represent the Memory Map so that
 when an CPU instruction reads or writes to an address, it'll actually get handled
-by the write part of the system: the RAM, Video Card, Sound, or cartridge. I'm also
+by the right part of the system: the RAM, Video Card, Sound, or cartridge. I'm also
 going to be focused on using test ROMs through as much of the process as I can.
 I'll write more about that in a future article but, long story short, TDD is hard
 to do when writing an emulator.
