@@ -81,21 +81,21 @@ interact if you want to define each instruction exactly one time without a mess 
 statements for the different variations. In short:
 
 1. [Addressing modes][addressing] should only access CPU and Memory to compute an address.
-  * Any cycle counting (e.g. for crossing pages) can be done at the call site with macros!
+   Any cycle counting (e.g. for crossing pages) can be done at the call site with macros!
+
 2. Your [opcode-defining macro][defopcode] should set up address and argument variables, or
-   an update function as needed based on the _access pattern_ of the instruction.
-   
+   an update function as needed based on the _access pattern_ of the instruction.   
    This has bitten me on previous attempts as I assumed the access pattern came from the
    addressing mode rather than the instruction itself. Instructions can be implied and
    use no argument, or only use the address and jump to it, or read an argument from the
    address, or write a value to an address, or read a value, modify it and write it back.
-
    It was very worthwhile to split these cases out and handle them independently. It meant
    a little extra work while writing up the metadata but kept concerns separated later.
+
 3. Separating the opcode metadata from the actual instruction definition.
-  * This is more arbitrary than the earlier recommendations but it felt very clean while
-    hacking the opcode definitions and I think I only found myself going back to edit the
-    instruction metadata one time from making a typo.
+   This is more arbitrary than the earlier recommendations but it felt very clean while
+   hacking the opcode definitions and I think I only found myself going back to edit the
+   instruction metadata one time from making a typo.
 
 [addressing]: https://github.com/kingcons/clones/blob/mezzanine/src/addressing.lisp#L37
 [defopcode]: https://github.com/kingcons/clones/blob/mezzanine/src/instructions.lisp#L40
