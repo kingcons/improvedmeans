@@ -1,0 +1,249 @@
+;;;;;
+title: Things I learned writing Clones
+tags: emulation, clones, lisp
+date: 2018-07-29 12:08:00
+format: md
+;;;;;
+
+I'm turning 32 in a week so thank goodness I'm finally making progress on [clones][clones].
+After [my last post][going-fast], I didn't work on clones for 7 months. Then in May, I just
+sat down and started hacking. Despite some gaps, there has been steady progress.
+
+There's still a lot I want to do and audio isn't implemented so that's next, but for now
+I'm going to try to summarize the current status and some of the lessons I've learned thus far.
+
+[clones]: https://github.com/kingcons/clones/tree/mezzanine
+[going-fast]: http://blog.kingcons.io/posts/Going-Faster-with-Lisp.html
+
+## Current Status
+
+### Clones, At Present
+
+The Clones CPU emulation is finished and tested and there is support for input handling
+and basic graphics support (backgrounds and sprites, scrolling is next). A lot of what
+determines compatibility for a NES emulator comes down to mapper (cartridge) support and
+the accuracy of the PPU support. In that regard, clones supports NROM, UNROM, and MMC1
+though UNROM and MMC1 have some issues that need ironing out once scrolling is finished.
+
+The circuit board used in NES cartridges actually varied and added additional capabilities
+to the console, primarily a paging system for switching banks in and out of memory to allow
+for larger levels, more artwork, more game code, etc. The different cartridge types were
+called mappers. Thankfully, 6 different mappers accounted for something like 80% of all
+games commercially available in the US. As a result, mapper support is a big deal since
+you can't play a game without the matching cartridge support.
+
+### Clones, In the Future
+
+The first priority is fixing some sprite glitches and getting scrolling implemented.
+Once that's done, fixing up the lingering issues with UNROM and MMC1 will take precedence.
+Once Mega Man 2 is booting, then I'll start work on the audio.
+
+After that's done the real fun begins. I have all sorts of ideas and ambitions for how
+to build a Control Flow Graph of the game dynamically while it executes and then let the
+player annotate the structure and save it for later revision. I want to be able to
+reverse engineer old games interactively and am wondering how much the computer can help
+in the process with the use of Constraint Logic Programming tools like [screamer][screamer].
+In general, I'm interested in how we can examine shipped binaries at runtime as a teaching
+tool for how the software and hardware work.
+
+More on this soon, I hope. 🙏
+
+[screamer]: https://github.com/nikodemus/screamer
+
+## Lessons Learned
+
+### Test ROMs == Joy
+
+There are many [test roms][test-roms] for ensuring that various components in your NES
+behave accurately. I found it particularly useful to write the memory interface, addressing
+modes, disassembler, and a stepper for the CPU with _no instructions implemented_. Then I had
+[a unit test][nestest] which looped over a verified correct log for a ROM called "nestest"
+which exhaustively checks the operation of all legal CPU instructions. After I could run the
+test until it failed, implement a single instruction, and re-run. I had all 56 instructions
+with their various opcodes written in a day. Super pleasant!
+
+It helped that I'd written a CPU emulator before, of course. This process required having a
+good idea up front about how I wanted to interact with memory, represent addressing modes,
+and execute instructions. If you don't understand those pieces though, you'll run headlong
+into them while trying to implement an emulator anyhow so start there. Spend some time
+reading [nesdev wiki][nesdev] or asking questions online if you need to. 🤘
+
+[test-roms]: https://wiki.nesdev.com/w/index.php/Emulator_tests
+[nestest]: https://github.com/kingcons/clones/blob/mezzanine/t/cpu.lisp#L23
+[nesdev]: https://wiki.nesdev.com/w/index.php/Nesdev_Wiki
+
+### A Good Macro-Friendly Decomposition for Instructions
+
+There is a bit of a Gordian Knot in the CPU in how the addressing modes and different opcodes
+interact if you want to define each instruction exactly one time without a mess of switch
+statements for the different variations. In short:
+
+1. [Addressing modes][addressing] should only access CPU and Memory to compute an address.
+  * Any cycle counting (e.g. for crossing pages) can be done at the call site with macros!
+2. Your [opcode-defining macro][defopcode] should set up address and argument variables, or
+   an update function as needed based on the _access pattern_ of the instruction.
+   
+   This has bitten me on previous attempts as I assumed the access pattern came from the
+   addressing mode rather than the instruction itself. Instructions can be implied and
+   use no argument, or only use the address and jump to it, or read an argument from the
+   address, or write a value to an address, or read a value, modify it and write it back.
+
+   It was very worthwhile to split these cases out and handle them independently. It meant
+   a little extra work while writing up the metadata but kept concerns separated later.
+3. Separating the opcode metadata from the actual instruction definition.
+  * This is more arbitrary than the earlier recommendations but it felt very clean while
+    hacking the opcode definitions and I think I only found myself going back to edit the
+    instruction metadata one time from making a typo.
+
+[addressing]: https://github.com/kingcons/clones/blob/mezzanine/src/addressing.lisp#L37
+[defopcode]: https://github.com/kingcons/clones/blob/mezzanine/src/instructions.lisp#L40
+
+### PPUs == Pain
+
+PPU stands for Picture Processing Unit and it was the graphics card in the original NES.
+The central innovation of the PPU was that it supported pixel-level scrolling of levels.
+
+I have no experience in graphics or game programming so this was a big challenge for me.
+Four other factors contributed to the difficulty of writing the PPU:
+
+1. There isn't really a suggested ordering of tasks like there is for writing a CPU emulator.
+2. The data layout of the PPU is complex: OAM, nametables, pattern tables, attribute tables, etc.
+3. The test ROMs that exist generally assume you have the basics working.
+4. While many working open source emulators exist, the control flow was difficult to follow
+   without getting lost in the weeds and it was unclear why different calculations were used.
+
+I'll try to tackle these briefly and write up more details at a later date.
+
+#### A Suggested PPU Ordering
+
+First, you need [an object][ppu-object] to represent the hardware state. It'll need to
+access the currently loaded game ROM for graphics data so remember to give it a slot for
+storing the cartridge object.
+
+Second, you'll need to implement the [PPU memory map][memmap]. There's no operating system on the
+NES so there are no video card drivers and you'll do everything yourself via Memory Mapped I/O.
+If you've never heard of memory mapped I/O, the idea is that reading and writing to specific
+addresses in memory directly manipulates the PPU so write those methods and wire it up! 
+
+Third, you'll want to get the timing synchronized between the CPU and PPU. You'll want to do
+this before trying to render graphics probably as many games wait for an interrupt called
+[vblank][vblank] from the PPU that the graphics card is ready before even reaching the title.
+Many games will infinite loop until the PPU wakes them up with this interrupt, then do the work
+needed to render the next frame and return to the infinite loop. This is part of why it's so
+important to get the timing right.
+
+Fourth, you'll want to make sure the address computations are right. [This was][helpers]
+the single hardest bit of code for me to get right in the PPU. It's also the code I'm happiest
+with and hoping to figure out how to test in an automated way for next time.
+
+Fifth, try to just render the backgrounds using the addressing logic you arrived at ealier.
+If you can get backgrounds rendering correctly, you should be well on your way to getting
+sprites and scrolling working. With any luck, the PPU operation should start becoming clearer.
+
+[memmap]: https://wiki.nesdev.com/w/index.php/PPU_memory_map
+[vblank]: https://wiki.nesdev.com/w/index.php/The_frame_and_NMIs
+[helpers]: https://github.com/kingcons/clones/blob/mezzanine/src/ppu.lisp#L245
+
+#### PPU Data Flow
+
+Internally the graphics are represented as 8x8 tiles that are either sprites or backgrounds.
+Crucially, the information needed to render those tiles is divided up into the different
+areas inside the PPU: nametables, attribute tables, the palette, and pattern tables (in the ROM).
+
+[_Nametables_][nt] represent the background and are 960 byte long arrays where each byte is an
+index into the [_pattern table_][pt] for an 8x8 tile. Why 960 bytes you ask? Because the NES
+resolution is 256 by 240 and if you divide that by 8 (pixels in a tile) you get 32 x 30.
+32 * 30 = 960.
+
+So nametables point to the "pattern" or texture that will be used for a given tile but for
+space reasons that pattern doesn't actually store all the information about what _color_ it
+should be. The pattern table is 4kb and holds 256 tiles with each 8x8 tile taking 16 bytes to
+store. Those 16 bytes are enough for each pixel to get two bits to represent a color ...
+so 4 options.
+
+The PPU has a 64 byte palette table to select 32 colors for the background and 32 colors for
+the sprites. But why bother when each pixel in a pattern can only count from 0-3? Well, did it
+seem a little odd that the Nametable was 960 bytes? That's because the last 64 bytes in that
+kilobyte are used to store something called an [_attribute table_][at]. Every 16 tiles share
+a single attribute byte which determines the top 2 bits of the palette index for tiles in groups
+of 4. There are implications from this about how many colors can be represented in a 16x16 pixel
+area of the screen, on a scanline, etc.
+
+It's pretty confusing until you sit down and draw it all out. A lot of the calculations
+for the PPU are exactly this sort of thing. You can just imagine the hardware designers saying:
+"But how do we do it with less RAM to bring the price down?"
+
+This has been written up well elsewhere, [Scott Ferguson's blog][opcode-defined] comes to mind.
+But I still never found a high level description of [how the PPU renders][ppu-rendering] that
+wasn't based on perfectly emulating the state of a bunch of internal shift registers and latches
+and running the PPU cycle by cycle. And, pardon my french, but that's fucking gross. Not because
+it's inaccurate or slow or anything like that but just because it's hard to see the forest for
+the trees.
+
+Here's something like how I think of background rendering now. Sprites are more complicated
+but follow the same basic framework:
+
+1. For each scanline, you have to draw 32 tiles.
+2. For a (background) tile, you have to get the nametable byte and attribute byte.
+3. The pattern table has 16 bytes for a tile but we only need two for the 8 pixels on a scanline.
+4. Go ahead and extract the two _high bits_ of the palette index from the attribute byte.
+5. Now loop for pixels 0 to 7 and combine those bits with the bits in the pattern to get a color.
+6. Show the backdrop color if it's zero (transparent), otherwise show the background color.
+
+I know this is inaccurate, but it's clear to follow at a high level and if you then pointed
+out the various address computations in the substeps it ought to be pretty straightforward.
+
+A lot of my remaining questions concern how to support scrolling at least _kinda_ correctly
+without basing everything off internal registers and how to render things tile by tile instead
+of pixel by pixel. But I may abandon that because it was mostly to avoid repeated fetches of
+the same data and I recently made a `RENDER-CONTEXT` object that can help with that.
+Maybe down the road at some point I'll make a cycle-accurate PPU. :)
+
+[nt]: https://wiki.nesdev.com/w/index.php/PPU_nametables
+[at]: https://wiki.nesdev.com/w/index.php/PPU_attribute_tables
+[pt]: https://wiki.nesdev.com/w/index.php/PPU_pattern_tables
+
+[opcode-defined]: https://opcode-defined.quora.com/
+[ppu-rendering]: https://wiki.nesdev.com/w/index.php/PPU_rendering
+
+#### Test ROMs
+
+There aren't really good test ROMs because the ROMs that exist mostly assume you have the basics
+working and are testing tricky details. While I don't think a test _ROM_ could be written since
+a lot of what needs testing are internal details of the PPU that weren't exposed to NES
+programmers, I do think a ROM coupled with some JSON dumps of what internal data should be
+visible after rendering for a frame or two would be incredibly useful. Because at some point I
+spent [3 days][journal] on a single bug because I wasn't incrementing a counter appropriately.
+
+I'd like to think on this some more but I have some [basic ideas][tdd-backgrounds]. A lot of the
+difficulty is that in the 90s there were working emulators that did more abstract high level
+emulation both because PCs were less powerful and because less was known about the underlying
+hardware. That required workarounds of various sorts for accuracy and so they're frowned upon
+now. But as a result, I haven't found much _high-level documentation_ of the rendering algorithm
+in the PPU. Everyone seems to point back to a frame timing diagram on the nesdev wiki. Which is
+great but I was hoping to write a 2500 lines of code readable NES implementation that doesn't
+require a solid understanding of latches and assembly to get a basic idea of how the thing worked.
+
+But I believe the address calculations, among other things, can be expressed clearly (and tested!)
+in terms of the X,Y coordinates to be rendered as opposed to internal registers. More soon...
+
+[journal]: https://github.com/kingcons/clones/blob/mezzanine/JOURNAL.md#notes-on-ppu-debugging-0605
+[tdd-backgrounds]: https://github.com/kingcons/clones/blob/mezzanine/JOURNAL.md#reflections-on-background-rendering-0723
+
+#### Hard to Follow Implementations
+
+I'm still unsatisfied with my PPU implementation but it also isn't completely finished.
+I hope to have more to show here after scrolling is working and some refactoring is done.
+
+#### A Word On Performance
+
+The output resolution of the Nintendo was 256x240. At a high level, all the PPU is doing is
+looping from left to right (0-255), top to bottom (0-240) and deciding on a color for the current
+pixel, then outputting it once per frame. Of course, it has to do that 60 times a second and
+`256 * 240 * 60` is 3.6 million so pixel rendering needs to be pretty fast. I didn't have to do
+any optimizing to hit 60 frames per second but I was careful to write code that didn't allocate
+as I went and we're still using 50% CPU which is definitely more than I'd like.
+
+## Til Next Time
+
+Wish me luck, lispers. Cheers. <3
