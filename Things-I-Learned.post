@@ -108,7 +108,8 @@ The central innovation of the PPU was that it supported pixel-level scrolling of
 I have no experience in graphics or game programming so this was a big challenge for me.
 Four other factors contributed to the difficulty of writing the PPU:
 
-1. There isn't really a suggested ordering of tasks like there is for writing a CPU emulator.
+1. There isn't really a suggested ordering of tasks like there is for writing a CPU emulator
+   and subtasks are hard to test in isolation.
 2. The data layout of the PPU is complex: OAM, nametables, pattern tables, attribute tables, etc.
 3. The test ROMs that exist generally assume you have the basics working.
 4. While many working open source emulators exist, the control flow was difficult to follow
@@ -142,6 +143,7 @@ Fifth, try to just render the backgrounds using the addressing logic you arrived
 If you can get backgrounds rendering correctly, you should be well on your way to getting
 sprites and scrolling working. With any luck, the PPU operation should start becoming clearer.
 
+[ppu-object]: https://github.com/kingcons/clones/blob/mezzanine/src/ppu.lisp#L81
 [memmap]: https://wiki.nesdev.com/w/index.php/PPU_memory_map
 [vblank]: https://wiki.nesdev.com/w/index.php/The_frame_and_NMIs
 [helpers]: https://github.com/kingcons/clones/blob/mezzanine/src/ppu.lisp#L245
