@@ -1,6 +1,6 @@
 (:author "Brit Butler"
  :deploy-dir "/srv/www/blog.kingcons.io"
- :domain "http://blog.kingcons.io"
+ :domain "https://blog.kingcons.io"
  :feeds ("lisp")
  :plugins ((versioned)
            (mathjax)
