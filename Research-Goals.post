@@ -1,0 +1,62 @@
+;;;;;
+title: Research Goals
+tags: programming, research
+format: md
+date: 2018-08-22 12:59:00
+;;;;;
+
+### A Recent Dilemma
+
+Lately, I've been thinking about what I want my next job to be and I've been strongly tempted to pursue grad school. I only fell further down the rabbit hole when I read this tweet by Luke Garnock-Jones:
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Reading things teaches people how to write. Analogous, if we are to place programming at the same fundamental level, using a program should teach how it works. But we don&#39;t see this.</p>&mdash; Tony Garnock-Jones (@leastfixedpoint) <a href="https://twitter.com/leastfixedpoint/status/1026567416229314561?ref_src=twsrc%5Etfw">August 6, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+This problem is very close to my heart. Yet I'm ill equipped at present to tackle it. That suggests I should pursue a PhD to get better tools but I have some serious concerns about that (above and beyond selling my house). Let me explain.
+
+### The State of CS Research
+
+Thinking about CS academics, it seems that most research aims to support building larger systems by improving software:
+
+1. Correctness, or
+2. Performance
+
+I feel really weird because **neither** of those things interest me. Sure, modern software has plenty of bugs and it could always be faster. But software is eating the world _anyway_.
+
+### My Concern
+
+> Software is the fastest growing store of "how to" knowledge on earth and is mostly inaccessible, not only to the general population but programmers too.
+
+What do I mean? Well...
+
+There's no such thing as code being "readable", not only because being readable implies assumptions about the context of the reader but also because most programs cannot present a linear narrative! As a consequence code _cannot_ be self-documenting. We should strive to write clear code but suggesting that code is its own documentation is untenable.
+
+I started working on a Nintendo Emulator in Lisp to explore the idea of readable code and see if I could make the emulator source a good pedagogical example of what a computer _does_. I failed.
+
+### My Goals
+
+Now my primary motivation working on the emulator is finding ways to generate an explanation of binaries without just recovering the disassembly. It's the intent and constraints that matter, the _shape of the problem_, not necessarily the solution the developers wound up with.
+
+Indeed, if we _could_ recover disassembly or even get the original source out of binaries (compilation generally being an inherently lossy process) that would only get us _more code that we would need to comprehend_. I.e. More how-to knowledge that isn't readily accessible.
+
+I continue to want to find a way explain code without relying on fairly static tools like documentation, the code itself, or even tests. Legacy code and software preservation only makes this need more urgent.
+
+I should note that I don't think all software needs to be preserved. I just think it's a travesty that we're 60 years into the project of programming and our tools for _asking computers_ about how programs behave are so poor and so specialized.
+
+Computers could be much greater tools for knowledge dissemination than they presently are because they can _execute models_. We currently use them to disseminate _static knowledge_ (web pages, PDFs, videos) instead of _executable knowledge_.
+
+In short, I would like us to have better tools for communicating and reasoning about the work software systems do than source code.
+
+Putting it in the simplest terms possible:
+
+> When I was 8, I desperately wished I could ask my family computer, "Wow! How did you do that?"
+> I still can't today and I spend a lot of time thinking about what a solution should look like.
+
+
+#### Footnotes
+
+see also: [Peter Seibel][gigamonkeys] and [Akkartik][akkartik], though [Luke Gorrie][lukego] may be a counterpoint
+
+[gigamonkeys]: http://www.gigamonkeys.com/code-reading/
+[akkartik]: http://akkartik.name/post/comprehension
+[lukego]: lukego.github.io/blog/2012/10/24/readable-programs/
