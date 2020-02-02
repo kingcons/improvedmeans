@@ -1,0 +1,87 @@
+;;;;;
+title: In Praise of Unfocus
+tags: productivity, goals
+date: 2020-02-01 22:45:00
+format: md
+;;;;;
+
+## De-emphasizing output
+
+I often tend to judge myself, at work and outside of it, on my output. Old habits are hard to escape.
+But there are a lot of reasons this is an instinct to be resisted. First of all, if you're tackling
+suitably interesting projects it may be hard to predict progress or even define good stopgap goals.
+Many people experience cultural pressure to measure themselves in terms of their output or to be
+efficient in all things they pursue. That distortion in what we value often leads to a lopsidedness
+in our goals and pursuits. There are two defenses that have stuck with me lately against such ideas.
+So I want to tell you about them in the context of last Sunday when I was unfocused and then anxious
+about having spent my time that way.
+
+### Breadth over Depth
+
+In a single Sunday I got excited about: 90s techno (Tri Repetae, Hard Normal Daddy),
+new techno (Djrum, HVL, John Talabot), Smash Bros Melee both for its [depth to competitors][rishi]
+and my choice to be only a semi-serious player, a study group I started at work to go through
+[Crafting Interpreters][ci], making music with Modular synths, making music with Renoise instead,
+Open hardware efforts like Pine Phone and MNT Reform, Grammatech's open source [SEL project][sel] for
+doing Binary Analysis and modification with Common Lisp, [InterimOS][interim], and a slew of other
+odds and ends.
+
+Even if these cluster around nerdy themes, that's an awful lot to enjoy in a single day.
+It's easy to lament that nothing was _produced_, that there is no output to share, but that
+ignores the fact that being plugged in to so many things often means forgoing total immersion
+in a single piece of subject matter. And there are network externalities at work too.
+Discovering music means I can play it next time I co-host The Mobius on GA Tech radio with
+my buddy Matt. Being aware of software and hardware projects means I can share resources
+with other hackers.
+
+### People over Performance
+
+But all that wasn't enough to keep me from worrying that I don't focus enough. Or I focus on
+the wrong things. I had a performance review coming up at work so that might have had something
+to do with it. Even though the company has a relaxed culture, I'm a worryer and a catastrophizer
+by nature. I was getting worked up over the fact that I don't ship as much as some other members
+of my team. I was trying to imagine exactly _where_ the bar was and what objective, quantitative
+measures would be used to evaluate my performance. I was thinking about how I had never felt like
+I was the developer doing the most challenging or glamorous work at my past jobs and I still had
+a slower rate of shipping tickets than those taking on that challenging work.
+
+After a little while, I thought especially about Emcien. Emcien was a great opportunity for me and
+a cool Ruby/Rails shop to work at. I was there from early 2013 to late 2014. More so than other
+jobs I've held, I think of things at Emcien as having gone sour even though I left in decent terms.
+I got into a negative headspace about the value of my work and its perception in early 2014 and
+that re-inforced until I was dragging my feet constantly. I wound up putting in my notice because
+I was unhappy, but the work environment didn't do it, I did it to myself. So, did it end in failure?
+
+Here's the really interesting part. After I left that job, where I assumed I was a waste of money
+and possibly resented for not being a bigger contributor, I wound up becoming the best man of one
+of the engineers and a good friend and confidant of another. There were 5 devs total, including me.
+The 2 jobs I got _immediately following_ Emcien were working with those two individuals and they
+both had positive things to say about me during the interview process.
+
+## Probing for Answers
+
+How do we explain this? There are a few possibilities I can think of. One is that I actually was just
+as productive as everyone else. Another is that even if I was less productive I was working on things
+others were not excited to work on and that freed them to do what they were passionate about. But the
+explanation I like is that while I shipped less code than my peers, I made sure they felt great every
+day. As much as I was able, I shared energy with them and supported them in their efforts while
+still making progress on my own tasks, even if a bit slowly. I just loved on them.
+
+It's easy in software to get fixated on people working on the most impressive or high profile projects.
+I can get tunnel vision thinking about career growth as only coming through huge expertise. But even as
+a software engineer you can be as valuable for how you support others as for your individual efforts.
+It could be more important to your career goal to be energizing and well liked than productive. Which
+isn't to say you should go be popular and ignore your work, just that focusing only on output distracts
+from a more realistic view of how people function as part of a team.
+
+I sometimes struggle with my instinct to be unfocused, or am ashamed I'll be thought of as a dilettante
+or dabbler, as if the only respectable option is to be myopically focused on one area of knowledge. To
+have one project of grand scope. I need to remember, and I imagine I'm not alone, that embracing my
+varied interests both nourishes me and is a valid choice that can enrich the communities I particpate in.
+
+And that's enough of my soapbox for one day. Happy Hacking.
+
+[rishi]: https://www.youtube.com/watch?v=Mv6Xx5sCp3M
+[ci]: https://craftinginterpreters.com/
+[sel]: https://grammatech.github.io/sel/#Top
+[interim]: http://dump.mntmn.com/interim-paper/
