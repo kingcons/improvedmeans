@@ -1,0 +1,93 @@
+;;;;;
+title: Deliberate Action
+format: md
+tags: personal, goals
+date: 2021-12-31 15:15:00
+;;;;;
+## 2 years in a blink
+
+I hardly know how to count the time. In the past ~2 years, I left Flatiron after
+helping start the Atlanta campus, started working at Calendly, been a best man,
+got married myself, weathered a global pandemic, and recently became an
+Engineering Manager.
+
+A tremendous amount has happened, but I feel like I've lost the boy I remember
+from college a little. He was excited about things: video games, music, common
+lisp, poetry. This blog has also atrophied for nearly a decade, torn between
+being an outlet for personal interests and reflection and a more serious place
+to cultivate a professional(-ish) voice.
+
+## Focus on Habits
+
+I was talking to my close friend [James][jdabbs] recently about working in tech.
+James is probably the sharpest engineer I've had the pleasure to work with and
+he was discussing getting better. I asked him what it mattered, or more precisely,
+what he would be able to do if he got better that he couldn't do now. His answer
+surprised me. He said, "I really don't think about outcomes."
+
+There was a little more to it than that but the short version was, he keeps an
+eye on how much he's learning and places bets on what will be interesting and
+provide good opportunities to grow. Then he just walks in that direction.
+
+By contrast, I have an almost total inability to pursue things without thinking
+about the outcomes in advance and evaluating my progress after every minute step.
+I doubt I'll ever be able to suppress those urges completely, but picking a
+direction and moving without so much analysis paralysis is something to work on.
+
+Rather than worrying about the past or where a certain choice will take me, I
+hope to pick a direction and just walk. I'll form a habit, live with it for a
+while, and try to feel it out. I'll know soon enough if I want to continue.
+
+[jdabbs]: https://jdabbs.com/
+
+## Goals for 2022
+
+With that in mind, these are some things I'll pursue in the coming year.
+There are two overarching themes: allow myself to goof off when needed,
+and pick just a few things to chip away at instead of debating 100 projects.
+I.e. Do more, deliberate less.
+
+#### Waste Time
+
+It's time to pursue the childlike joy I remember that college kid having.
+I'm not sure exactly what form this will take. One thing I'd like to try is
+getting back into video gaming again. I haven't allowed myself to play many
+(single-player) games for the last few years. I make up stories about how
+they're a waste of time and I "should" do more productive things. But then
+I waste time in other ways to avoid being productive. Games are good.
+Maybe also some things like trying to learn Chess or mess with emacs.
+
+#### Use the Internet Less
+
+Social media is a wasteland and it's all too easy to simply fritter away time.
+I've read the internet enough and while there _are_ some high quality blogs I
+enjoy, my time would be better spent reading books, writing code or prose, or
+goofing off with games or Norma or friends. So, use the internet for work,
+pushing code and blog posts, getting new music, and chat/slack. The end.
+
+#### Crafting Interpreters and _then_ other technical reading
+
+I've got such a long list of programming or CS texts I've _meant_ to work through.
+And it's hard! After working at a software company all day, even though I still
+want to know more about various aspects of computing, it's just not appealing.
+However, I'm pretty disappointed that I still haven't written a toy language
+implementation, finished an emulator, worked with C more, etc etc.
+
+Crafting Interpreters is a great place to start in terms of technical topics I'm
+interested in and I have a friend who is also interested in working through it.
+Community _always_ helps. After CI, there are certainly other things I'm
+interested in. I don't have a strict list of priorities but a proper algorithms
+book (Vazirani/Dasgupta or Erickson probably) or a good "systems" book like CS:APP
+would likely be next on my list. I'd also consider a look at Software Design for
+Flexibility or Lisp in Small Pieces of course. :)
+
+I'd also like to read some _non-technical_ books. The Elegant Puzzle would be good
+to get a better grasp on engineering management and I've got a few books on Chess
+that might help improve my play as well. But Crafting Interpreters first, then I
+can worry about "what's next".
+
+## Wrapping Up
+
+I can always list plenty more I'm interested in but if I can focus on these three
+things, I think I'll have a lovely year ahead. Here's wishing for a return to
+normalcy from the hell years of COVID and joyous new discoveries for us all.
