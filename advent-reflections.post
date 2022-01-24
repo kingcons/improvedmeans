@@ -1,0 +1,97 @@
+;;;;;
+title: Advent of Code Reflections
+tags: programming
+format: md
+date: 2022-01-23 18:00:00
+;;;;;
+It's been a busy start to 2022. I'm working as an Engineering Manager for the first time
+and enjoying it but it's been easy for other things to slip through the cracks. For example,
+I told myself I would write a post on [Advent of Code][aoc] several weeks ago. So I'm sitting
+down to write about it now before I forget any more details.
+
+### Background
+
+This is the second time I've attempted Advent of Code. The first time was in 2020 and I enjoyed
+it a lot but ran out of gas around day 10. I was pretty distracted with a Flamingo Squad project
+I can't recall and probably a bit burned out. Both years I've written my solutions in Common Lisp.
+
+Advent is interesting. I get enjoyment from different things on different days. Some problems I
+just enjoy seeing how much I can optimize Common Lisp, or writing solutions in a few different
+styles if the problem is simple and seeing the differences in how they are compiled and allocate memory.
+Other problems I'm much more satisfied by trying to see how "pretty" a solution I can write, either
+using constraint solving tools like [Screamer][screamer] or a pipeline using [threading macros][serapeum]
+and so on.
+
+I enjoy the social aspect of AoC and having a leaderboard with some mutual friends and coworkers.
+It's nice to chat about something besides production code with other talented programmers.
+That said, I have to be pretty careful to avoid judging myself. I have to consciously remind myself
+that my goal isn't to "win the race" and not worry too much if I struggle to solve a problem elegantly.
+
+[aoc]: https://adventofcode.com/
+[screamer]: https://nikodemus.github.io/screamer/
+[serapeum]: https://github.com/ruricolist/serapeum/blob/master/REFERENCE.md#-needle-rest-holes
+
+### Advent 2021
+
+There were two things I wanted to try and do differently this year from last year.
+The first was just to go as far as I could and not worry about racing. The second was
+to experiment with literate programming tools and try to do a better job documenting my work.
+
+I think the results were a mixed bag. I got through day 11 so I powered out at around the same point.
+I mostly worried less about the race but I still cared a lot about finishing each problem on the day
+it became available and definitely got discouraged once or twice when I didn't like my approach.
+On the other hand, I had a good time and learned a few things so it's a good investment overall.
+
+### Takeaways
+
+1. MGL-PAX is awesome
+2. My graph traversal foo is weak
+3. I know ways I'd like to evolve my style
+
+#### MGL-PAX
+
+I have been meaning to play with [mgl-pax][mgl-pax] for a long time. Like ... probably several years?
+There are blog posts about it as far back as 2014 and it's been on my radar a long time but I just
+never seemed to make time for it. Advent seemed like a good place to [play with it][kingcons-aoc].
+
+I like the idea of an environment where prose about code and code are intermingled, so I have a natural
+attraction to literate programming. This shouldn't surprise you if you've been [here][research]
+[before][comprehensible]. In terms of Advent of Code problems, I'd ideally be able to do the following:
+
+* Keep the prose and code for a given day/problem in a single file
+* Easily export the entire project to an easily navigated and read web page
+* Make it easy to show different versions of the code as well as disassembly or evaluation examples
+
+I think MGL-PAX is excellent on the first two points and struggles a little bit more on the third.
+It has a feature called [transcripts][transcripts] which could plausibly support what I'm talking about.
+Transcripts allow for including examples that are evaluated when the documentation is generated but
+there are two issues I have with it:
+
+1. The results are actually embedded _in_ the source code. The argument for this is that they are parsed
+and checked to ensure the code and example don't get out of date somehow. However, this will never work
+with processes that are inconsistent like, say, the memory address of a disassembled function.
+2. The result of a form to evaluate could easily dwarf the function itself whether we're talking about
+disassembly or just a function that generates a sizable data structure.
+
+In short, I'd love to see MGL-PAX support pretty printing the result of an expression into the docs
+with a given 3BMD syntax highlighting. If I can motivate, it may be worth me hacking something up.
+
+If I start a large project in common lisp in the future, I'd definitely be interested in trying to
+use MGL-PAX to document it. The [build-site][build-site] function and [deploy script][deploy] for
+my advent-of-code project were quite simple to put together. It was more complicated but quite
+satisfying to hack together something that [generated an overview][overview] with performance
+measurements for all the days that had solutions written.
+
+[mgl-pax]: https://melisgl.github.io/mgl-pax-world/mgl-pax-manual.html#toc-4-background
+[kingcons-aoc]: https://kingcons.github.io/advent-of-code/#toc-2-background
+[research]: https://blog.kingcons.io/posts/Research-Goals.html
+[comprehensible]: https://blog.kingcons.io/posts/Towards-Comprehensible-Computing.html
+[transcripts]: https://melisgl.github.io/mgl-pax-world/mgl-pax-manual.html#toc-10-transcripts
+[build-site]: https://github.com/kingcons/advent-of-code/blob/master/src/main.lisp#L89
+[deploy]: https://github.com/kingcons/advent-of-code/blob/master/deploy.sh
+[overview]: https://github.com/kingcons/advent-of-code/blob/master/src/overview.lisp#L31
+
+#### Graph Algorithms
+
+#### Evolving my style
+
