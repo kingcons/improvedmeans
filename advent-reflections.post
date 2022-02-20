@@ -1,5 +1,5 @@
 ;;;;;
-title: Advent of Code Reflections
+title: Advent Reflections
 tags: programming
 format: md
 date: 2022-01-23 18:00:00
@@ -42,56 +42,86 @@ I mostly worried less about the race but I still cared a lot about finishing eac
 it became available and definitely got discouraged once or twice when I didn't like my approach.
 On the other hand, I had a good time and learned a few things so it's a good investment overall.
 
+Here's the [current state][kingcons-aoc] of the generated site. You can see I didn't wind up embedding
+the source for the different functions so it can't _properly_ be called literate but the `[function]`
+label (or equivalent) next to all the exported symbols can be clicked to jump to the source on github.
+
+[kingcons-aoc]: https://kingcons.github.io/advent-of-code/#toc-2-background
+
 ### Takeaways
 
 1. MGL-PAX is awesome
-2. My graph traversal foo is weak
-3. I know ways I'd like to evolve my style
+2. I know ways I'd like to evolve my style
 
 #### MGL-PAX
 
 I have been meaning to play with [mgl-pax][mgl-pax] for a long time. Like ... probably several years?
 There are blog posts about it as far back as 2014 and it's been on my radar a long time but I just
-never seemed to make time for it. Advent seemed like a good place to [play with it][kingcons-aoc].
+never seemed to make time for it. Advent seemed like a good opportunity to dive in.
 
-I like the idea of an environment where prose about code and code are intermingled, so I have a natural
+I like the idea of an environment where prose and code are intermingled, so I have a natural
 attraction to literate programming. This shouldn't surprise you if you've been [here][research]
-[before][comprehensible]. In terms of Advent of Code problems, I'd ideally be able to do the following:
+[before][comprehensible]. It also seems important to me that such an environment for authoring programs
+should be rooted in the development tools and support the prose as a secondary feature (like MGL-PAX)
+rather than rooted in the prose and supporting the code as a secondary feature (like org-babel).
+I.e. tangling one or more files to produce my program seems like the wrong way to go to me.
+
+In terms of Advent of Code problems, I'd ideally be able to do the following:
 
 * Keep the prose and code for a given day/problem in a single file
-* Easily export the entire project to an easily navigated and read web page
+* Easily export the entire project with all days to an easily navigated, well designed web page
 * Make it easy to show different versions of the code as well as disassembly or evaluation examples
 
-I think MGL-PAX is excellent on the first two points and struggles a little bit more on the third.
-It has a feature called [transcripts][transcripts] which could plausibly support what I'm talking about.
-Transcripts allow for including examples that are evaluated when the documentation is generated but
-there are two issues I have with it:
-
-1. The results are actually embedded _in_ the source code. The argument for this is that they are parsed
-and checked to ensure the code and example don't get out of date somehow. However, this will never work
-with processes that are inconsistent like, say, the memory address of a disassembled function.
-2. The result of a form to evaluate could easily dwarf the function itself whether we're talking about
-disassembly or just a function that generates a sizable data structure.
-
-In short, I'd love to see MGL-PAX support pretty printing the result of an expression into the docs
-with a given 3BMD syntax highlighting. If I can motivate, it may be worth me hacking something up.
-
-If I start a large project in common lisp in the future, I'd definitely be interested in trying to
-use MGL-PAX to document it. The [build-site][build-site] function and [deploy script][deploy] for
-my advent-of-code project were quite simple to put together. It was more complicated but quite
-satisfying to hack together something that [generated an overview][overview] with performance
-measurements for all the days that had solutions written.
-
 [mgl-pax]: https://melisgl.github.io/mgl-pax-world/mgl-pax-manual.html#toc-4-background
-[kingcons-aoc]: https://kingcons.github.io/advent-of-code/#toc-2-background
 [research]: https://blog.kingcons.io/posts/Research-Goals.html
 [comprehensible]: https://blog.kingcons.io/posts/Towards-Comprehensible-Computing.html
+
+Editor's Note: The issues I bring up below were resolved before I could ever make a PR or ask the
+author about them. It seems making PAX more flexible about transcription was in the plans all along.
+
+I think MGL-PAX excels on the first two points and struggles more on the third.
+It has a feature called [transcripts][transcripts] which could plausibly support it but they are an
+awkward fit. Transcripts allow for including examples that are evaluated when the documentation is
+generated but there are two issues I have with it:
+
+1. The results are actually embedded _in_ the source code. The argument for this is that they are parsed
+and checked to ensure the code and docs don't get out of date. I'm interested in embedding details like
+disassembly though and things like the memory address will change from run to run. The output could also
+easily dwarf the code for the function itself so shouldn't be directly embedded. (PAX now supports not
+checking consistency, allowing me to simply dump the output of a form.)
+2. The second (much more minor) issue is that there isn't a straightforward way to ask the source definition
+of a function to be embedded in the doc. MGL-PAX assumes that symbols listed in the doc should be an exported
+part of the public API and links directly to the source on github at the relevant commit. It's a neat bit of
+hackery but makes more sense in the case of medium-to-large projects rather than Advent of Code exercises.
+(Similarly, PAX now has a way of adding "includes" via transcript.)
+
+My only remaining concern is that the navigation and transcription functionality is tied to slime and swank.
+Hopefully I'll have an opportunity to try them with sly soon and can dig in or report it if there are issues.
+
+In the advent project, the [site-building][build-site] and [deployment][deploy] was trivial.
+Hacking together a way to generate an [overview of all solved problems][overview] with performance
+measurements involved some fiddling but I'm happy with the results.
+
+[clones]: https://github.com/kingcons/clones
+[collox]: https://github.com/kingcons/collox
 [transcripts]: https://melisgl.github.io/mgl-pax-world/mgl-pax-manual.html#toc-10-transcripts
 [build-site]: https://github.com/kingcons/advent-of-code/blob/master/src/main.lisp#L89
 [deploy]: https://github.com/kingcons/advent-of-code/blob/master/deploy.sh
 [overview]: https://github.com/kingcons/advent-of-code/blob/master/src/overview.lisp#L31
 
-#### Graph Algorithms
-
 #### Evolving my style
 
+For a long time, I've been writing small projects in common lisp, writing a handful of tests,
+and relied only sparingly on libraries. A little alexandria here, a little cl-ppcre there.
+There's a place for that but I'm ready to try and cobble together the utilities and extensions
+to the language that I'm comfortable with. For now, that's alexandria, serapeum, iterate, mgl-pax, and try.
+
+There are plenty of talented lispers around. Two people whose code I've enjoyed reading during advent
+are `death` and Steve Losh (aka `sjl`). They feel like opposites to me if only because sjl has a project
+dedicated to advent and an assortment of dependencies, macros, and utilities to make advent hacking pleasant.
+Death by contrast almost always just relies on the language standard and throws his code unceremoniously in a
+gist. His solutions are often faster than mine but don't sacrifice elegance.
+
+### Conclusion
+
+It all boils down to this: I still like lisp, I miss hacking it, and I should read and write more code.
