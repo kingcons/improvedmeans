@@ -50,9 +50,6 @@ label (or equivalent) next to all the exported symbols can be clicked to jump to
 
 ### Takeaways
 
-1. MGL-PAX is awesome
-2. I know ways I'd like to evolve my style
-
 #### MGL-PAX
 
 I have been meaning to play with [mgl-pax][mgl-pax] for a long time. Like ... probably several years?
@@ -114,14 +111,17 @@ measurements involved some fiddling but I'm happy with the results.
 For a long time, I've been writing small projects in common lisp, writing a handful of tests,
 and relied only sparingly on libraries. A little alexandria here, a little cl-ppcre there.
 There's a place for that but I'm ready to try and cobble together the utilities and extensions
-to the language that I'm comfortable with. For now, that's alexandria, serapeum, iterate, mgl-pax, and try.
+to the language that I'm comfortable with. For now, that's alexandria, serapeum, iterate, mgl-pax,
+and try. Clingon, trivia, screamer, and fset wait in the wings for the right problem.
 
 There are plenty of talented lispers around. Two people whose code I've enjoyed reading during advent
 are `death` and Steve Losh (aka `sjl`). They feel like opposites to me if only because sjl has a project
 dedicated to advent and an assortment of dependencies, macros, and utilities to make advent hacking pleasant.
-Death by contrast almost always just relies on the language standard and throws his code unceremoniously in a
-gist. His solutions are often faster than mine but don't sacrifice elegance.
+Death by contrast almost always just relies on the language standard and throws his code unceremoniously in
+a gist. His solutions are often faster than mine but don't sacrifice elegance.
 
 ### Conclusion
 
 It all boils down to this: I still like lisp, I miss hacking it, and I should read and write more code.
+My algorithms chops aren't as good as I'd like and I have to make an effort to not get discouraged by
+my limitations. All the more reason to keep doing advent, even out of season, and learn a few things.
