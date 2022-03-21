@@ -30,10 +30,10 @@ rawbones both got much closer to playable territory but I never got background s
 I still find it a bit funny that famiclom gets more attention than my later, improved efforts
 like clones or rawbones. (Probably because cl-6502 mentions it and achieved a little notoriety.)
 
-Getting to a playable state has never quite been the point though. These projects have been
-part learning exercise, part avenue for exploring literate programming / readable programs,
-and often just a fun project to noodle with for my own entertainment. I still like the idea
-that a fast and reasonably accurate emulator can be written in a concise, clear way with a
+Getting to a playable state has never been the point though. These projects have been
+part learning exercise, part avenue for exploring literate programming, and often just
+a fun project to noodle with for my own entertainment. I still like the idea that a
+fast and reasonably accurate emulator can be written in a concise, clear way with a
 garbage-collected language.
 
 ### Present Day
@@ -50,18 +50,18 @@ Recently, I got the itch again and so I decided to start fresh with clones. Ther
 interesting changes this time around. When I made [cl-6502][cl-6502], creating a readable
 document from the program was a primary goal and resulted in a [literate book][cl-6502-book].
 This ethos never quite made the transition from the CPU stage to the full system emulators.
-This time I'll be leaning heavily into that spirit using [MGL-PAX][mgl-pax]. I'll also be
+This time I'll be leaning heavily into that spirit using [mgl-pax][mgl-pax]. I'll also be
 testing with [try][try] and relying as heavily as I can on CPU and PPU [test roms][test-roms].
 
 This is all happening in the "once-more-with-feeling" branch on sourcehut. So far there isn't
 a lot there though I'm on vacation starting in 6 days so I'm hoping to get ROM parsing and a
-basic structure for stepping the CPU in place to crank through NEStest. I have got some nice
+basic structure for stepping the CPU in place to crank through NEStest. I _do_ have some nice
 automation set up though. Every push runs the test suite and deploys the [docs][clones-docs].
-I've also gotten a very basic [twitch stream][twitch] setup in case I want to indulge in the
+I also have a very basic [twitch stream][twitch] working in case I want to indulge in the
 silliness of coding on camera.
 
-For now, I'll just show the `.build.yml` contents that powers the CI on sourcehut. It really
-isn't harder to set up an automated test pipeline for a CL project than anything else. Here's
+For now, here's a look at the `.build.yml` file that powers the CI on sourcehut. It really
+isn't harder to set up an automatation pipeline for a CL app than anything else. Here's
 to working on fun projects again. More soon. 👋
 
 ```
