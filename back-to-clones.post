@@ -1,0 +1,100 @@
+;;;;;
+title: Back to Clones
+tags: emulation, clones, lisp
+format: md
+date: 2022-03-20 20:34:00
+;;;;;
+
+### Ancient History
+
+[til-clones]: https://blog.kingcons.io/posts/Things-I-learned-writing-Clones.html
+[famiclom]: https://github.com/kingcons/famiclom
+[nescavation]: https://github.com/kingcons/nescavation
+[clones]: https://git.sr.ht/~kingcons/clones
+[rawbones]: https://github.com/kingcons/rawbones
+[jdabbs]: https://jdabbs.com/
+
+When I [last wrote about clones][til-clones], I was 32 and still working at Showcase IDX.
+I never got around to finishing clones and in fact worked on rawbones with my
+dear friend [James Dabbs][jdabbs] for a spell while teaching at the Flatiron School.
+By my count I have something like 4 half-finished NES emulators now.
+
+* [famiclom][famiclom] - My original half-hearted attempt in CL when I had no idea what I was doing.
+* [nescavation][nescavation] - A NES emulator I hacked up while learning to teach Javascript.
+* [clones][clones] - A better thought out attempt in CL.
+* [rawbones][rawbones] - The ReasonML version I wrote with James.
+
+I seem to write one whenever I get bored and with any luck I'll wind up finishing one of them
+sooner or later. Nescavation and Famiclom really never got close to running games, clones and
+rawbones both got much closer to playable territory but I never got background scrolling right.
+I still find it a bit funny that famiclom gets more attention than my later, improved efforts
+like clones or rawbones. (Probably because cl-6502 mentions it and achieved a little notoriety.)
+
+Getting to a playable state has never quite been the point though. These projects have been
+part learning exercise, part avenue for exploring literate programming / readable programs,
+and often just a fun project to noodle with for my own entertainment. I still like the idea
+that a fast and reasonably accurate emulator can be written in a concise, clear way with a
+garbage-collected language.
+
+### Present Day
+
+[cl-6502]: https://github.com/kingcons/cl-6502
+[cl-6502-book]: https://redlinernotes.com/docs/cl-6502.pdf
+[clones-docs]: https://clones.kingcons.io
+[mgl-pax]: https://melisgl.github.io/mgl-pax-world/mgl-pax-manual.html
+[try]: https://melisgl.github.io/mgl-pax-world/try-manual.html
+[test-roms]: https://www.nesdev.org/wiki/Emulator_tests
+[twitch]: https://twitch.tv/king_cons
+
+Recently, I got the itch again and so I decided to start fresh with clones. There are a few
+interesting changes this time around. When I made [cl-6502][cl-6502], creating a readable
+document from the program was a primary goal and resulted in a [literate book][cl-6502-book].
+This ethos never quite made the transition from the CPU stage to the full system emulators.
+This time I'll be leaning heavily into that spirit using [MGL-PAX][mgl-pax]. I'll also be
+testing with [try][try] and relying as heavily as I can on CPU and PPU [test roms][test-roms].
+
+This is all happening in the "once-more-with-feeling" branch on sourcehut. So far there isn't
+a lot there though I'm on vacation starting in 6 days so I'm hoping to get ROM parsing and a
+basic structure for stepping the CPU in place to crank through NEStest. I have got some nice
+automation set up though. Every push runs the test suite and deploys the [docs][clones-docs].
+I've also gotten a very basic [twitch stream][twitch] setup in case I want to indulge in the
+silliness of coding on camera.
+
+For now, I'll just show the `.build.yml` contents that powers the CI on sourcehut. It really
+isn't harder to set up an automated test pipeline for a CL project than anything else. Here's
+to working on fun projects again. More soon. 👋
+
+```
+image: alpine/latest
+oauth: pages.sr.ht/PAGES:RW
+environment:
+  site: clones.kingcons.io
+packages:
+  - sbcl
+sources:
+  - https://git.sr.ht/~kingcons/clones
+tasks:
+  - install-quicklisp: |
+      curl -O https://beta.quicklisp.org/quicklisp.lisp
+      sbcl --non-interactive \
+           --eval "(load \"~/quicklisp.lisp\")" \
+           --eval "(quicklisp-quickstart:install)" \
+      mkdir -p ~/quicklisp/local-projects/
+  - test: |
+      ln -sf ~/clones ~/quicklisp/local-projects/clones
+      sbcl --non-interactive \
+           --eval "(load (merge-pathnames \"quicklisp/setup.lisp\" (user-homedir-pathname)))" \
+           --eval "(ql:quickload '(clones clones/test))" \
+           --eval "(unless (try:passedp (try:try 'clones.test:test-all)) (uiop:quit 1))" \
+  - build-site: |
+      cd clones
+      echo 'Building site'
+      sbcl --non-interactive \
+           --eval "(load (merge-pathnames \"quicklisp/setup.lisp\" (user-homedir-pathname)))" \
+           --eval "(ql:quickload '(clones mgl-pax/document))" \
+           --eval "(clones.docs::build-site)"
+      mv ~/clones/site/clones.html ~/clones/site/index.html
+      tar -C site -cvz . > site.tar.gz
+      acurl -f https://pages.sr.ht/publish/$site -Fcontent=@site.tar.gz
+      rm site.tar.gz
+```
