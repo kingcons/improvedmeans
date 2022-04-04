@@ -1,0 +1,35 @@
+;;;;;
+title: Staycation
+format: md
+date: 2022-04-03 21:15:00
+tags: personal, emulation
+;;;;;
+Norma and I are at the end of a lovely week on vacation at home.
+It was extremely welcome, quite relaxing, and over all too soon
+like any vacation. I often struggle with breaks but I think a few
+things conspired to make this one feel different.
+
+1. I had about an hour of work or chores each day to give me a little structure.
+2. Norma was also off so we could hang out together.
+3. I was able to alternate between friends, Hollow Knight, and streaming emulator hacking.
+
+Historically, Norma's work in non-profit means she gets less vacation, or has a harder time
+taking it, than I do. Streaming has also been an interesting experiment. For most of our
+relationship, I have struggled to pull myself away to work on coding projects. I spend so
+much time sequestered with my computers, I hardly want to do it more when I could be with her.
+But then I can get frustrated or down on myself because I haven't made more time to learn or
+experiment. Streaming helps me feel like I'm not just wasting time alone in the garage.
+
+I'm going to try to continue streaming every Sunday and see how it goes. It's also been
+interesting to work on an emulator again. I'm reminded that the workflow with Common Lisp
+and Sly or Slime is as good as any I'm familiar with. I still love the language. But I was
+disappointed today to realize that after almost 20 hours of streaming, I wouldn't finish the
+CPU of my emulator this week. I don't think it's the fact that I'm not finished ultimately.
+I think I'm surprised that I still haven't been able to solve the problem to my satisfaction.
+Sure, I haven't gotten scrolling working on [previous attempts](https://kingcons.io/epiderNES).
+More than that though, the code still feels awkward and messy in various parts and the hard bits
+are still hard. Writing a reasonably accurate and efficient emulator in a high-level language is
+still fairly tricky it turns out. Or it is for me anyway.
+
+I don't entirely know why this task continues to be something I want to tilt at.
+But until it isn't, I'll keep trying. Cheers.
