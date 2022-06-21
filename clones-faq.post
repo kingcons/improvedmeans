@@ -1,0 +1,76 @@
+;;;;;
+title: Clones FAQ
+format: md
+date: 2022-06-21 09:30:00
+tags: clones, programming
+;;;;;
+
+### An Update on Clones
+
+Even though I've been finding less time to work on it, I've enjoyed the process
+of hacking on clones and things are going pretty well. Input handling and
+background rendering are finished and with any luck it will be another weekend 
+until sprites are working. I do expect to need some tweaks for fine scrolling
+to be implemented correctly so it may be another week or two still until more
+advanced NROM titles like Super Mario Bros run. It should be a hop, skip, and
+a jump from there to MMC1 titles like Mega Man 2 though. 🙏
+
+![clones-progress](https://redlinernotes.com/images/clones_progress4.png)
+
+### Commonly asked questions
+
+There are 3 questions that have come up pretty regularly though, either on
+[stream chat](https://twitch.tv/king_cons) or elsewhere, and I'd like to jot
+down some thoughts about them while it's fresh in my mind.
+
+1. Why are you buildling clones?
+
+Because it brings me joy. I feel compelled to work on it as a vehicle to try to
+create something that I find aesthetically appealing and that indulges parts of
+my curiosity.
+
+2. Why are you building clones in lisp?
+
+Because it's my favorite language to work in. I don't think the feature set of
+Common Lisp is critical. Macros, CLOS, and conditions and restarts are all great
+but the motivating factor for me remains the interactive development workflow
+with Emacs and SLIME/Sly. When I was young and not yet a programmer, I imagined
+that at some point working on software or digging into the internals should be
+more like having a conversation than working out a math problem. Our tooling
+remains far from those (naive) visions, but Common Lisp is closer to what I
+imagined and so it feels more comfortable to me.
+
+3. What are your goals in building clones?
+
+This is the toughest part to answer. Initially, I'd just like to be able to
+have a functioning emulator and play childhood games that I loved, like
+Mega Man 2, tolerably well. Once that piece is completed though, I'm very
+interested in trying to add tools for debugging and reverse engineering games.
+
+This isn't so much about the games themselves as it is about having better tools
+for investigating software without access to source code. An emulator is a great
+place to experiment with approaches to that. Now I admit I have not spent a lot
+of time doing reverse engineering or security work and am not familiar with the
+state of the art around static analysis or disassembly tools like [IDA Pro][ida].
+
+[ida]: https://hex-rays.com/IDA-pro/
+
+I'm limited in my ability to express what I imagine. So since I can't tell you
+exactly what it should be, here's a sketch:
+
+I would love it if I could build a graph of the control flow of the game as I
+play it. I would love it if I could later annotate the graph, name segments of
+assembly, and receive hints around what specific parts might be interacting with
+graphics data, or the APU, or handling player inputs.
+
+The code is an artifact, the leftover cocoon of the program being written.
+The interesting pieces are in the constraints of the level design, the physics,
+the musical score, the artwork. I would like, as much as possible, to have tools
+for exploring the shape of a process as it lives, exploring the data it operates
+on, and understanding the constraints of the problem, rather than relying on
+code to understand one specific approach to solving that problem.
+
+In the abstract, this isn't a solvable problem and I will never have a proof of
+correctness or confidence in completion. But it's worth striving to see how
+software in general could leave breadcrumbs behind it, given how much of our
+ideas and culture are being pored into it and fossilized in amber.
