@@ -23,24 +23,27 @@ There are 3 questions that have come up pretty regularly though, either on
 [stream chat](https://twitch.tv/king_cons) or elsewhere, and I'd like to jot
 down some thoughts about them while it's fresh in my mind.
 
-1. Why are you buildling clones?
+#### Why are you buildling clones?
 
 Because it brings me joy. I feel compelled to work on it as a vehicle to try to
 create something that I find aesthetically appealing and that indulges parts of
 my curiosity.
 
-2. Why are you building clones in lisp?
+#### Why are you building clones in lisp?
 
 Because it's my favorite language to work in. I don't think the feature set of
 Common Lisp is critical. Macros, CLOS, and conditions and restarts are all great
 but the motivating factor for me remains the interactive development workflow
 with Emacs and SLIME/Sly. When I was young and not yet a programmer, I imagined
-that at some point working on software or digging into the internals should be
+that at some point working on software or digging into the internals would be
 more like having a conversation than working out a math problem. Our tooling
 remains far from those (naive) visions, but Common Lisp is closer to what I
-imagined and so it feels more comfortable to me.
+imagined and so it feels more comfortable to me. Mikel Evins has written
+[some great posts][programming-as-teaching] about this.
 
-3. What are your goals in building clones?
+[programming-as-teaching]: https://mikelevins.github.io/posts/2020-02-03-programming-as-teaching/
+
+#### What are your goals in building clones?
 
 This is the toughest part to answer. Initially, I'd just like to be able to
 have a functioning emulator and play childhood games that I loved, like
@@ -73,4 +76,4 @@ code to understand one specific approach to solving that problem.
 In the abstract, this isn't a solvable problem and I will never have a proof of
 correctness or confidence in completion. But it's worth striving to see how
 software in general could leave breadcrumbs behind it, given how much of our
-ideas and culture are being pored into it and fossilized in amber.
+ideas and culture are being poured into it and fossilized in amber.
