@@ -1,0 +1,132 @@
+;;;;;
+title: My 2022
+tags: personal, reflection
+date: 2022-12-31 18:00:00
+format: md
+;;;;;
+
+Somehow it's already New Year's Eve. I've got two more days off but I'm already
+distracted by work to do in January. So now seems like an ideal time to step
+back and reflect on what happened in 2022, what I loved, and what I'll let go of
+as I move forward. I also feel I should shout out
+[Manuel Uberti's wrap up](https://manueluberti.eu/2022/12/22/my-2022.html) which
+inspired me (and he has great posts on emacs).
+
+(See also: [Last year's reflections](https://blog.kingcons.io/posts/Deliberate-Action.html))
+
+#### Things to Celebrate
+
+##### Traveling
+
+I took a trip to see Aaron on Vancouver Island and then James in Santa Barbara.
+They were two glorious and much needed weeks out of the house. While I wasn't
+off the whole time, I was able to focus on spending time with people I love very
+much and get myself out of a rut. In fact, I've made pilgrimages to go see James
+and Rachel in California 4 or 5 times in the last 18 months. Yet to regret it.
+Need to squeeze in a NYC trip next year to see Justin and Kelly and Roni.
+
+##### Exercise
+
+I started running in the summer. I've barely exercised for a decade. It wasn't
+really intentional. I used to love skateboarding with Burke or around the
+apartment complex. After Burke moved away and Norma and I settled down, it just
+wasn't the same. I started running in the spring but had a hard time staying
+motivated. In late October, I started going to a nearby spin class with Norma.
+At first I thought it wasn't for me but here we are two months later and I love
+it. I'm going 3-4 times a week, sometimes with Norma and sometimes on my own. It
+feels wonderful to be pushing my body again and just get out of the house and move.
+
+##### My Partner
+
+I had some really wonderful experiences with Norma this year. We took a trip to
+Austin to see dear friends. We took a week off together at the end of March and
+just lounged about and went on lunch dates. We're doing spin together and early
+in the year we made a different cookie recipe [every
+weekend](https://redlinernotes.com/docs/baking.txt) for a few months. I feel
+closer to her than I have before and in January we will have been dating 10
+years. It's hard to believe but it's something I'm very happy about.
+
+##### Family
+
+I got closer to the Butlers. I've always had a ... tenuous relationship with
+Dad's side of the family. In a lot of ways, I thought my relationship to them
+was determined _by_ my relationship with my dad which has never been very good.
+To a large degree, I still think of my step dad John as dad and I miss him
+dearly. But I went to Uncle Eddie's funeral earlier this year and started to
+realize that my relationship with the Butlers is just plain separate from my
+relationship to Terry. I haven't figured out what I want to do with that but I'm
+grateful for it. I also attended my niece Caroline's wedding and have gotten a
+bit closer to my half-sister Renee between that and Terry's recent health issues.
+
+##### Hacking
+
+A few different things have brought me joy this year on the hacking front. I've
+done effectively no programming for work now that I'm an Engineering Manager and
+a year on I'm happy with that decision. I struggle to recognize and appreciate
+my contributions as a manager because a lot of relational work ... doesn't
+really seem like work to me. But that's a separate issue. On the hacking front,
+there are 3 things I've really enjoyed this year:
+
+1. [Advent of Code](https://kingcons.github.io/advent-of-code/)
+
+   Most recently, I organized a slack channel at work (`#fun-advent-of-code`)
+   where about 15 folks participated in daily slack threads working through and
+   discussing the different puzzles posted over the month of December. I coded
+   my solutions in Common Lisp and enjoyed getting practice playing with new
+   libraries. While I didn't get quite as far as I wanted, I got further than in
+   past years and really enjoyed the camaraderie of it. I also had a few
+   particularly elegant solutions. More literate puzzle writeups to come!
+
+2. [Streaming Clones](https://www.twitch.tv/king_cons)
+
+   During my week off with Norma at the end of March, I knew I missed hacking so
+   I wanted to try reworking my emulator. Working alone in the garage is
+   discouraging for me. I like having people to discuss my projects with. So I
+   decided to take a risk and stream a rewrite of my NES emulator from scratch
+   on twitch. I made a ton of progress and while I stopped at the end of July
+   and some bugs remain. Super Mario Bros is playable and the codebase is
+   generally in good shape. I got a lot of joy from this.
+
+3. [Sourcehut](https://sr.ht/~kingcons)
+
+   I started paying for Sourcehut and hosting my emulator hacking there early in
+   the year. Drew Devault seems a bit divisive but I have a lot of appreciation
+   for the way he has built sourcehut and the principled stance it takes on
+   prioritizing open source and community-oriented projects over for-profit
+   corporate software. I have greatly enjoyed being a user of this service.
+
+##### Records and VOTD
+
+My favorite hack of the year wasn't Advent or Clones. It was actually a bit of
+emacs lisp I wrote in under an hour to help me randomly pick music to play on my
+twitch stream from my record collection. The satisfaction of hitting Super+N and
+being shown album art of a record to play is hard to beat. I've been purchasing
+most of my music on bandcamp or discogs. As someone who enjoys archiving or
+curating things in general, this has been a lot of fun. The current library and
+VOTD code lives [here](https://github.com/kingcons/dotemacs/blob/master/init/votd.el).
+
+#### Things to Come
+
+I'd love to do a separate post about some cultural things I enjoyed in 2022.
+Favorite TV, movies, music, that sort of thing. There are also some things I'd
+like to change in 2023 and pieces of myself I'd like to work on. But for now,
+I'll close with a few things I'm looking forward to.
+
+Norma and I are finally going on our honeymoon. We'll be going to Morocco for 2
+weeks in March. I can't wait. I've never traveled overseas with Norma and I
+think it'll be a wonderful time.
+
+The final Strangeloop is happening and I'll be going with James and also a
+wonderful former Iron Yard instructor, Tim. Strangeloop is always a great
+conference and St Louis is always a great adventure. This time will be no
+different.
+
+Last but not least, Aaron is coming to Atlanta at some point. I've been hoping
+to take Aaron to some of my favorite local haunts, and Kimball House in
+particular, for years so I can't wait for him to visit. We're gonna have a
+blast.
+
+For now, I'm grateful that I made it through the crazy year, that Calendly has
+been a good place for me to grow in my career, and that I'm as close to my
+beautiful partner as I've ever been. Here's hoping that 2023 is an opportunity
+to have more adventures, grow healthier, and learn something new. Cheers. 🥂
