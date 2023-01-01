@@ -67,8 +67,7 @@ my contributions as a manager because a lot of relational work ... doesn't
 really seem like work to me. But that's a separate issue. On the hacking front,
 there are 3 things I've really enjoyed this year:
 
-1. [Advent of Code](https://kingcons.github.io/advent-of-code/)
-
+1. [Advent of Code](https://kingcons.github.io/advent-of-code/).
    Most recently, I organized a slack channel at work (`#fun-advent-of-code`)
    where about 15 folks participated in daily slack threads working through and
    discussing the different puzzles posted over the month of December. I coded
@@ -76,9 +75,7 @@ there are 3 things I've really enjoyed this year:
    libraries. While I didn't get quite as far as I wanted, I got further than in
    past years and really enjoyed the camaraderie of it. I also had a few
    particularly elegant solutions. More literate puzzle writeups to come!
-
-2. [Streaming Clones](https://www.twitch.tv/king_cons)
-
+2. [Streaming Clones Hacking](https://www.twitch.tv/king_cons). 
    During my week off with Norma at the end of March, I knew I missed hacking so
    I wanted to try reworking my emulator. Working alone in the garage is
    discouraging for me. I like having people to discuss my projects with. So I
@@ -86,9 +83,7 @@ there are 3 things I've really enjoyed this year:
    on twitch. I made a ton of progress and while I stopped at the end of July
    and some bugs remain. Super Mario Bros is playable and the codebase is
    generally in good shape. I got a lot of joy from this.
-
-3. [Sourcehut](https://sr.ht/~kingcons)
-
+3. [Sourcehut](https://sr.ht/~kingcons).
    I started paying for Sourcehut and hosting my emulator hacking there early in
    the year. Drew Devault seems a bit divisive but I have a lot of appreciation
    for the way he has built sourcehut and the principled stance it takes on
@@ -102,7 +97,7 @@ emacs lisp I wrote in under an hour to help me randomly pick music to play on my
 twitch stream from my record collection. The satisfaction of hitting Super+N and
 being shown album art of a record to play is hard to beat. I've been purchasing
 most of my music on bandcamp or discogs. As someone who enjoys archiving or
-curating things in general, this has been a lot of fun. The current library and
+curating things in general, this has been a lot of fun. The current collection and
 VOTD code lives [here](https://github.com/kingcons/dotemacs/blob/master/init/votd.el).
 
 #### Things to Come
